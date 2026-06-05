@@ -356,6 +356,18 @@
   .wcard .wc-h{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
   .wcard .wc-l{color:var(--mut);font-size:12.5px;line-height:1.5;margin-top:7px;padding-left:14px;position:relative}
   .wcard .wc-l::before{content:"›";position:absolute;left:0;color:var(--accent2)}
+  .wc-row{display:flex;gap:12px;align-items:flex-start;margin-top:10px;padding:10px 12px;
+    background:rgba(0,0,0,.22);border-radius:12px;border:1px solid var(--line)}
+  .wc-glyph{width:54px;height:54px;flex-shrink:0;border-radius:10px;overflow:hidden;
+    background:var(--bg);display:flex;align-items:center;justify-content:center}
+  .wc-glyph img.wc-animg,.wc-glyph .wc-animg img{width:100%;height:100%;object-fit:cover;display:block}
+  .wc-glyph svg{width:100%;height:100%}
+  .wc-glyph.wc-fig{background:#15161b}
+  .wc-glyph.wc-fig svg{padding:3px;box-sizing:border-box}
+  .wc-body{flex:1;min-width:0}
+  .wc-n{font-weight:700;font-size:13px;color:var(--ink);line-height:1.3}
+  .wc-r{color:var(--accent2);font-size:11px;font-weight:700;margin-top:2px;letter-spacing:.03em}
+  .wc-c{color:var(--mut);font-size:11.5px;line-height:1.45;margin-top:3px}
 </style>
 </head>
 <body>
@@ -479,7 +491,7 @@
       "ytcoach": "Chris Bumstead",
       "tag": "Chris Bumstead · Advanced",
       "sub": "Advanced · how he trains now",
-      "advanced": "CBUM's latest (2024) intensity tools — layer these onto the sets below: <b>Tempo training</b> (3:1:1:1 — 3s down, 1s pause stretched, explode up, 1s squeeze). <b>Yielding isometrics</b> (after failure, hold the stretched position ~20s resisting the weight). <b>Lengthened partials</b> (when full reps fail, keep doing reps in the deep-stretch range). <b>FST-7</b> (7 sets of the last isolation move, 30–45s rest). Plus rest-pause and double drop sets on final sets.",
+      "advanced": "CBUM + Justin King (2024) intensity — use on every working set: <b>Tempo 3:1:1:1</b> (3s eccentric, 1s stretched pause, explode, 1s squeeze). <b>Yielding isometrics</b> (~20s hold in the stretch resisting the weight). <b>Mid-range iso to failure</b> (pause halfway, hold until form breaks). <b>Lengthened partials</b> after full-ROM failure. <b>Iso-dynamic ladders</b> (5→1 reps with matching-second holds). <b>FST-7</b> (7×8–12, 30–45s rest, flex between sets). <b>Drop sets</b> only after you fatigue the target fibers.",
       "accent": "#E8B04B", "accent2": "#F4C66A", "dim": "#3a2c12",
       "diet": {
         "title": "CBUM Off-Season Diet",
@@ -497,7 +509,7 @@
         "source": "Kyle Hunt Fitness / BarBend full-day-of-eating (2024 off-season)"
       },
       "year": [
-        {"q": "Block 1", "months": "Months 1–3", "t": "Off-Season Mass", "d": "Advanced from day one. Run the elite split with heavy machine + free-weight work and full intensity tools — tempo, yielding isometrics and lengthened partials — plus the biggest food intake of the year to build raw size.", "meta": "Heavy + tempo/iso · ~4,500–5,000 kcal"},
+        {"q": "Block 1", "months": "Months 1–3", "t": "Off-Season Mass", "d": "Advanced from day one. Full 7-day CBUM split — chest, back, quads, hams, shoulders, chest/back supersets, arms — with tempo, yielding isometrics, iso ladders and FST-7. Biggest food intake of the year.", "meta": "7-day elite split · tempo/iso/FST-7 · ~4,500–5,000 kcal"},
         {"q": "Block 2", "months": "Months 4–6", "t": "Hypertrophy Volume", "d": "Add volume and intensity techniques — drop sets, timed 40-second sets and supersets — and hammer weak points to fill out the classic shape.", "meta": "8–15 reps · drop/timed sets · weak-point focus"},
         {"q": "Block 3", "months": "Months 7–9", "t": "Metabolic Conditioning", "d": "Tighten up. Shorter rest, higher reps and added cardio while keeping the heavy work to hold muscle as you lean out.", "meta": "10–20 reps · short rest · cardio added"},
         {"q": "Block 4", "months": "Months 10–12", "t": "Peak & Conditioning", "d": "Bring out the detail. Refine each body part, practise posing, and add conditioning to reveal the small waist and classic taper.", "meta": "Refinement · posing · peak conditioning"}
@@ -505,56 +517,68 @@
       "phases": [
         {
           "title": "CBUM — Advanced Hypertrophy (how he trains now)",
-          "months": "6 sessions · 3 on, 1 off",
-          "objective": "Chris Bumstead's current elite training — exactly the style from his 2024 sessions with Hany Rambod. Machine-heavy for safe overload, every set driven by advanced intensity: tempo (3:1:1:1), yielding isometrics, lengthened partials, FST-7 and drop sets. This is advanced from set one — load the long range of the muscle, control every rep, and take working sets to (or past) failure.",
-          "rest": "Heavy compounds: 2–3 min.  Machine / intensity sets: 60–90s.  FST-7: 30–45s.",
+          "months": "7 sessions · 3 on, 1 off",
+          "objective": "Chris Bumstead's 2024 elite split — researched from his YouTube sessions with Hany Rambod and Justin King. Machine-heavy overload, tempo (3:1:1:1), yielding isometrics, mid-range iso holds, lengthened partials, iso-dynamic ladders, FST-7 flex sets and strategic drop sets. Advanced from Block 1 — no beginner work.",
+          "rest": "Heavy compounds: 2–3 min.  Machine / iso sets: 60–90s.  FST-7: 30–45s (flex quads between sets).",
           "capNote": "",
           "days": [
-            {"title": "Day 1 — Chest (Tempo & Yielding Isometrics)", "imgs": ["pectoralis", "triceps"], "intro": "His 2024 chest session: dumbbell pressing on a strict tempo, machine presses with deep-stretch yielding isometrics, then flyes into lengthened partials and an FST-7 triceps finisher.", "vid": "Chris Bumstead chest workout", "cbumVid": "hkaHHE0AbXo", "rest": false, "ex": [
-              {"name": "Flat Dumbbell Press", "sr": "2 x 8–10 · 3:1:1:1 tempo", "target": "Pec major", "cue": "3s down, 1s pause in the stretch, explode up, 1s squeeze. Slow eccentric is the point.", "pat": "press_flat", "mus": "pectoralis", "sets": 2, "fst": false, "dtp": false},
-              {"name": "Decline Machine Chest Press", "sr": "3 x 10 · neutral grip", "target": "Pec (lower/sternal)", "cue": "Drive the elbows behind the midline for a deep stretch; hold a 20s yielding isometric in the stretch after your last rep.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Incline Machine Chest Press", "sr": "3 x 10", "target": "Pec (clavicular)", "cue": "Scapula retracted, proud chest to bias the upper pec. Yielding isometric on the final set.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Incline Cable Flye", "sr": "3 x 12 · double drop on the last", "target": "Pec (upper)", "cue": "Grab the cables directly (no handles) for extra range. Squeeze hard at the top.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Flat Dumbbell Flye", "sr": "3 x 12 + lengthened partials", "target": "Pec (mid)", "cue": "Elbows just below the midline, 2s stretch pause; keep doing partials in the stretch once full reps fail.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Overhead Cable Triceps Extension — FST-7", "sr": "7 x 12", "target": "Triceps (long head)", "cue": "30–45s rest, deep stretch behind the head, flex the triceps between sets.", "pat": "pushdown", "mus": "triceps", "sets": 7, "fst": true, "dtp": false}
+            {"title": "Day 1 — Chest (Yielding Isometrics & Tempo)", "imgs": ["pectoralis", "triceps"], "intro": "His July 2024 chest session (BarBend): flat DB press on 3:1:1:1 tempo, decline + incline machine presses with 20s yielding isometrics in the stretch, cable flyes with triple drops, dumbbell flyes into lengthened partials, then pushdown/overhead triceps supersets into FST-7.", "vid": "Chris Bumstead chest workout yielding isometrics", "cbumVid": "hkaHHE0AbXo", "rest": false, "ex": [
+              {"name": "Flat Dumbbell Press", "sr": "2 x 10 · 3:1:1:1 tempo", "target": "Pec major", "cue": "3s eccentric, 1s pause stretched, explode up, 1s squeeze at top. He ran ~130 lb DBs — match load to your 10-rep max.", "pat": "press_flat", "mus": "pectoralis", "sets": 2, "fst": false, "dtp": false},
+              {"name": "Decline Machine Chest Press", "sr": "3 x 10 · neutral grip", "target": "Pec (lower/sternal)", "cue": "Neutral grip, drive elbows behind the midline for deep stretch. 20s yielding isometric in the bottom after your last rep.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Incline Machine Chest Press", "sr": "3 x 10 · mid-range iso", "target": "Pec (clavicular)", "cue": "Scap retracted, proud chest. On the final set: 3s negative, pause bottom, press, pause top, come halfway down — hold 20s yielding iso.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Incline Cable Flye (Pronated)", "sr": "3 x 12 · triple drop last set", "target": "Pec (upper/clavicular)", "cue": "45° bench, grab cables directly (no handles). Arms track upper-pec fibres; triple drop on the final set.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Flat Dumbbell Flye", "sr": "3 x 12 + lengthened partials", "target": "Pec (mid)", "cue": "Elbows below midline, 2s pause at full stretch. When form breaks, keep partials only in the stretched range.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Superset: Pushdown + Overhead Rope Extension", "sr": "3 rounds x 10 each", "target": "Triceps (all heads)", "cue": "Wide-bar pushdowns (full stack) alternating with overhead rope for long-head stretch — ~40% more growth stimulus.", "pat": "pushdown", "mus": "triceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Overhead Cable Triceps Extension — FST-7", "sr": "7 x 10–12", "target": "Triceps (long head)", "cue": "30–45s rest. Deep stretch behind head; flex triceps hard between sets (FST-7 flex).", "pat": "pushdown", "mus": "triceps", "sets": 7, "fst": true, "dtp": false}
             ]},
-            {"title": "Day 2 — Back (Stretch-Focused Pull)", "imgs": ["latissimus", "biceps"], "intro": "His pull day: close-grip pulldowns, weighted pull-ups and reverse-grip rows for width and lower-lat thickness, an FST-7 straight-arm finisher, then stretch-position curls.", "vid": "Chris Bumstead back workout", "cbumVid": "QQJtaldifZ0", "rest": false, "ex": [
-              {"name": "Close-Grip Lat Pulldown", "sr": "3 x 10–12", "target": "Lats", "cue": "Depress the scapula, drive the elbows to the hips, control the stretch back up.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Weighted Pull-Ups", "sr": "3 sets to failure", "target": "Lats, upper back", "cue": "Full hang, lead with the chest, drive elbows behind the midline.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Reverse-Grip Bent-Over Row", "sr": "3 x 8–10", "target": "Lats (lower)", "cue": "Underhand grip to bias the lower lats; pull to the navel and squeeze.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Incline Bench Dumbbell Row", "sr": "3 x 10–12", "target": "Lats, mid-back", "cue": "Chest supported on an incline bench, no momentum, full stretch each rep.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Straight-Arm Lat Pulldown — FST-7", "sr": "7 x 12–15", "target": "Lats", "cue": "30–45s rest, long arms, hinge at the shoulder for a deep lat stretch.", "pat": "pulldown", "mus": "latissimus", "sets": 7, "fst": true, "dtp": false},
-              {"name": "Incline Dumbbell Curl", "sr": "3 x 10–12 + lengthened partials", "target": "Biceps (long head)", "cue": "Let the arms hang back for a deep stretch; partials in the stretch to finish.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false}
+            {"title": "Day 2 — Back (Stretch & Mid-Range Iso)", "imgs": ["latissimus", "biceps"], "intro": "Stretch-focused pull day blending Rambod volume with Justin King's mid-range iso rows. Chest-supported rows to failure in the midpoint, then width work, T-bar rows, and an FST-7 straight-arm finisher.", "vid": "Chris Bumstead back workout", "cbumVid": "QQJtaldifZ0", "rest": false, "ex": [
+              {"name": "Chest-Supported Row", "sr": "3 x 8 + mid-range iso", "target": "Lats, mid-back", "cue": "3:1:1:1 tempo, straps on. On rep 9 pause halfway, hold until form breaks — lock scaps down and in.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Close-Grip Lat Pulldown", "sr": "3 x 10–12", "target": "Lats (width)", "cue": "Depress scapula first, drive elbows to hips, slow 3s stretch on the way up.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Weighted Pull-Ups", "sr": "3 sets to failure", "target": "Lats, upper back", "cue": "Full dead hang, lead with chest, drive elbows behind midline. Rest-pause: 10s then AMRAP on final set.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Machine T-Bar Row", "sr": "4 x 10–12", "target": "Mid-back", "cue": "Chest on pad top edge, wide overhand grip, flare elbows on the concentric to bias mid-back.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Reverse-Grip Bent-Over Row", "sr": "3 x 8–10", "target": "Lats (lower)", "cue": "Underhand to the navel; squeeze lower lats, control the eccentric.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Straight-Arm Lat Pulldown — FST-7", "sr": "7 x 12–15", "target": "Lats", "cue": "30–45s rest. Long arms, hinge at shoulder only — deep lat stretch each rep.", "pat": "pulldown", "mus": "latissimus", "sets": 7, "fst": true, "dtp": false},
+              {"name": "Incline Dumbbell Curl", "sr": "3 x 10–12 + lengthened partials", "target": "Biceps (long head)", "cue": "Arms hang behind torso for max stretch; partials in the stretch to finish.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false}
             ]},
-            {"title": "Day 3 — Hamstrings & Glutes (Tempo Tri-Sets)", "imgs": ["hamstring"], "intro": "Rambod's posterior-chain blueprint: pre-exhaust curls on a triple-tempo scheme, RDLs, a lengthened-to-shortened tri-set, hip thrusts and lengthened-partial calves.", "vid": "Chris Bumstead hamstring workout", "cbumVid": "udM_XeQUqcA", "rest": false, "ex": [
-              {"name": "Lying Leg Curl (Triple Tempo)", "sr": "4-0-X-1 → 4-0-X-0 → 3-0-X-0", "target": "Hamstrings", "cue": "Pre-exhaust; 10s rest between each tempo, then a double drop to finish.", "pat": "legcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Romanian Deadlift", "sr": "3 x 8–10", "target": "Hamstrings, glutes", "cue": "Hinge, soft knees, big hamstring stretch — squeeze the glutes to lock out.", "pat": "hinge", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Tri-Set: Seated Curl + 45° Hyperextension + Cable Pull-Through", "sr": "3 rounds x 10–12", "target": "Hamstrings, glutes", "cue": "Lengthened → mid → shortened ranges back-to-back, no rest within a round.", "pat": "legcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Barbell Hip Thrust", "sr": "3 x 10–12", "target": "Glutes, hams", "cue": "Full hip extension, 1s squeeze at the top.", "pat": "hinge", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Standing Calf Raise", "sr": "4 x 10–12 + lengthened partials", "target": "Calves", "cue": "4s eccentric, pause in the stretch; finish with partials.", "pat": "calf", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false}
+            {"title": "Day 3 — Quads (Pendulum & Belt Squat)", "imgs": ["quadriceps", "hamstring"], "intro": "His Aug 2024 quad day with Justin King: pendulum squats with quarter reps at the bottom, yielding-ISO cycling belt squats on heel wedges, hack squats with drop sets (fatigue fibres first), pause-rep leg extensions, then hyper/calf supersets.", "vid": "Chris Bumstead quad leg day Justin King 2024", "rest": false, "ex": [
+              {"name": "Lying Single-Leg Curl", "sr": "2 x 12 / side", "target": "Hamstrings, knee prep", "cue": "Light pre-exhaust to warm the knee joint before heavy quad work — CBUM opens leg days this way.", "pat": "legcurl", "mus": "hamstring", "sets": 2, "fst": false, "dtp": false},
+              {"name": "Atlantis Pendulum Squat", "sr": "4 x 8–10 · quarter rep", "target": "Quads", "cue": "Quarter rep in the hole before every full rep. Controlled tempo — depth fixes ankle/hip mobility over time.", "pat": "squat", "mus": "quadriceps", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Belt Squat (Heel Wedges)", "sr": "3 x 10 · yielding ISO cycle", "target": "Quads, VMO", "cue": "Heel wedges, sandwich calf + hamstring. Yielding isometric cycling squat — hold stretched position resisting the load.", "pat": "squat", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Hack Squat Machine", "sr": "3 x 8–10 · drop last set", "target": "Quads", "cue": "Take working sets to true failure first, then drop load — don't drop weight before fibres are fatigued (Justin King cue).", "pat": "squat", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Leg Extension — FST-7", "sr": "7 x 10–12 · pause reps", "target": "Quads (rectus femoris)", "cue": "Recline backrest for deep stretch. First half: toes up; second half: toes down (ballerina) for teardrop. Flex quads 3 min total between sets.", "pat": "legext", "mus": "quadriceps", "sets": 7, "fst": true, "dtp": false},
+              {"name": "Superset: Back Hyperextension + Seated Calf Raise", "sr": "3 rounds x 12–15", "target": "Erectors + calves", "cue": "King times the hypers with a stopwatch, then straight into seated calf raises — no rest between.", "pat": "hinge", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false}
             ]},
-            {"title": "Day 4 — Shoulders (3D Delts)", "imgs": ["deltoid"], "intro": "Capped, 3-D delts: machine and dumbbell laterals for the side head, hammer-grip presses, single-arm rear-delt cables and an FST-7 front-raise finisher.", "vid": "Chris Bumstead shoulder workout", "cbumVid": "tdEk3XfYzxc", "rest": false, "ex": [
-              {"name": "Standing Lateral Raise Machine", "sr": "4 x 12–15", "target": "Delt (lateral)", "cue": "Constant tension, lead with the elbow, slow negative.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
-              {"name": "Seated Hammer Strength Shoulder Press", "sr": "4 x 8–10", "target": "Delt (anterior/lateral)", "cue": "Control the descent, stop just short of lockout to keep tension.", "pat": "press_oh", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
-              {"name": "Standing Dumbbell Side Laterals", "sr": "3 x 12–15 + partials", "target": "Delt (lateral)", "cue": "Slight lean, pour-the-water; partials in the stretch when you hit failure.", "pat": "lateral", "mus": "deltoid", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Single-Arm Reverse Cable Flye", "sr": "4 x 15 / side", "target": "Delt (posterior)", "cue": "Rear-delt isolation, lead with the elbow, squeeze the rear delt.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
-              {"name": "Cable Rope Front Raise — FST-7", "sr": "7 x 12", "target": "Delt (anterior)", "cue": "30–45s rest, hammer grip, raise to eye level.", "pat": "frontraise", "mus": "deltoid", "sets": 7, "fst": true, "dtp": false}
+            {"title": "Day 4 — Hamstrings & Glutes (Rambod FST-7)", "imgs": ["hamstring"], "intro": "His 2024 Olympia-prep hamstring day with Hany Rambod: standing + lying curls, belt squat biased to glute-ham (no forward lean), Bulgarian split squats, hip thrusts and seated calf raises with lengthened partials.", "vid": "Chris Bumstead hamstring workout FST-7", "cbumVid": "udM_XeQUqcA", "rest": false, "ex": [
+              {"name": "Standing Leg Curl Machine", "sr": "3 x 12", "target": "Hamstrings", "cue": "Constant tension, squeeze at peak contraction, 3s negative.", "pat": "legcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Lying Leg Curl Machine", "sr": "3 x 10–12 + partials", "target": "Hamstrings", "cue": "Full stretch each rep; lengthened partials once full ROM fails. Double drop on final set.", "pat": "legcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Machine Belt Squat (Glute-Ham)", "sr": "4 x 10 · full depth", "target": "Glutes, hamstrings", "cue": "Stay upright — leaning forward recruits quads. Full depth, glute-ham focus for 3D side-pose ham tie-in.", "pat": "squat", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Dumbbell Bulgarian Split Squat", "sr": "3 x 10 / side", "target": "Glutes, hams", "cue": "Controlled descent, front foot forward enough for hamstring stretch, drive through heel.", "pat": "squat", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Machine Hip Thrust", "sr": "3 x 12", "target": "Glutes", "cue": "Full hip extension, 2s squeeze at top. Rambod's finisher for posterior chain.", "pat": "hinge", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Seated Calf Raise", "sr": "4 x 12 + lengthened partials", "target": "Calves", "cue": "Pause in the stretch; partial reps at the bottom on the last 2 sets.", "pat": "calf", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false}
             ]},
-            {"title": "Day 5 — Chest & Back (Antagonist Supersets)", "imgs": ["pectoralis", "latissimus"], "intro": "His high-volume strength-and-pump torso day: press/pull supersets with isometric holds for a massive upper-body pump.", "vid": "Chris Bumstead chest back workout", "cbumVid": "hkaHHE0AbXo", "rest": false, "ex": [
-              {"name": "Superset: Incline DB Press + Pull-Ups", "sr": "4 rounds x 8–12", "target": "Pec + lats", "cue": "Push then pull back-to-back — reciprocal inhibition lets you hit both hard.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false},
-              {"name": "Machine T-Bar Row", "sr": "4 x 10–12", "target": "Lats, mid-back", "cue": "Chest supported, drive the elbows back, squeeze the mid-back.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false},
-              {"name": "Incline Machine Chest Press", "sr": "3 x 10–12", "target": "Pec (upper)", "cue": "Upper-pec focus; yielding isometric on the last set.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Superset: Machine High Row + Push-Ups", "sr": "3 rounds", "target": "Lats + chest", "cue": "Row to the upper chest, then push-ups to failure.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Incline Cable Flye — FST-7", "sr": "7 x 12", "target": "Pec", "cue": "30s rest, deep stretch, hard squeeze each set.", "pat": "fly", "mus": "pectoralis", "sets": 7, "fst": true, "dtp": false}
+            {"title": "Day 5 — Shoulders (3D Delts)", "imgs": ["deltoid"], "intro": "Capped 3-D delts: machine laterals, hammer-grip presses, dumbbell side laterals with partials, rear-delt cables and an FST-7 front-raise finisher.", "vid": "Chris Bumstead shoulder workout", "cbumVid": "tdEk3XfYzxc", "rest": false, "ex": [
+              {"name": "Standing Lateral Raise Machine", "sr": "4 x 12–15", "target": "Delt (lateral)", "cue": "Constant tension, lead with elbow, 3s negative.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Seated Hammer Strength Shoulder Press", "sr": "4 x 8–10", "target": "Delt (anterior/lateral)", "cue": "Iso-lateral stacks fix imbalances. Stop just short of lockout.", "pat": "press_oh", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Standing Dumbbell Side Laterals", "sr": "3 x 12–15 + partials", "target": "Delt (lateral)", "cue": "Slight lean, pour-the-water; lengthened partials when you hit failure.", "pat": "lateral", "mus": "deltoid", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Single-Arm Reverse Cable Flye", "sr": "4 x 15 / side", "target": "Delt (posterior)", "cue": "Rear-delt isolation, lead with elbow, squeeze 1s at peak.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Cable Rope Front Raise — FST-7", "sr": "7 x 12", "target": "Delt (anterior)", "cue": "30–45s rest, hammer grip to eye level, flex delts between sets.", "pat": "frontraise", "mus": "deltoid", "sets": 7, "fst": true, "dtp": false}
             ]},
-            {"title": "Day 6 — Arms (Stretch-Position Supersets)", "imgs": ["biceps", "triceps"], "intro": "Bi/tri supersets trained in the lengthened position — his go-to for a brutal arm pump and peak growth.", "vid": "Chris Bumstead arm workout", "cbumVid": "iF_WM501fDE", "rest": false, "ex": [
-              {"name": "Superset: Incline DB Curl + Cable Triceps Extension", "sr": "3 rounds x 8–10", "target": "Biceps + triceps", "cue": "Train both arms in the lengthened position for a brutal pump.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Rope Pushdown", "sr": "4 x 12–15", "target": "Triceps", "cue": "Pull the rope apart at the bottom, full lockout.", "pat": "pushdown", "mus": "triceps", "sets": 4, "fst": false, "dtp": false},
-              {"name": "Superset: Preacher Curl + Spider Curl", "sr": "3 rounds x 10", "target": "Biceps (short + long)", "cue": "Short head (preacher) then long head (spider) back-to-back.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Seated Overhead Dumbbell Extension", "sr": "3 x 10–12 + partials", "target": "Triceps (long head)", "cue": "Deep stretch for the long head; partials in the stretch to finish.", "pat": "pushdown", "mus": "triceps", "sets": 3, "fst": false, "dtp": false},
-              {"name": "Reverse Barbell Curl", "sr": "3 x 12", "target": "Brachialis, forearms", "cue": "Strict, no swing — builds the brachialis and forearm thickness.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false}
+            {"title": "Day 6 — Chest & Back (10s Iso Supersets)", "imgs": ["pectoralis", "latissimus"], "intro": "His 2024 off-season chest/back session (Fitness Volt): every superset starts with a 10s isometric hold then 6 reps — incline DB press + chest-supported rows, lat pulldown + incline machine press, cable flyes + hammer rows.", "vid": "Chris Bumstead chest back superset workout", "cbumVid": "QQJtaldifZ0", "rest": false, "ex": [
+              {"name": "Superset: Incline DB Press + Chest-Supported Row", "sr": "3 x 10s iso + 6 reps", "target": "Pec + lats", "cue": "Hold the stretched position 10s, then 6 explosive reps — both exercises back-to-back, no rest between.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Superset: Lat Pulldown + Incline Machine Press", "sr": "3 x 10–12 each", "target": "Lats + upper pec", "cue": "Iso-lateral incline press fixes strength imbalances; pull then press with 60–90s after the pair.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Superset: Incline Cable Flye + Hammer Strength Row", "sr": "3 x 15–20 fly / 10–12 row", "target": "Pec + mid-back", "cue": "High-rep flyes for pump, then rows with elbows flared on the concentric.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Machine T-Bar Row", "sr": "3 x 10–12", "target": "Mid-back", "cue": "Chest supported, drive elbows behind midline, 1s squeeze.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Incline DB Stretch Iso-Hold", "sr": "2 x 20s hold", "target": "Pec (stretched)", "cue": "50 lb DBs in the fully stretched incline position — isometrics at long muscle lengths (his finisher).", "pat": "press_flat", "mus": "pectoralis", "sets": 2, "fst": false, "dtp": false}
             ]},
-            {"title": "Day 7 — Rest", "imgs": [], "intro": "Rest in the 3-on / 1-off rotation. Optional light 20–30 min cardio, hydrate, eat for recovery, and protect 8+ hours of sleep. CBUM shifts rest days around as recovery demands.", "note": "", "rest": true, "ex": []}
+            {"title": "Day 7 — Arms (Iso-Dynamic Ladder)", "imgs": ["biceps", "triceps"], "intro": "Justin King's arm protocol from CBUM's 2024 prep: lengthened-position bi/tri supersets, then iso-dynamic 5→1 ladders on cable flyes and rope extensions, plus face pulls for shoulder health.", "vid": "Chris Bumstead arm workout", "cbumVid": "iF_WM501fDE", "rest": false, "ex": [
+              {"name": "Superset: Decline DB Extension + Standing DB Curl", "sr": "3 x 10–12 each", "target": "Triceps + biceps", "cue": "3:0:1:1 on extensions (long stretch), 2:0:1:1 on curls. Cheat last 1–2 curl reps if needed.", "pat": "pushdown", "mus": "triceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Superset: Incline DB Curl + Overhead Rope Extension", "sr": "3 rounds x 8–10", "target": "Biceps + triceps (long head)", "cue": "Both moves in the lengthened position — brutal pump, minimal rest.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Cable Chest Fly — Iso-Dynamic Ladder", "sr": "5→1 reps + holds", "target": "Pec (shortened)", "cue": "5 reps → 5s squeeze, 4→4s, 3→3s, 2→2s, 1→1s. Shortened-range emphasis.", "pat": "fly", "mus": "pectoralis", "sets": 1, "fst": false, "dtp": false},
+              {"name": "Rope Overhead Extension — Iso-Dynamic Ladder", "sr": "5→1 reps + holds", "target": "Triceps", "cue": "Same 5-4-3-2-1 ladder with matching-second holds in the squeeze.", "pat": "pushdown", "mus": "triceps", "sets": 1, "fst": false, "dtp": false},
+              {"name": "High-Pulley Face Pull", "sr": "2 x 8–10", "target": "Rear delts, rotator cuff", "cue": "Scapular stability finisher — external rotation at the end of each pull.", "pat": "lateral", "mus": "deltoid", "sets": 2, "fst": false, "dtp": false},
+              {"name": "Reverse Barbell Curl", "sr": "3 x 12", "target": "Brachialis, forearms", "cue": "Strict form, no swing — forearm and brachialis thickness.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 8 — Rest", "imgs": [], "intro": "Rest in the 3-on / 1-off rotation. Light 20–30 min walk, mobility, hydrate, hit your meal plan and protect 8+ hours of sleep. CBUM moves rest days as recovery demands.", "note": "", "rest": true, "ex": []}
           ]
         }
       ]
@@ -940,6 +964,250 @@ const FIGS = {curl:fig_curl, press_oh:fig_press_oh, press_flat:fig_press_flat, f
 
 function figFor(pat){ return (FIGS[pat]||fig_press_flat)(); }
 
+/* =======================================================================
+   WARM-UP / COOL-DOWN POSTURE FIGURES — same stick-athlete style, but each
+   depicts the actual drill or stretch (not the muscle anatomy). Dynamic
+   warm-ups loop a small motion; static stretches hold the pose.
+   ======================================================================= */
+// --- dynamic warm-ups ---
+function pf_cardio(){ // easy cardio — mid-stride bounce
+  return svg(`<g>
+    ${head(100,76)} ${seg(100,88,100,126,11)}
+    ${seg(100,126,84,158,9)} ${seg(84,158,80,176,8)}
+    ${seg(100,126,116,156,9)} ${seg(116,156,122,176,8)}
+    ${seg(100,96,82,116,8,C.hot)} ${seg(100,96,118,114,8,C.hot)}
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0" keyTimes="0;0.5;1" dur="1.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </g>`);
+}
+function pf_pullapart(){ // band pull-aparts
+  return svg(`
+    ${head(100,74)} ${seg(100,86,100,138,11)}
+    ${seg(100,138,86,172,9)} ${seg(100,138,114,172,9)}
+    <line x1="66" y1="100" x2="134" y2="100" stroke="${C.bar}" stroke-width="3" stroke-dasharray="5 4"/>
+    <g><line x1="100" y1="100" x2="68" y2="100" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 100 100;-12 100 100;0 100 100" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></g>
+    <g><line x1="100" y1="100" x2="132" y2="100" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 100 100;12 100 100;0 100 100" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/></g>`);
+}
+function pf_deadhang(){ // dead hang from a bar
+  return svg(`
+    <rect x="58" y="56" width="84" height="7" rx="3" fill="${C.bar}"/>
+    ${seg(100,94,84,62,8,C.hot)} ${seg(100,94,116,62,8,C.hot)}
+    ${head(100,84)} ${seg(100,94,100,146,11)}
+    ${seg(100,146,92,176,9)} ${seg(100,146,108,176,9)}`);
+}
+function pf_scappull(){ // scap pull-ups — shoulders depress/elevate
+  return svg(`
+    <rect x="58" y="54" width="84" height="7" rx="3" fill="${C.bar}"/>
+    <g>
+      ${seg(100,96,84,62,8,C.hot)} ${seg(100,96,116,62,8,C.hot)}
+      ${head(100,86)} ${seg(100,96,100,148,11)}
+      ${seg(100,148,92,176,9)} ${seg(100,148,108,176,9)}
+      <animateTransform attributeName="transform" type="translate" values="0 8;0 0;0 8" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+function pf_dislocate(){ // band shoulder dislocates
+  return svg(`
+    ${head(100,80)} ${seg(100,92,100,140,11)}
+    ${seg(100,140,86,172,9)} ${seg(100,140,114,172,9)}
+    <g>
+      ${seg(100,98,74,76,8,C.hot)} ${seg(100,98,126,76,8,C.hot)}
+      <line x1="74" y1="76" x2="126" y2="76" stroke="${C.bar}" stroke-width="3" stroke-dasharray="5 4"/>
+      <animateTransform attributeName="transform" type="rotate" values="12 100 98;-12 100 98;12 100 98" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+function pf_armcircle(){ // arm circles + cuff rotations
+  return svg(`
+    ${head(100,80)} ${seg(100,92,100,140,11)}
+    ${seg(100,140,86,172,9)} ${seg(100,140,114,172,9)}
+    <g>
+      ${seg(100,100,68,100,8,C.hot)} ${seg(100,100,132,100,8,C.hot)}
+      <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="2.6s" repeatCount="indefinite"/>
+    </g>`);
+}
+function pf_bandpushdown(){ // band triceps pushdowns
+  return svg(`
+    <line x1="100" y1="50" x2="100" y2="116" stroke="${C.bar}" stroke-width="3" stroke-dasharray="5 4"/>
+    ${head(100,86)} ${seg(100,98,100,150,11)}
+    ${seg(100,150,88,176,9)} ${seg(100,150,112,176,9)}
+    ${seg(100,104,110,126,8,C.limb)}
+    <g>
+      <line x1="110" y1="126" x2="110" y2="104" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 110 126;82 110 126;0 110 126" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+function pf_bandcurl(){ // light band curls
+  return svg(`
+    <line x1="92" y1="176" x2="86" y2="150" stroke="${C.bar}" stroke-width="3" stroke-dasharray="5 4"/>
+    ${head(100,82)} ${seg(100,94,100,146,11)}
+    ${seg(100,146,88,176,9)} ${seg(100,146,112,176,9)}
+    ${seg(100,100,86,128,8,C.limb)}
+    <g>
+      <line x1="86" y1="128" x2="86" y2="150" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 86 128;-130 86 128;0 86 128" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+function pf_wristcircle(){ // wrist & elbow circles
+  return svg(`
+    ${head(100,82)} ${seg(100,94,100,146,11)}
+    ${seg(100,146,88,176,9)} ${seg(100,146,112,176,9)}
+    ${seg(100,102,84,124,8,C.limb)} ${seg(84,124,84,140,8,C.limb)}
+    <g><circle cx="84" cy="150" r="6" fill="${C.hot}"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 84 140" to="360 84 140" dur="1.8s" repeatCount="indefinite"/></g>`);
+}
+function pf_legswing(){ // leg swings front/back
+  return svg(`
+    ${head(100,78)} ${seg(100,90,100,134,11)}
+    ${seg(100,134,98,176,9)}
+    ${seg(100,98,82,116,8)} ${seg(100,98,118,116,8)}
+    <g>
+      <line x1="100" y1="134" x2="100" y2="172" stroke="${C.hot}" stroke-width="9" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" values="30 100 134;-30 100 134;30 100 134" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+function pf_legswinglat(){ // leg swings lateral
+  return svg(`
+    ${head(100,78)} ${seg(100,90,100,134,11)}
+    ${seg(100,134,90,176,9)}
+    ${seg(100,98,82,116,8)} ${seg(100,98,118,116,8)}
+    <g>
+      <line x1="100" y1="134" x2="116" y2="170" stroke="${C.hot}" stroke-width="9" stroke-linecap="round"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 100 134;40 100 134;0 100 134" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+function pf_bwsquat(){ // bodyweight squat + pause
+  return svg(`<g>
+    ${head(100,74)} ${seg(100,86,100,118,12,C.hot)}
+    ${seg(100,90,80,104,8)} ${seg(100,90,120,104,8)}
+    ${seg(100,116,84,140,10)} ${seg(100,116,116,140,10)}
+    ${seg(84,140,84,168,9)} ${seg(116,140,116,168,9)}
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 28;0 0" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+  </g>`);
+}
+function pf_goodmorning(){ // bodyweight good-morning hinge
+  return svg(`
+    ${seg(100,150,86,176,9)} ${seg(100,150,114,176,9)}
+    <g>
+      ${seg(100,118,100,150,12,C.hot)} ${head(100,100)}
+      ${seg(100,108,118,98,7)}
+      <animateTransform attributeName="transform" type="rotate" values="0 100 150;58 100 150;0 100 150" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+function pf_catcow(){ // cat-cow spine flex/extend
+  return svg(`<g>
+    ${seg(78,120,78,168,9)} ${seg(126,120,126,168,9)}
+    ${head(66,122,9)}
+    <path d="M78 120 Q102 104 126 120" stroke="${C.hot}" stroke-width="12" fill="none" stroke-linecap="round">
+      <animate attributeName="d" values="M78 120 Q102 104 126 120;M78 120 Q102 136 126 120;M78 120 Q102 104 126 120" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite"/>
+    </path>
+  </g>`);
+}
+function pf_deadbug(){ // dead bugs — opposite arm/leg extend
+  return svg(`
+    <rect x="52" y="152" width="100" height="7" rx="3" fill="${C.edge}" opacity=".5"/>
+    ${head(68,142)} ${seg(76,150,118,150,11)}
+    ${seg(80,150,70,118,8,C.hot)} ${seg(118,150,140,120,9,C.hot)}
+    ${seg(84,150,96,126,7)} ${seg(116,150,124,172,8)}`);
+}
+// --- static stretches (cool-down) ---
+function pf_doorway(){ // doorway pec opener / stretch
+  return svg(`
+    <rect x="138" y="58" width="7" height="120" rx="2" fill="${C.edge}" opacity=".6"/>
+    ${head(94,82)}
+    <g transform="rotate(9 100 144)">
+      ${seg(100,94,100,144,11)}
+      ${seg(100,144,90,176,9)} ${seg(100,144,112,176,9)}
+    </g>
+    ${seg(100,102,124,92,8,C.hot)} ${seg(124,92,138,80,8,C.hot)}`);
+}
+function pf_lathang(){ // overhead lat hang / side lean
+  return svg(`<g transform="rotate(-15 100 150)">
+    ${head(100,80)} ${seg(100,92,100,150,11)}
+    ${seg(100,150,88,176,9)} ${seg(100,150,112,176,9)}
+    ${seg(100,98,100,62,8,C.hot)}
+    ${seg(100,100,116,124,7)}
+  </g>`);
+}
+function pf_crossbody(){ // cross-body delt stretch
+  return svg(`
+    ${head(100,80)} ${seg(100,92,100,144,11)}
+    ${seg(100,144,88,174,9)} ${seg(100,144,112,174,9)}
+    <line x1="108" y1="100" x2="70" y2="106" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+    ${seg(92,118,74,104,7)}`);
+}
+function pf_ohtri(){ // overhead triceps reach & pull
+  return svg(`
+    ${head(100,84)} ${seg(100,96,100,144,11)}
+    ${seg(100,144,88,176,9)} ${seg(100,144,112,176,9)}
+    ${seg(100,102,110,72,8,C.hot)} ${seg(110,72,92,86,8,C.hot)}
+    ${seg(100,104,114,78,7)}`);
+}
+function pf_wallbiceps(){ // wall biceps stretch
+  return svg(`
+    <rect x="150" y="56" width="7" height="122" rx="2" fill="${C.edge}" opacity=".6"/>
+    ${head(94,82)} ${seg(94,94,94,146,11)}
+    ${seg(94,146,82,176,9)} ${seg(94,146,106,176,9)}
+    <line x1="100" y1="102" x2="150" y2="96" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>`);
+}
+function pf_walllegstretch(){ // wall lying leg stretch
+  return svg(`
+    <rect x="150" y="40" width="7" height="124" rx="2" fill="${C.edge}" opacity=".6"/>
+    <rect x="58" y="152" width="94" height="6" rx="3" fill="${C.edge}" opacity=".5"/>
+    ${head(70,144)} ${seg(78,150,128,150,11)}
+    <line x1="128" y1="150" x2="146" y2="64" stroke="${C.hot}" stroke-width="9" stroke-linecap="round"/>
+    ${seg(126,150,150,156,8)}`);
+}
+function pf_quadstretch(){ // standing quad / couch stretch
+  return svg(`
+    ${head(100,76)} ${seg(100,88,100,134,11)}
+    ${seg(100,134,98,176,9)}
+    ${seg(100,96,84,114,8)}
+    ${seg(100,134,118,150,9,C.hot)} ${seg(118,150,100,140,9,C.hot)}
+    ${seg(100,100,104,138,8)}`);
+}
+function pf_seatedham(){ // seated hamstring stretch
+  return svg(`
+    <rect x="58" y="158" width="104" height="6" rx="3" fill="${C.edge}" opacity=".5"/>
+    ${seg(96,156,152,156,10,C.hot)}
+    <g transform="rotate(38 96 152)">
+      ${seg(96,152,96,108,11)} ${head(96,98)}
+      ${seg(96,118,122,142,8)}
+    </g>`);
+}
+function pf_figure4(){ // figure-4 glute stretch
+  return svg(`
+    <rect x="54" y="152" width="98" height="7" rx="3" fill="${C.edge}" opacity=".5"/>
+    ${head(64,144)} ${seg(72,150,108,150,11)}
+    ${seg(108,150,118,116,9)} ${seg(118,116,98,128,9)}
+    ${seg(118,116,140,134,9,C.hot)}`);
+}
+function pf_cobra(){ // cobra stretch — chest up
+  return svg(`
+    <rect x="46" y="168" width="116" height="6" rx="3" fill="${C.edge}" opacity=".5"/>
+    ${seg(152,166,98,162,10)}
+    <path d="M98 162 Q88 132 98 110" stroke="${C.hot}" stroke-width="11" fill="none" stroke-linecap="round"/>
+    ${head(100,100,9)}
+    ${seg(98,150,86,168,8)}`);
+}
+function pf_childpose(){ // child's pose — folded forward
+  return svg(`
+    <rect x="44" y="162" width="120" height="6" rx="3" fill="${C.edge}" opacity=".5"/>
+    ${seg(150,160,120,140,10)}
+    <path d="M120 140 Q102 150 70 160" stroke="${C.hot}" stroke-width="11" fill="none" stroke-linecap="round"/>
+    ${head(74,158,9)}
+    ${seg(96,150,62,160,7)}`);
+}
+
+const POSTURE_FIGS = {
+  cardio:pf_cardio, pullapart:pf_pullapart, deadhang:pf_deadhang, scappull:pf_scappull,
+  dislocate:pf_dislocate, armcircle:pf_armcircle, bandpushdown:pf_bandpushdown, bandcurl:pf_bandcurl,
+  wristcircle:pf_wristcircle, legswing:pf_legswing, legswinglat:pf_legswinglat, bwsquat:pf_bwsquat,
+  goodmorning:pf_goodmorning, catcow:pf_catcow, deadbug:pf_deadbug,
+  doorway:pf_doorway, lathang:pf_lathang, crossbody:pf_crossbody, ohtri:pf_ohtri,
+  wallbiceps:pf_wallbiceps, walllegstretch:pf_walllegstretch, quadstretch:pf_quadstretch,
+  seatedham:pf_seatedham, figure4:pf_figure4, cobra:pf_cobra, childpose:pf_childpose
+};
+
 // small static muscle glyph for thumbnails / anatomy cards
 function muscleGlyph(key){
   const front = !['latissimus','triceps','hamstring'].includes(key);
@@ -1060,42 +1328,94 @@ function renderHome(){
   setActiveTab('home');
 }
 
-/* warm-up & cool-down generated from the day's target muscles */
-const WARM_DRILLS = {
-  pectoralis:'Band pull-aparts + doorway pec opener',
-  latissimus:'Dead hangs + cat-cow + scap pull-ups',
-  deltoid:'Band shoulder dislocates + arm circles + cuff rotations',
-  triceps:'Band pushdowns + overhead reach',
-  biceps:'Light band curls + wrist & elbow circles',
-  quadriceps:'Leg swings + bodyweight squats + walking lunges',
-  hamstring:'Leg swings + bodyweight good-mornings (hip hinge)',
-  transversus:'Cat-cow + dead bugs + 1 light plank'
+/* warm-up & cool-down postures — each row shows anatomy glyph + drill */
+const WARM_POSTURES = {
+  cardio:[{n:'Easy cardio',r:'5 min',c:'Bike, row or incline walk — raise core temp before loading joints',m:'transversus',g:'cardio'}],
+  pectoralis:[
+    {n:'Band pull-aparts',r:'2 × 15',c:'Pinch shoulder blades — primes pecs & rear delts',m:'pectoralis',g:'pullapart'},
+    {n:'Doorway pec opener',r:'30s/side',c:'Elbow 90°, lean through — opens the chest capsule',m:'pectoralis',g:'doorway'}
+  ],
+  latissimus:[
+    {n:'Dead hang',r:'2 × 20–30s',c:'Full shoulder depression — decompresses the spine',m:'latissimus',g:'deadhang'},
+    {n:'Scap pull-ups',r:'2 × 10',c:'Retract & depress without bending elbows',m:'latissimus',g:'scappull'}
+  ],
+  deltoid:[
+    {n:'Band shoulder dislocates',r:'2 × 12',c:'Wide grip, slow arc overhead and behind',m:'deltoid',g:'dislocate'},
+    {n:'Arm circles + cuff rotations',r:'1 × 15 each',c:'Small → large circles, then external rotations',m:'deltoid',g:'armcircle'}
+  ],
+  triceps:[
+    {n:'Band pushdowns',r:'2 × 15',c:'Light resistance, full lockout & stretch',m:'triceps',g:'bandpushdown'},
+    {n:'Overhead reach & pull',r:'30s/side',c:'Reach overhead, pull elbow behind head — triceps + lats',m:'triceps',g:'ohtri'}
+  ],
+  biceps:[
+    {n:'Light band curls',r:'2 × 15',c:'Full supination, control the eccentric',m:'biceps',g:'bandcurl'},
+    {n:'Wrist & elbow circles',r:'1 × 10 each way',c:'Lubricate the elbow joint before curling',m:'biceps',g:'wristcircle'}
+  ],
+  quadriceps:[
+    {n:'Leg swings (front/back)',r:'2 × 12/side',c:'Controlled — hip flexor & quad activation',m:'quadriceps',g:'legswing'},
+    {n:'Bodyweight squat + pause',r:'2 × 12',c:'3s pause in the hole — primes knee tracking',m:'quadriceps',g:'bwsquat'}
+  ],
+  hamstring:[
+    {n:'Leg swings (lateral)',r:'2 × 12/side',c:'Open the hip capsule before hinging',m:'hamstring',g:'legswinglat'},
+    {n:'Bodyweight good-morning',r:'2 × 12',c:'Hands behind head, hinge with soft knees',m:'hamstring',g:'goodmorning'}
+  ],
+  transversus:[
+    {n:'Cat-cow',r:'2 × 8',c:'Spine flexion/extension — wakes the core',m:'transversus',g:'catcow'},
+    {n:'Dead bugs',r:'2 × 10/side',c:'Low back flat, opposite arm/leg extend',m:'transversus',g:'deadbug'}
+  ]
 };
-const COOL_STRETCH = {
-  pectoralis:'Doorway pec stretch — 30s/side',
-  latissimus:'Overhead lat hang/stretch — 30s/side',
-  deltoid:'Cross-body delt stretch — 30s/side',
-  triceps:'Overhead triceps stretch — 30s/side',
-  biceps:'Wall biceps stretch — 30s/side',
-  quadriceps:'Standing quad / couch stretch — 30s/side',
-  hamstring:'Seated hamstring stretch — 30s/side',
-  transversus:"Cobra + child's pose — 30s each"
+const COOL_POSTURES = {
+  pectoralis:[{n:'Doorway pec stretch',r:'30s/side',c:'Hand on frame at 90°, rotate torso away',m:'pectoralis',g:'doorway'}],
+  latissimus:[{n:'Overhead lat hang',r:'30s/side',c:'Reach overhead, lean to the side — deep lat stretch',m:'latissimus',g:'lathang'}],
+  deltoid:[{n:'Cross-body delt stretch',r:'30s/side',c:'Pull arm across chest, keep shoulder down',m:'deltoid',g:'crossbody'}],
+  triceps:[{n:'Overhead triceps stretch',r:'30s/side',c:'Elbow behind head, pull gently with opposite hand',m:'triceps',g:'ohtri'}],
+  biceps:[{n:'Wall biceps stretch',r:'30s/side',c:'Palm flat on wall, arm extended — open the biceps',m:'biceps',g:'wallbiceps'}],
+  quadriceps:[
+    {n:'Wall lying leg stretch',r:'30s/side',c:'CBUM quad-day finisher — lie by wall, leg vertical',m:'quadriceps',g:'walllegstretch'},
+    {n:'Standing quad / couch stretch',r:'30s/side',c:'Pull heel to glute or foot on bench behind you',m:'quadriceps',g:'quadstretch'}
+  ],
+  hamstring:[
+    {n:'Seated hamstring stretch',r:'30s/side',c:'Leg extended, hinge forward with flat back',m:'hamstring',g:'seatedham'},
+    {n:'Figure-4 glute stretch',r:'30s/side',c:'Ankle on opposite knee, pull thigh in',m:'hamstring',g:'figure4'}
+  ],
+  transversus:[
+    {n:'Cobra stretch',r:'30s',c:'Hips down, chest up — opens the anterior chain',m:'transversus',g:'cobra'},
+    {n:"Child's pose",r:'30s',c:'Arms forward, sit hips to heels — decompress spine',m:'transversus',g:'childpose'}
+  ]
 };
+function postureGlyph(p){
+  const inner = (p.g && POSTURE_FIGS[p.g]) ? POSTURE_FIGS[p.g]() : muscleImg(p.m,'wc-animg');
+  return `<div class="wc-glyph${p.g?' wc-fig':''}">${inner}</div>`;
+}
+function postureRow(p){
+  return `<div class="wc-row">${postureGlyph(p)}
+    <div class="wc-body">
+      <div class="wc-n">${p.n}</div>
+      <div class="wc-r">${p.r}</div>
+      <div class="wc-c">${p.c}</div>
+    </div>
+  </div>`;
+}
+function posturesFor(keys, map, extra){
+  const seen={}, rows=[];
+  (extra||[]).forEach(p=>{ if(!seen[p.m+p.n]){seen[p.m+p.n]=1;rows.push(p);} });
+  keys.forEach(k=>(map[k]||[]).forEach(p=>{ if(!seen[p.m+p.n]){seen[p.m+p.n]=1;rows.push(p);} }));
+  return rows;
+}
 function warmupCard(day){
-  const drills = (day.imgs||[]).map(k=>WARM_DRILLS[k]).filter(Boolean);
+  const rows = posturesFor(day.imgs||[], WARM_POSTURES, WARM_POSTURES.cardio);
   return `<div class="wcard wc-up">
     <div class="wc-h">🔥 Warm-up · 5–8 min</div>
-    <div class="wc-l">5 min easy cardio (bike, row or incline walk) to raise core temperature.</div>
-    ${drills.map(d=>`<div class="wc-l">${d} — 1–2 × 10–15</div>`).join('')}
-    <div class="wc-l">2 light ramp-up sets on the first exercise before your working sets.</div>
+    ${rows.map(postureRow).join('')}
+    <div class="wc-l">2 light ramp-up sets on the first exercise before working weight.</div>
   </div>`;
 }
 function cooldownCard(day){
-  const st = (day.imgs||[]).map(k=>COOL_STRETCH[k]).filter(Boolean);
+  const rows = posturesFor(day.imgs||[], COOL_POSTURES, COOL_POSTURES.transversus);
   return `<div class="wcard wc-down">
     <div class="wc-h">🧊 Cool-down · 5 min</div>
-    <div class="wc-l">3–5 min easy walk to bring the heart rate down.</div>
-    ${st.map(s=>`<div class="wc-l">${s}</div>`).join('')}
+    <div class="wc-l">3–5 min easy walk to bring heart rate down.</div>
+    ${rows.map(postureRow).join('')}
     <div class="wc-l">Slow nasal breathing — 5–10 deep breaths.</div>
   </div>`;
 }
