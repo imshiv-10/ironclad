@@ -1,0 +1,37 @@
+{
+  "/Users/shiva/Documents/GitHub/Gym-Workout-Program/node_modules/@capacitor/ios/Capacitor/Capacitor/Plugins/WebView.swift" : {
+    "const-values" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebView.swiftconstvalues",
+    "dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebView.d",
+    "diagnostics" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebView.dia",
+    "object" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebView.o",
+    "swift-dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebView.swiftdeps"
+  },
+  "/Users/shiva/Documents/GitHub/Gym-Workout-Program/node_modules/@capacitor/ios/Capacitor/Capacitor/UIColor.swift" : {
+    "const-values" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/UIColor.swiftconstvalues",
+    "dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/UIColor.d",
+    "diagnostics" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/UIColor.dia",
+    "object" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/UIColor.o",
+    "swift-dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/UIColor.swiftdeps"
+  },
+  "/Users/shiva/Documents/GitHub/Gym-Workout-Program/node_modules/@capacitor/ios/Capacitor/Capacitor/WKWebView+Capacitor.swift" : {
+    "const-values" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WKWebView+Capacitor-bca158f2f296016be7f328222d3763d1.swiftconstvalues",
+    "dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WKWebView+Capacitor-bca158f2f296016be7f328222d3763d1.d",
+    "diagnostics" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WKWebView+Capacitor-bca158f2f296016be7f328222d3763d1.dia",
+    "object" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WKWebView+Capacitor-bca158f2f296016be7f328222d3763d1.o",
+    "swift-dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WKWebView+Capacitor-bca158f2f296016be7f328222d3763d1.swiftdeps"
+  },
+  "/Users/shiva/Documents/GitHub/Gym-Workout-Program/node_modules/@capacitor/ios/Capacitor/Capacitor/WebViewAssetHandler.swift" : {
+    "const-values" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewAssetHandler.swiftconstvalues",
+    "dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewAssetHandler.d",
+    "diagnostics" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewAssetHandler.dia",
+    "object" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewAssetHandler.o",
+    "swift-dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewAssetHandler.swiftdeps"
+  },
+  "/Users/shiva/Documents/GitHub/Gym-Workout-Program/node_modules/@capacitor/ios/Capacitor/Capacitor/WebViewDelegationHandler.swift" : {
+    "const-values" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewDelegationHandler.swiftconstvalues",
+    "dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewDelegationHandler.d",
+    "diagnostics" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewDelegationHandler.dia",
+    "object" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewDelegationHandler.o",
+    "swift-dependencies" : "/Users/shiva/Documents/GitHub/Gym-Workout-Program/ios/build/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Capacitor.build/Objects-normal/arm64/WebViewDelegationHandler.swiftdeps"
+  }
+}

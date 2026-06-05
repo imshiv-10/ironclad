@@ -1,0 +1,10 @@
+{
+	"appId": "com.sivanidamanuri.ironclad",
+	"appName": "IRONCLAD",
+	"webDir": "www",
+	"ios": {
+		"contentInset": "always",
+		"backgroundColor": "#0B0B0F"
+	},
+	"packageClassList": []
+}

@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="IRONCLAD">
+<meta name="theme-color" content="#0B0B0F">
+<meta name="description" content="IRONCLAD — train like Chris Bumstead and Hrithik Roshan. Multi-coach gym programs, perfect-form video demos, set logging and rest timers.">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<title>IRONCLAD · Train Like CBUM & Hrithik</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700&family=Sora:wght@300;400;500;600;700&display=swap');
+
+  :root{
+    --bg:#0B0B0F; --bg2:#121218; --card:#17171F; --card2:#1E1E28;
+    --ink:#F5F3EF; --mut:#8E8A82; --mut2:#5E5B55;
+    --accent:#FF3B30; --accent2:#FF6B5E; --accentdim:#3A1614;
+    --gold:#E8B04B; --good:#39C16C; --line:#2A2A35;
+    --sa-t:env(safe-area-inset-top); --sa-b:env(safe-area-inset-bottom);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:'Sora',system-ui,sans-serif; overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 80% at 50% -10%, #1a1320 0%, var(--bg) 55%);
+  }
+  .app{height:100dvh; display:flex; flex-direction:column}
+
+  /* ---------- top bar ---------- */
+  .topbar{
+    padding:calc(var(--sa-t) + 14px) 20px 12px; display:flex; align-items:center; gap:12px;
+    position:relative; z-index:30;
+  }
+  .brand{font-family:'Archivo Black',sans-serif; font-size:19px; letter-spacing:.06em}
+  .brand .b1{color:var(--ink)} .brand .b2{color:var(--accent)}
+  .topbar .spacer{flex:1}
+  .phasepill{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13px; letter-spacing:.08em;
+    color:var(--accent2); background:var(--accentdim); padding:5px 11px; border-radius:999px; text-transform:uppercase;
+  }
+
+  /* ---------- scroll view ---------- */
+  .view{flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:0 16px calc(96px + var(--sa-b))}
+  .view::-webkit-scrollbar{display:none}
+
+  /* ---------- HOME ---------- */
+  .hero{
+    margin-top:6px; border-radius:24px; padding:22px 20px 20px; position:relative; overflow:hidden;
+    background:linear-gradient(135deg,#221019 0%, #14131b 60%);
+    border:1px solid var(--line);
+  }
+  .hero::after{content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px;
+    background:radial-gradient(circle, rgba(255,59,48,.35), transparent 65%); filter:blur(8px)}
+  .hero .eyebrow{font-family:'Barlow Condensed',sans-serif; font-weight:600; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent2); font-size:13px}
+  .hero h1{font-family:'Archivo Black',sans-serif; font-size:30px; line-height:1.02; margin:6px 0 2px; position:relative}
+  .hero .sub{color:var(--mut); font-size:13px; position:relative}
+  .ring-wrap{display:flex; align-items:center; gap:18px; margin-top:18px; position:relative}
+  .ring{width:84px; height:84px; flex:none}
+  .ring-meta .big{font-family:'Archivo Black',sans-serif; font-size:26px; line-height:1}
+  .ring-meta .lbl{color:var(--mut); font-size:12px; margin-top:3px}
+  .cta{
+    margin-top:18px; width:100%; border:none; border-radius:16px; padding:16px;
+    background:linear-gradient(135deg,var(--accent),#D5271D); color:#fff;
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:19px; letter-spacing:.06em; text-transform:uppercase;
+    position:relative; box-shadow:0 10px 30px -8px rgba(255,59,48,.5); cursor:pointer;
+    transition:transform .12s ease;
+  }
+  .cta:active{transform:scale(.97)}
+
+  .sec-title{font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--mut); font-size:13px; margin:24px 4px 10px}
+
+  .phase-cards{display:flex; flex-direction:column; gap:12px}
+  .pcard{
+    border-radius:20px; padding:16px 18px; background:var(--card); border:1px solid var(--line);
+    display:flex; align-items:center; gap:14px; cursor:pointer; transition:transform .12s, border-color .2s;
+    position:relative; overflow:hidden;
+  }
+  .pcard:active{transform:scale(.985)}
+  .pcard .num{font-family:'Archivo Black',sans-serif; font-size:30px; color:var(--accent); width:42px; flex:none; opacity:.9}
+  .pcard .pc-body{flex:1; min-width:0}
+  .pcard .pc-title{font-weight:600; font-size:15px}
+  .pcard .pc-months{color:var(--mut); font-size:12.5px; margin-top:2px}
+  .pcard .chev{color:var(--mut2); font-size:20px}
+  .pcard.active{border-color:var(--accent)}
+  .pcard .bar{position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--accent); opacity:0; }
+  .pcard.active .bar{opacity:1}
+
+  /* ---------- DAY LIST ---------- */
+  .phase-head{margin-top:10px}
+  .phase-head h2{font-family:'Archivo Black',sans-serif; font-size:23px; line-height:1.05}
+  .phase-head .pm{color:var(--accent2); font-family:'Barlow Condensed'; font-weight:700; letter-spacing:.1em; text-transform:uppercase; font-size:13px; margin-top:4px}
+  .infochip{
+    margin-top:14px; border-radius:14px; padding:12px 14px; font-size:12.5px; line-height:1.5;
+    background:var(--card); border:1px solid var(--line); color:var(--mut);
+  }
+  .infochip b{color:var(--ink)}
+  .infochip.warn{background:#1c1012; border-color:#5a221f; color:#e9b8b3}
+  .infochip.warn b{color:var(--accent2)}
+
+  .daylist{display:flex; flex-direction:column; gap:10px; margin-top:16px}
+  .dcard{
+    border-radius:18px; background:var(--card); border:1px solid var(--line); padding:14px 16px;
+    display:flex; align-items:center; gap:12px; cursor:pointer; transition:transform .12s, background .2s;
+  }
+  .dcard:active{transform:scale(.985)}
+  .dcard.rest{opacity:.72}
+  .dcard .didx{font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:13px; letter-spacing:.06em;
+    color:var(--accent2); background:var(--accentdim); padding:4px 8px; border-radius:8px; flex:none}
+  .dcard .dt{flex:1; min-width:0}
+  .dcard .dt .t{font-weight:600; font-size:14.5px; line-height:1.2}
+  .dcard .dt .m{color:var(--mut); font-size:12px; margin-top:3px; display:flex; gap:8px; align-items:center}
+  .dcard .done{color:var(--good); font-size:12px; font-weight:600}
+  .dcard .chev{color:var(--mut2)}
+  .thumbs{display:flex; gap:-6px}
+  .mini{width:18px; height:18px; border-radius:5px; background:var(--card2); display:grid; place-items:center; margin-left:-4px; border:1px solid var(--line)}
+  .mini:first-child{margin-left:0}
+  .mini svg{width:13px;height:13px}
+
+  /* ---------- WORKOUT (exercise) ---------- */
+  .wk-head{display:flex; align-items:center; gap:10px; margin-top:8px}
+  .back{width:40px;height:40px;border-radius:12px;background:var(--card);border:1px solid var(--line);
+    display:grid;place-items:center;cursor:pointer;flex:none}
+  .back svg{width:18px;height:18px;stroke:var(--ink)}
+  .wk-head .wk-t{font-family:'Archivo Black',sans-serif; font-size:18px; line-height:1.05}
+  .progress-strip{display:flex; gap:5px; margin:14px 2px 4px}
+  .progress-strip .seg{height:5px; border-radius:3px; flex:1; background:var(--line)}
+  .progress-strip .seg.done{background:var(--good)}
+  .progress-strip .seg.cur{background:var(--accent)}
+
+  .exercise{margin-top:14px}
+  .ecard{
+    border-radius:22px; background:linear-gradient(160deg,var(--card2),var(--card)); border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .stage{position:relative; height:230px; background:
+      radial-gradient(70% 60% at 50% 40%, #20202c, #131319);
+      display:grid; place-items:center; overflow:hidden}
+  .stage .floor{position:absolute; left:8%; right:8%; bottom:30px; height:2px; background:linear-gradient(90deg,transparent,var(--line),transparent)}
+  .stage svg{width:200px; height:200px}
+  .stage .exphoto{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0}
+  .stage .tagrow,.stage .repbadge{z-index:2}
+  .stage::after{content:""; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(11,11,15,.15) 0%, rgba(11,11,15,.05) 40%, rgba(11,11,15,.55) 100%); pointer-events:none}
+  .tagrow{position:absolute; top:12px; left:12px; display:flex; gap:6px}
+  .tag{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.06em;font-size:11px;
+    padding:4px 8px;border-radius:7px;text-transform:uppercase}
+  .tag.fst{background:#15233a;color:#7db1ff}
+  .tag.dtp{background:#3a2415;color:#ffb277}
+  .tag.mus{background:var(--accentdim);color:var(--accent2)}
+  .repbadge{position:absolute; bottom:12px; right:14px; font-family:'Barlow Condensed'; font-weight:700;
+    color:var(--mut); font-size:12px; letter-spacing:.05em; text-transform:uppercase}
+
+  .ebody{padding:18px}
+  .ebody .name{font-family:'Archivo Black',sans-serif; font-size:21px; line-height:1.08}
+  .ebody .srt{color:var(--accent2); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:16px; letter-spacing:.04em; margin-top:6px}
+  .ebody .cue{color:var(--mut); font-size:13.5px; line-height:1.55; margin-top:10px}
+  .ebody .tgt{margin-top:8px; font-size:12px; color:var(--mut2)}
+
+  .sets{margin-top:16px}
+  .sets .sh{font-family:'Barlow Condensed';font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mut);font-size:12px;margin-bottom:8px}
+  .setrow{display:flex; align-items:center; gap:12px; padding:10px 4px; border-bottom:1px solid var(--line)}
+  .setrow:last-child{border-bottom:none}
+  .setrow .sn{font-family:'Barlow Condensed';font-weight:700;color:var(--mut);width:54px;font-size:13px;letter-spacing:.05em}
+  .setrow input{
+    flex:1; min-width:0; background:var(--bg2); border:1px solid var(--line); color:var(--ink);
+    border-radius:10px; padding:9px 11px; font-family:'Sora'; font-size:13px;
+  }
+  .setrow input::placeholder{color:var(--mut2)}
+  .chk{
+    width:34px;height:34px;border-radius:10px;border:2px solid var(--mut2);flex:none;cursor:pointer;
+    display:grid;place-items:center;transition:all .15s;
+  }
+  .chk svg{width:18px;height:18px;stroke:#fff;stroke-width:3;fill:none;opacity:0;transition:opacity .15s}
+  .chk.on{background:var(--good);border-color:var(--good)}
+  .chk.on svg{opacity:1}
+
+  .navbtns{display:flex; gap:10px; margin-top:18px}
+  .navbtns button{
+    flex:1; border-radius:14px; padding:15px; border:1px solid var(--line); background:var(--card);
+    color:var(--ink); font-family:'Barlow Condensed';font-weight:700;font-size:16px;letter-spacing:.05em;
+    text-transform:uppercase; cursor:pointer; transition:transform .1s;
+  }
+  .navbtns button:active{transform:scale(.97)}
+  .navbtns button.prim{background:linear-gradient(135deg,var(--accent),#D5271D);border:none;color:#fff;
+    box-shadow:0 8px 22px -8px rgba(255,59,48,.5)}
+  .navbtns button:disabled{opacity:.35}
+
+  /* rest timer */
+  .timer{
+    margin-top:14px;border-radius:16px;background:var(--card);border:1px solid var(--line);
+    padding:14px 16px;display:flex;align-items:center;gap:14px}
+  .timer .tnum{font-family:'Archivo Black';font-size:26px;width:78px}
+  .timer .tlabel{flex:1;color:var(--mut);font-size:12.5px}
+  .timer button{background:var(--accentdim);color:var(--accent2);border:none;border-radius:10px;
+    font-family:'Barlow Condensed';font-weight:700;letter-spacing:.05em;text-transform:uppercase;
+    padding:9px 13px;font-size:13px;cursor:pointer}
+
+  /* ---------- ANATOMY / EXTRAS ---------- */
+  .agrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  .acard{border-radius:18px;background:var(--card);border:1px solid var(--line);padding:14px;text-align:center}
+  .acard .fig{height:110px;display:grid;place-items:center}
+  .acard .fig svg{width:74px;height:104px}
+  .acard .an{font-family:'Barlow Condensed';font-weight:700;font-size:14px;letter-spacing:.03em;margin-top:6px}
+  .acard .ad{color:var(--mut);font-size:10.5px;line-height:1.4;margin-top:5px}
+
+  .block{border-radius:18px;background:var(--card);border:1px solid var(--line);padding:16px 18px;margin-top:14px}
+  .block h3{font-family:'Barlow Condensed';font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-size:15px;color:var(--accent2)}
+  .block p{color:var(--mut);font-size:13px;line-height:1.6;margin-top:8px}
+  .block p b{color:var(--ink)}
+  .vac-step{display:flex;gap:12px;margin-top:12px}
+  .vac-step .vn{font-family:'Archivo Black';color:var(--accent);font-size:18px;width:26px;flex:none}
+  .vac-step .vt{font-size:13px;color:var(--mut);line-height:1.5}
+  .vac-step .vt b{color:var(--ink)}
+
+  /* ---------- bottom tab bar ---------- */
+  .tabbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:40;
+    padding:8px 14px calc(8px + var(--sa-b));
+    background:rgba(11,11,15,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+    border-top:1px solid var(--line); display:flex; justify-content:space-around;
+  }
+  .tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--mut2);cursor:pointer;padding:4px}
+  .tab svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.9}
+  .tab .tl{font-family:'Barlow Condensed';font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+  .tab.on{color:var(--accent)}
+
+  /* page transitions */
+  .page{animation:rise .28s cubic-bezier(.2,.7,.2,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .stagger>*{animation:rise .4s both}
+  .stagger>*:nth-child(1){animation-delay:.02s}
+  .stagger>*:nth-child(2){animation-delay:.06s}
+  .stagger>*:nth-child(3){animation-delay:.10s}
+  .stagger>*:nth-child(4){animation-delay:.14s}
+  .stagger>*:nth-child(5){animation-delay:.18s}
+  .stagger>*:nth-child(6){animation-delay:.22s}
+  .stagger>*:nth-child(7){animation-delay:.26s}
+  .stagger>*:nth-child(8){animation-delay:.30s}
+  .stagger>*:nth-child(9){animation-delay:.34s}
+
+  .footnote{color:var(--mut2);font-size:11px;line-height:1.5;margin-top:18px;padding:0 4px}
+
+  /* ---------- program switcher ---------- */
+  .progswitch{display:flex;gap:9px;overflow-x:auto;margin:6px -16px 2px;padding:4px 16px 6px;scrollbar-width:none}
+  .progswitch::-webkit-scrollbar{display:none}
+  .pchip{flex:none;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:11px 15px;cursor:pointer;min-width:148px;transition:transform .12s,border-color .2s;position:relative;overflow:hidden}
+  .pchip:active{transform:scale(.97)}
+  .pchip.on{border-color:var(--accent);background:linear-gradient(135deg,var(--accentdim),var(--card))}
+  .pchip .pn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:17px;letter-spacing:.04em}
+  .pchip .pcoach{color:var(--accent2);font-size:11px;font-weight:600;margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+  .pchip .pc{color:var(--mut);font-size:11px;margin-top:3px;line-height:1.35}
+
+  /* ---------- video buttons ---------- */
+  .vidbtn{margin-top:14px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;
+    border:none;border-radius:14px;padding:14px;cursor:pointer;
+    background:linear-gradient(135deg,#FF1A1A,#C4302B);color:#fff;
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase;
+    box-shadow:0 8px 22px -10px rgba(255,0,0,.6);transition:transform .1s}
+  .vidbtn:active{transform:scale(.97)}
+  .vidbtn svg{width:24px;height:24px;fill:#fff;flex:none}
+  .dayvid{display:inline-flex;align-items:center;gap:7px;color:#ff7a72;font-size:12.5px;font-weight:600;
+    margin-top:12px;cursor:pointer;border:1px solid #5a221f;background:#1c1012;padding:8px 12px;border-radius:12px}
+  .dayvid svg{width:16px;height:16px;fill:currentColor;flex:none}
+
+  /* ---------- next-up preview ---------- */
+  .nextup{margin-top:12px;display:flex;align-items:center;gap:10px;color:var(--mut);font-size:12.5px;
+    border:1px dashed var(--line);border-radius:12px;padding:11px 13px}
+  .nextup .nu-ic{width:30px;height:30px;border-radius:8px;background:var(--card2);display:grid;place-items:center;flex:none}
+  .nextup .nu-ic svg{width:22px;height:30px}
+  .nextup b{color:var(--ink)}
+
+  /* ---------- muscle library ---------- */
+  .mexlist{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .mex{display:flex;align-items:center;gap:12px;border:1px solid var(--line);background:var(--card);border-radius:16px;padding:11px 13px}
+  .mex .mthumb{width:42px;height:42px;border-radius:11px;background:var(--card2);display:grid;place-items:center;flex:none}
+  .mex .mthumb svg{width:30px;height:42px}
+  .mex .mname{flex:1;min-width:0}
+  .mex .mname .t{font-weight:600;font-size:14px;line-height:1.2}
+  .mex .mname .s{color:var(--mut);font-size:11.5px;margin-top:3px}
+  .mex .mname .s .badge{color:var(--accent2)}
+  .mex .play{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#FF1A1A,#C4302B);display:grid;place-items:center;flex:none;cursor:pointer;transition:transform .1s}
+  .mex .play:active{transform:scale(.92)}
+  .mex .play svg{width:18px;height:18px;fill:#fff}
+  .musback{display:flex;align-items:center;gap:8px;color:var(--accent2);font-size:13px;font-weight:600;cursor:pointer;margin-top:2px}
+  .pstar{color:var(--gold);font-size:12px}
+
+  /* ---------- inline video modal ---------- */
+  .vmodal{position:fixed;inset:0;z-index:120;background:rgba(5,5,8,.94);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    display:none;align-items:center;justify-content:center;padding:18px}
+  .vmodal.on{display:flex;animation:rise .2s ease}
+  .vbox{width:100%;max-width:720px}
+  .vbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+  .vbar .vt{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.04em;color:var(--ink);text-transform:uppercase}
+  .vclose{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--line);
+    display:grid;place-items:center;color:var(--ink);font-size:18px;cursor:pointer;flex:none}
+  .vframe{position:relative;padding-bottom:56.25%;height:0;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--line)}
+  .vframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vnote{color:var(--mut2);font-size:11px;margin-top:10px;text-align:center}
+
+  /* exercise inline clip poster */
+  .clipbtn{margin-top:14px;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;
+    border:none;border-radius:14px;padding:14px;cursor:pointer;
+    background:linear-gradient(135deg,#FF1A1A,#C4302B);color:#fff;
+    font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;letter-spacing:.05em;text-transform:uppercase;
+    box-shadow:0 8px 22px -10px rgba(255,0,0,.6);transition:transform .1s}
+  .clipbtn:active{transform:scale(.97)}
+  .clipbtn svg{width:24px;height:24px;fill:#fff;flex:none}
+  .acard .aclip{margin-top:8px;display:inline-flex;align-items:center;gap:6px;color:#ff7a72;font-size:11px;font-weight:700;cursor:pointer}
+  .acard .aclip svg{width:14px;height:14px;fill:currentColor}
+  .acard .fig img.animg{width:100%;height:120px;object-fit:cover;border-radius:12px;display:block}
+
+  /* exercise target-muscle anatomy card */
+  .exanat{margin-top:12px;display:flex;align-items:center;gap:12px;border:1px solid var(--line);
+    background:var(--card);border-radius:16px;padding:10px;overflow:hidden}
+  .exanat-img{width:84px;height:64px;border-radius:10px;overflow:hidden;flex:none;background:var(--bg2)}
+  .exanat-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .exanat-img svg{width:100%;height:100%}
+  .exanat-b{flex:1;min-width:0}
+  .exanat-t{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+  .exanat-l{margin-top:6px;display:inline-flex;align-items:center;gap:6px;color:#ff7a72;font-size:12px;font-weight:700;cursor:pointer}
+  .exanat-l svg{width:14px;height:14px;fill:currentColor}
+
+  /* 12-month roadmap */
+  .roadmap{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .rblock{border-radius:16px;border:1px solid var(--line);background:var(--card);padding:14px 16px;position:relative;overflow:hidden}
+  .rblock .rq{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2)}
+  .rblock .rt{font-family:'Archivo Black',sans-serif;font-size:16px;margin:3px 0 2px}
+  .rblock .rd{color:var(--mut);font-size:12.5px;line-height:1.5}
+  .rblock .rmeta{color:var(--mut2);font-size:11px;margin-top:6px}
+  .rblock .rbar{position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+  .rblock{cursor:pointer;transition:transform .1s,border-color .2s}
+  .rblock:active{transform:scale(.99)}
+  .rblock.on{border-color:var(--accent);background:linear-gradient(135deg,var(--accentdim),var(--card))}
+  .blockbanner{margin-top:14px;border-radius:16px;padding:14px 16px;
+    background:linear-gradient(135deg,var(--accentdim),var(--card));border:1px solid var(--accent)}
+  .blockbanner .bb-q{font-family:'Archivo Black',sans-serif;font-size:15px}
+  .blockbanner .bb-m{color:var(--accent2);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;margin-top:4px}
+  .blockbanner .bb-d{color:var(--mut);font-size:12.5px;line-height:1.5;margin-top:6px}
+  .motiv{margin:8px 4px 0;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;
+    letter-spacing:.04em;color:var(--accent2);text-transform:uppercase}
+
+  /* warm-up / cool-down cards */
+  .wcard{margin-top:14px;border-radius:16px;padding:14px 16px;border:1px solid var(--line);background:var(--card)}
+  .wc-up{border-color:#5a3a1f;background:linear-gradient(135deg,#1f1710,var(--card))}
+  .wc-down{border-color:#1f3a5a;background:linear-gradient(135deg,#101720,var(--card))}
+  .wcard .wc-h{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+  .wcard .wc-l{color:var(--mut);font-size:12.5px;line-height:1.5;margin-top:7px;padding-left:14px;position:relative}
+  .wcard .wc-l::before{content:"›";position:absolute;left:0;color:var(--accent2)}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div class="brand"><span class="b1">IRON</span><span class="b2">CLAD</span></div>
+    <div class="spacer"></div>
+    <div class="phasepill" id="phasePill">Phase 1</div>
+  </div>
+  <div class="view" id="view"></div>
+  <div class="tabbar" id="tabbar"></div>
+</div>
+
+<div class="vmodal" id="vmodal" onclick="if(event.target===this)closeClip()">
+  <div class="vbox">
+    <div class="vbar"><div class="vt" id="vtitle">Technique clip</div><div class="vclose" onclick="closeClip()">✕</div></div>
+    <div class="vframe" id="vframe"></div>
+    <div class="vnote">Streamed from YouTube · tap outside to close</div>
+  </div>
+</div>
+
+<script id="PROG" type="application/json">{"anatomy": [{"key": "pectoralis", "name": "Pectoralis Major", "desc": "Primary muscle of the anterior thorax. Adducts, internally rotates and flexes the humerus. Distinct clavicular (upper) and sternocostal (lower/mid) heads need varied pressing angles for complete development."}, {"key": "latissimus", "name": "Latissimus Dorsi", "desc": "Expansive superficial back muscle connecting the upper arm to the spine. Drives shoulder adduction and extension, forming the wide sweeping base of the V-taper."}, {"key": "deltoid", "name": "Deltoid Complex", "desc": "Primary shoulder muscle: anterior, lateral and posterior fibers. Hypertrophy of the lateral fibers creates the illusion of clavicular width central to the look."}, {"key": "transversus", "name": "Transversus Abdominis", "desc": "Deepest abdominal layer, an anatomical corset. Compresses the abdomen, stabilises the lumbar spine and is the muscle engaged during the stomach vacuum to narrow the waist."}, {"key": "biceps", "name": "Biceps Brachii", "desc": "Two-headed (long + short) anterior arm muscle. Flexes the elbow and supinates the forearm. Variations optimise peak and width of the upper arm."}, {"key": "triceps", "name": "Triceps Brachii", "desc": "Three heads (long, lateral, medial), two-thirds of upper-arm mass. The long head needs overhead extension for maximal stretch and sarcoplasmic expansion."}, {"key": "quadriceps", "name": "Quadriceps Femoris", "desc": "Anterior thigh: rectus femoris, vastus lateralis, medialis and intermedius. Vastus lateralis gives the outward sweep that balances a wide upper body."}, {"key": "hamstring", "name": "Hamstring Group", "desc": "Biceps femoris, semitendinosus and semimembranosus. Knee flexion and hip extension; developed to match the anterior sweep of the quads."}], "phases": [{"title": "Phase 1 \u2014 Structural Foundation & Base Hypertrophy", "months": "Months 1\u20132", "objective": "Build structural thickness and mass with heavy compounds paired with FST-7 finishers. Undulating split that maximises volume while protecting joints.", "rest": "Heavy compounds: 90\u2013120s.  FST-7 finishers: strictly 30\u201345s.", "capNote": "", "days": [{"title": "Day 1 \u2014 Chest, Triceps, Posterior Delts", "imgs": ["pectoralis", "triceps", "deltoid"], "intro": "Open with heavy mechanical tension on the clavicular pec, then flood the sternal head with volume, then FST-7 the chest.", "note": "", "rest": false, "ex": [{"name": "Incline Dumbbell Press", "sr": "4 x 6\u20138", "target": "Pec major (clavicular)", "cue": "3s negative, 1s pause at the bottom, then drive up.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false}, {"name": "Flat Machine Chest Press", "sr": "10 x 10", "target": "Pec major (sternocostal)", "cue": "Rapid continuous tension. Don't lock out.", "pat": "press_flat", "mus": "pectoralis", "sets": 7, "fst": false, "dtp": false}, {"name": "Cable Crossovers \u2014 FST-7", "sr": "7 x 10\u201312", "target": "Pec major (sternal)", "cue": "30s rest. Flex the chest hard through every rest.", "pat": "fly", "mus": "pectoralis", "sets": 7, "fst": true, "dtp": false}, {"name": "Barbell JM Press", "sr": "3 x 8\u201310", "target": "Triceps (lat/medial)", "cue": "Elbows tucked tight. Control the eccentric.", "pat": "pushdown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false}, {"name": "Overhead Cable Extension \u2014 FST-7", "sr": "7 x 10\u201312", "target": "Triceps (long head)", "cue": "30s rest. Deep stretch at the bottom.", "pat": "pushdown", "mus": "triceps", "sets": 7, "fst": true, "dtp": false}, {"name": "Cable Face Pulls", "sr": "3 x 12\u201315", "target": "Rear delt, rhomboids", "cue": "Hold the squeeze 2s, squeeze rear delts.", "pat": "frontraise", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false}]}, {"title": "Day 2 \u2014 Back & Biceps", "imgs": ["latissimus", "biceps"], "intro": "Extreme range of motion for a deep stretch at origin and full contraction at insertion. Drive elbows, not hands, to minimise biceps interference.", "note": "", "rest": false, "ex": [{"name": "Wide-Grip Lat Pulldown", "sr": "4 x 10\u201312", "target": "Lats, teres major", "cue": "Depress the scapulae before bending the elbows.", "pat": "pulldown", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Underhand Barbell Row", "sr": "4 x 6\u20138", "target": "Lats (lower)", "cue": "Rigid neutral spine. Pull to lower abdomen.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Chest-Supported T-Bar Row", "sr": "4 x 10\u201312", "target": "Lats, traps", "cue": "Torso supported. Squeeze at the top.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Straight-Arm Pulldown \u2014 FST-7", "sr": "7 x 8\u201312", "target": "Lats", "cue": "30\u201345s rest. 3s eccentric, full lat stretch.", "pat": "pulldown", "mus": "latissimus", "sets": 7, "fst": true, "dtp": false}, {"name": "EZ-Bar Preacher Curl", "sr": "4 x 8\u201310", "target": "Biceps (short head)", "cue": "Armpits wedged over the pad.", "pat": "curl", "mus": "biceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Reverse-Grip EZ-Bar Curl", "sr": "4 x 10\u201312", "target": "Brachialis, brachioradialis", "cue": "Builds outer-arm width / forearm density.", "pat": "curl", "mus": "biceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Low Pulley Cable Curl \u2014 FST-7", "sr": "7 x 12\u201315", "target": "Biceps (both heads)", "cue": "30s rest. Chase the pump.", "pat": "curl", "mus": "biceps", "sets": 7, "fst": true, "dtp": false}]}, {"title": "Day 3 \u2014 Quadriceps & Calves", "imgs": ["quadriceps"], "intro": "Dense lower body without spinal compression \u2014 back squats are eliminated. Belt and hack squats load the quads while keeping the spine decompressed.", "note": "", "rest": false, "ex": [{"name": "Belt Squat", "sr": "4 x 10\u201312", "target": "Quadriceps", "cue": "Upright torso. Drive through mid-foot.", "pat": "squat", "mus": "quadriceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Hack Squat", "sr": "3 x 10\u201312", "target": "Vastus lateralis, rectus femoris", "cue": "Feet low on the platform for knee travel.", "pat": "squat", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false}, {"name": "Leg Press", "sr": "3 x 8\u201310", "target": "Quads, glutes", "cue": "Heavy. Deep ROM, don't round the lower back.", "pat": "squat", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false}, {"name": "Leg Extensions \u2014 FST-7", "sr": "7 x 10\u201312", "target": "Rectus femoris, vastus medialis", "cue": "30\u201345s rest. Squeeze quads during rest.", "pat": "legext", "mus": "quadriceps", "sets": 7, "fst": true, "dtp": false}, {"name": "Standing Calf Raises", "sr": "4 x 15\u201320", "target": "Gastrocnemius", "cue": "Max stretch at the bottom, 1s hold.", "pat": "calf", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}, {"name": "Seated Calf Raises \u2014 FST-7", "sr": "7 x 15\u201320", "target": "Soleus", "cue": "30s rest. High-rep burnout.", "pat": "calf", "mus": "transversus", "sets": 7, "fst": true, "dtp": false}]}, {"title": "Day 4 \u2014 Active Recovery & Core", "imgs": [], "intro": "No heavy resistance. 40 min steady-state cardio to flush the lower body, plus the daily Transversus Abdominis stomach-vacuum protocol (see the V-Taper section).", "note": "", "rest": true, "ex": []}, {"title": "Day 5 \u2014 Shoulders", "imgs": ["deltoid"], "intro": "Band warm-up to prep the rotator cuff, then strict lateral raises to widen the lateral delt. The Poliquin raise starts as a hammer curl, then drives the elbows out with a slow eccentric.", "note": "", "rest": false, "ex": [{"name": "Banded Dislocates / Warm-up", "sr": "2 x 15", "target": "Rotator cuff", "cue": "Mobility + joint-capsule prep.", "pat": "frontraise", "mus": "deltoid", "sets": 2, "fst": false, "dtp": false}, {"name": "Machine Shoulder Press", "sr": "4 x 8\u201310", "target": "Delt (ant/lat)", "cue": "Heavy press. Control the descent.", "pat": "press_oh", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Seated DB Lateral Raise", "sr": "4 x 10\u201312", "target": "Delt (lateral)", "cue": "Strict upright posture, slight elbow bend.", "pat": "lateral", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Poliquin Lateral Raises", "sr": "3 x 12\u201315", "target": "Delt (lateral), stabilisers", "cue": "Hammer up, extend out, slow drop.", "pat": "lateral", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false}, {"name": "Reverse Pec-Deck Fly", "sr": "4 x 10\u201312", "target": "Delt (posterior)", "cue": "Superset with DB laterals for 3D delts.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false}, {"name": "Cable Lateral Raise \u2014 FST-7", "sr": "7 x 8\u201312", "target": "Delt (lateral)", "cue": "Constant cable tension throughout.", "pat": "lateral", "mus": "latissimus", "sets": 7, "fst": true, "dtp": false}]}, {"title": "Day 6 \u2014 Arm Pump (Tri-Sets)", "imgs": ["biceps", "triceps"], "intro": "Back-to-back tri-sets, one for triceps then one for biceps, at a fast pace for maximal blood volumisation.", "note": "Source prescribes 31 total sets at a near-continuous pace. Volume is kept but rest between tri-sets is allowed to ~45\u201360s to protect the elbows and avoid lightheadedness \u2014 same pump, far lower injury risk.", "rest": false, "ex": [{"name": "Rope Pushdown", "sr": "4 x 10\u201312", "target": "Triceps (lateral)", "cue": "Tri-set 1. Pull the rope apart at the bottom.", "pat": "pushdown", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Decline Cable Skull Crusher", "sr": "4 x 10\u201312", "target": "Triceps (long)", "cue": "Tri-set 1. Elbows toward the ceiling.", "pat": "pushdown", "mus": "triceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Overhead Cable Extension", "sr": "4 x 10\u201312", "target": "Triceps (long/medial)", "cue": "Tri-set 1. Stretch deeply behind the head.", "pat": "pushdown", "mus": "triceps", "sets": 4, "fst": false, "dtp": false}, {"name": "EZ-Bar Preacher Curl", "sr": "4 x 8\u201310", "target": "Biceps (short)", "cue": "Tri-set 2. Don't fully extend \u2014 keep tension.", "pat": "curl", "mus": "biceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Incline Dumbbell Curl", "sr": "4 x 10\u201312", "target": "Biceps (long)", "cue": "Tri-set 2. Dead hang at the bottom for stretch.", "pat": "curl", "mus": "biceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Machine Preacher Curl", "sr": "4 x 10\u201312", "target": "Biceps", "cue": "Tri-set 2. Squeeze hard at the top.", "pat": "curl", "mus": "biceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Dumbbell Hammer Curls", "sr": "3 x 10\u201312", "target": "Brachialis, brachioradialis", "cue": "Neutral grip; pushes the biceps up.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false}]}, {"title": "Day 7 \u2014 Chest & Back (Antagonist Supersets)", "imgs": ["pectoralis", "latissimus"], "intro": "Golden-era antagonist supersets: pull then push, saving time and boosting output via reciprocal inhibition.", "note": "", "rest": false, "ex": [{"name": "Incline Dumbbell Press", "sr": "4 x 10\u201312", "target": "Pec (clavicular)", "cue": "Superset with Underhand Lat Pulldown.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false}, {"name": "Underhand Lat Pulldown", "sr": "4 x 10\u201312", "target": "Lats (lower)", "cue": "Superset with Incline Press.", "pat": "pulldown", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Incline Machine Press", "sr": "4 x 10\u201312", "target": "Pec major", "cue": "Superset with T-Bar Row.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false}, {"name": "Chest-Supported T-Bar Row", "sr": "4 x 10\u201312", "target": "Lats, rhomboids", "cue": "Superset with Machine Press.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Incline Machine Fly", "sr": "4 x 10\u201312", "target": "Pec (sternocostal)", "cue": "Superset with Machine Pullover.", "pat": "fly", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false}, {"name": "Machine Pullover", "sr": "4 x 10\u201312", "target": "Lats", "cue": "Superset with Machine Fly.", "pat": "pulldown", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}]}, {"title": "Day 8 \u2014 Hamstrings, Glutes & Calves", "imgs": ["hamstring"], "intro": "Posterior chain trained separately for max intensity. Hip-hinge focus with RDLs, then isolate with seated leg curls.", "note": "", "rest": false, "ex": [{"name": "Seated Leg Curl", "sr": "4 x 10\u201312", "target": "Biceps femoris, semitend.", "cue": "Pad firm on thighs. Tri-set with abduction.", "pat": "curl", "mus": "biceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Hip Abduction / Adduction", "sr": "3 x 10\u201312", "target": "Glute medius / adductor", "cue": "Tri-set with leg curls.", "pat": "abcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false}, {"name": "Barbell Stiff-Leg Deadlift", "sr": "4 x 8\u201310", "target": "Hamstrings, glutes", "cue": "Full hinge, big stretch, then contract.", "pat": "hinge", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false}, {"name": "Bulgarian Split Squat", "sr": "3 x 10\u201312", "target": "Glutes, quads", "cue": "Unilateral. Stabilise the pelvis.", "pat": "squat", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false}, {"name": "Lying Leg Curl \u2014 FST-7", "sr": "7 x 10\u201312", "target": "Biceps femoris (short)", "cue": "30s rest. Drive blood into the posterior thigh.", "pat": "curl", "mus": "biceps", "sets": 7, "fst": true, "dtp": false}, {"name": "Leg Press Calf Raises", "sr": "4 x 15\u201320", "target": "Gastrocnemius", "cue": "Slow tempo, deep stretch.", "pat": "calf", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}]}, {"title": "Day 9 \u2014 Complete Rest", "imgs": [], "intro": "Total cessation of strenuous activity. Hydrate (min 4 L) and hold circadian sleep rhythm before the cycle repeats.", "note": "", "rest": true, "ex": []}]}, {"title": "Phase 2 \u2014 Metabolic Overload & Extreme Shaping", "months": "Months 3\u20134", "objective": "Shift from pure mass into metabolic stress: rapid fat loss while preserving muscle, for a functional, defined athletic look. Methodology: DTP 5-day split.", "rest": "High-endurance sets (high reps): 60s.  Heavy fast-twitch sets (10\u201320): up to 120s.", "capNote": "DTP in the source tops out at 50-rep sets and rest-pause to failure on legs. The DTP structure (ascend/descend pyramids, fiber-type targeting) is kept, but top-end reps are capped at 25\u201330 and rest-pause-to-failure is removed. This delivers the same fiber fatigue and metabolic stress without the rhabdomyolysis risk that the 50-rep-to-failure version is documented to cause.", "days": [{"title": "Day 1 \u2014 Chest & Back (Capped DTP Pyramids)", "imgs": ["pectoralis", "latissimus"], "intro": "DTPXtreme-style pyramids for the large torso muscles. Scale weight up as reps fall, down as reps rise.", "note": "Original top set was 35 reps ascending to a 35-rep burnout. Capped at 30 \u2014 equivalent metabolic stress on the torso without grinding the shoulder joint to failure.", "rest": false, "ex": [{"name": "Decline Dumbbell Press", "sr": "6 sets: 30,25,20,15,12,10", "target": "Pec (abdominal head)", "cue": "Scale weight up as reps drop. Rest 60\u2013120s.", "pat": "press_flat", "mus": "pectoralis", "sets": 6, "fst": false, "dtp": false}, {"name": "Incline Cable Flys", "sr": "6 sets: 10,12,15,20,25,30", "target": "Pec (clavicular)", "cue": "Scale weight down as reps rise. Burnout.", "pat": "fly", "mus": "pectoralis", "sets": 6, "fst": false, "dtp": false}, {"name": "Seated Cable Rows", "sr": "6 sets: 30,25,20,15,12,10", "target": "Lats, rhomboids", "cue": "Torso stable; don't rock backward.", "pat": "row", "mus": "latissimus", "sets": 6, "fst": false, "dtp": false}, {"name": "Narrow-Grip Pulldowns", "sr": "6 sets: 10,12,15,20,25,30", "target": "Lats (lower)", "cue": "Full lat stretch at the top.", "pat": "pulldown", "mus": "latissimus", "sets": 6, "fst": false, "dtp": false}, {"name": "Lying Leg Raises", "sr": "4 x 15\u201320", "target": "Rectus abdominis", "cue": "Curl the pelvis up.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}]}, {"title": "Day 2 \u2014 Lower Extremity (Capped DTP)", "imgs": ["quadriceps", "hamstring"], "intro": "The most demanding session. Heavy leg press and lunges across a rep pyramid.", "note": "CRITICAL CHANGE. Source prescribes 50-rep leg press + 50-rep walking lunges with rest-pause grinding past failure. That specific combination is a leading cause of exertional rhabdomyolysis \u2014 muscle breakdown that floods the kidneys and lands lifters in the ER. Reps are capped (~28) and the instruction to push past failure is removed. Stop each set with 1\u20132 reps in the tank. If your urine turns cola-coloured or you get severe disproportionate soreness/swelling, seek medical care immediately.", "rest": false, "ex": [{"name": "Leg Press", "sr": "5 sets: 28,24,20,14,10", "target": "Quads, glutes", "cue": "Deep consistent ROM. Stop 1\u20132 reps shy of failure.", "pat": "squat", "mus": "quadriceps", "sets": 5, "fst": false, "dtp": false}, {"name": "Walking Lunges", "sr": "5 sets: 10,14,20,24,28", "target": "Quads, hams, glutes", "cue": "Scale weight down. Monitor heart rate.", "pat": "squat", "mus": "quadriceps", "sets": 5, "fst": false, "dtp": false}, {"name": "Leg Extensions", "sr": "3 x 15/15/15", "target": "Rectus femoris", "cue": "Mechanical drop set, no rest between drops.", "pat": "legext", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false}, {"name": "Seated Calf Raises", "sr": "5 sets: 10,15,20,25,28", "target": "Soleus", "cue": "Max stretch, endure the burn.", "pat": "calf", "mus": "transversus", "sets": 5, "fst": false, "dtp": false}]}, {"title": "Day 3 \u2014 Active Rest & Functional Agility", "imgs": [], "intro": "Off static weights. 30 min of functional work: kettlebell swings, battle ropes, explosive plyometric jump squats for fast-twitch agility and speed.", "note": "", "rest": true, "ex": []}, {"title": "Day 4 \u2014 Shoulders & Upper Back (Capped DTP)", "imgs": ["deltoid"], "intro": "Lactic-acid accumulation under DTP. Strict posture \u2014 no swinging the dumbbells up.", "note": "Top sets capped from 50 to ~28 reps; shoulders are joint-fragile and 50-rep raises to failure invite impingement with no extra hypertrophy benefit.", "rest": false, "ex": [{"name": "Seated Dumbbell Press", "sr": "5 sets: 28,24,20,14,10", "target": "Delt (ant/lat)", "cue": "Strict upright. Stop shy of failure.", "pat": "press_oh", "mus": "latissimus", "sets": 5, "fst": false, "dtp": false}, {"name": "Side Lateral Raises", "sr": "5 sets: 28,24,20,14,10", "target": "Delt (lateral)", "cue": "Strict form, no torso swing.", "pat": "lateral", "mus": "latissimus", "sets": 5, "fst": false, "dtp": false}, {"name": "Cable Upright Rows", "sr": "5 sets: 10,14,20,24,28", "target": "Traps, lateral delt", "cue": "Elbows high and wide.", "pat": "frontraise", "mus": "latissimus", "sets": 5, "fst": false, "dtp": false}, {"name": "Dumbbell Shrugs", "sr": "3 x 20", "target": "Upper traps", "cue": "Squeeze hard at the top, 1s hold.", "pat": "abcurl", "mus": "deltoid", "sets": 3, "fst": false, "dtp": false}, {"name": "3-Way Shoulder Raise", "sr": "3 x 10 cycles", "target": "Delt complex", "cue": "Lateral \u2192 front \u2192 overhead, continuous.", "pat": "lateral", "mus": "deltoid", "sets": 3, "fst": false, "dtp": false}]}, {"title": "Day 5 \u2014 Arms (Capped DTP Supersets)", "imgs": ["biceps", "triceps"], "intro": "Antagonist supersets for a relentless upper-arm pump.", "note": "Source pairs 50-rep curls with 50-rep skull crushers daily. Capped at ~28 \u2014 same sarcoplasmic pump, far less elbow-tendon and lower-back strain.", "rest": false, "ex": [{"name": "Barbell Curls + Skull Crushers", "sr": "5: 28/28,24/24,20/20,14/14,10/10", "target": "Biceps + triceps (long)", "cue": "Antagonist superset. Elbows fixed on skull crushers.", "pat": "pushdown", "mus": "biceps", "sets": 5, "fst": false, "dtp": false}, {"name": "Seated DB Curls + Cable Pushdowns", "sr": "5: 10/10,14/14,20/20,24/24,28/28", "target": "Biceps + triceps (lateral)", "cue": "Scale weight down as reps rise. Peak contraction.", "pat": "pushdown", "mus": "latissimus", "sets": 5, "fst": false, "dtp": false}]}]}, {"title": "Phase 3 \u2014 Peak Conditioning & V-Taper Refinement", "months": "Months 5\u20136", "objective": "Amalgamate FST-7 fascial stretching with DTP endurance. Finalise density, carve separations and establish the cinematic V-taper via targeted core vacuums. Methodology: 6-day hybrid split.", "rest": "Heavy: 90\u2013120s.  FST-7: 30\u201345s.  Capped-DTP finishers: 60\u2013120s.", "capNote": "", "days": [{"title": "Day 1 \u2014 Chest & Biceps Hybrid", "imgs": ["pectoralis", "biceps"], "intro": "Heavy mechanical tension, then FST-7 to engorge the tissue, then capped-DTP biceps for endurance.", "note": "", "rest": false, "ex": [{"name": "Incline Dumbbell Press (Heavy)", "sr": "4 x 8\u201310", "target": "Pec (clavicular)", "cue": "Heavy compound. Controlled eccentric.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false}, {"name": "Flat Barbell Press (Volume)", "sr": "4 x 8\u201310", "target": "Pec major", "cue": "Steady volume work.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false}, {"name": "Pec-Deck Flyes \u2014 FST-7", "sr": "7 x 10\u201312", "target": "Pec (sternal)", "cue": "30s rest, flex actively.", "pat": "fly", "mus": "pectoralis", "sets": 7, "fst": true, "dtp": false}, {"name": "Machine Preacher Curls \u2014 DTP", "sr": "Pyramid: 28,24,20,14,10", "target": "Biceps", "cue": "Capped from 50. Stop shy of failure.", "pat": "curl", "mus": "biceps", "sets": 5, "fst": false, "dtp": true}]}, {"title": "Day 2 \u2014 Quads, Hams & Calves Hybrid", "imgs": ["quadriceps", "hamstring"], "intro": "Pre-exhaust with heavy compounds, then FST-7 both anterior and posterior compartments.", "note": "", "rest": false, "ex": [{"name": "Smith Machine Squat (Heavy)", "sr": "4 x 6\u201310", "target": "Quads", "cue": "5% load drop on the second set.", "pat": "squat", "mus": "quadriceps", "sets": 4, "fst": false, "dtp": false}, {"name": "Romanian Deadlifts (Volume)", "sr": "4 x 8\u201310", "target": "Hamstrings", "cue": "Full hip hinge.", "pat": "hinge", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false}, {"name": "Unilateral Leg Press (Volume)", "sr": "3 x 8\u201310 / leg", "target": "Quads, glutes", "cue": "One leg at a time.", "pat": "squat", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false}, {"name": "Leg Extensions \u2014 FST-7 (Quads)", "sr": "7 x 15\u201320", "target": "Rectus femoris", "cue": "30s rest.", "pat": "legext", "mus": "quadriceps", "sets": 7, "fst": true, "dtp": false}, {"name": "Seated Leg Curls \u2014 FST-7 (Hams)", "sr": "7 x 10\u201312", "target": "Hamstrings", "cue": "30s rest.", "pat": "curl", "mus": "hamstring", "sets": 7, "fst": true, "dtp": false}, {"name": "Standing Calf Raises", "sr": "4 x 15\u201320", "target": "Gastrocnemius", "cue": "Deep stretch.", "pat": "calf", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}]}, {"title": "Day 3 \u2014 Back & Triceps Hybrid", "imgs": ["latissimus", "triceps"], "intro": "Heavy rowing for thickness; straight-arm pulldowns to stretch the lats fully.", "note": "", "rest": false, "ex": [{"name": "Bent-Over Barbell Row (Heavy)", "sr": "4 x 8\u201310", "target": "Lats, mid-back", "cue": "Torso parallel to the floor.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Chest-Supported DB Row (Volume)", "sr": "4 x 10\u201312", "target": "Lats", "cue": "Supported torso.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Straight-Arm Cable Pulldown \u2014 FST-7", "sr": "7 x 8\u201312", "target": "Lats", "cue": "30s rest, full stretch.", "pat": "pulldown", "mus": "latissimus", "sets": 7, "fst": true, "dtp": false}, {"name": "Overhead Cable Extensions \u2014 DTP", "sr": "Pyramid: 28,24,20,14,10", "target": "Triceps", "cue": "Capped from 50. Stop shy of failure.", "pat": "pushdown", "mus": "triceps", "sets": 5, "fst": false, "dtp": true}]}, {"title": "Day 4 \u2014 Rest & Active Recovery", "imgs": [], "intro": "40 min steady-state cardio to drive tissue repair and lipid oxidation.", "note": "", "rest": true, "ex": []}, {"title": "Day 5 \u2014 Shoulders & Core Hybrid", "imgs": ["deltoid", "transversus"], "intro": "Final push to widen the clavicular look. Lateral delts pushed past failure with FST-7.", "note": "", "rest": false, "ex": [{"name": "Seated Dumbbell Press (Heavy)", "sr": "4 x 8\u201310", "target": "Delt (ant/lat)", "cue": "Heavy compound.", "pat": "press_oh", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false}, {"name": "Spider-Bench Front Raises (Volume)", "sr": "3 x 8\u201310", "target": "Delt (anterior)", "cue": "Strict, no swing.", "pat": "frontraise", "mus": "deltoid", "sets": 3, "fst": false, "dtp": false}, {"name": "Reverse Pec-Deck Flyes (Volume)", "sr": "4 x 10\u201312", "target": "Delt (posterior)", "cue": "Squeeze rear delts.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false}, {"name": "Machine Lateral Raises \u2014 FST-7", "sr": "7 x 10\u201315", "target": "Delt (lateral)", "cue": "30s rest, constant tension.", "pat": "lateral", "mus": "latissimus", "sets": 7, "fst": true, "dtp": false}, {"name": "Hanging Knee Raises", "sr": "4 x 15\u201320", "target": "Rectus abdominis", "cue": "Curl the pelvis up.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}]}, {"title": "Day 6 \u2014 Arm Gauntlet (Capped DTP Superset)", "imgs": ["biceps", "triceps"], "intro": "Repeat the Phase-2 Day-5 capped-DTP arm supersets \u2014 alternating higher-rep and heavier sets for biceps and triceps to push sarcoplasmic hypertrophy.", "note": "", "rest": true, "ex": []}, {"title": "Day 7 \u2014 Active Recovery & Fascial Maintenance", "imgs": [], "intro": "40 min steady-state cardio. Dynamic stretching, especially doorway chest stretches (30s/side, breathing deeply to expand the rib cage).", "note": "", "rest": true, "ex": []}]}]}</script>
+<script id="EXTRA" type="application/json">
+{
+  "programs": [
+    {
+      "id": "greekgod",
+      "name": "GREEK GOD",
+      "coach": "",
+      "ytcoach": "",
+      "tag": "Your Final Plan",
+      "pill": "GREEK GOD",
+      "sub": "Aesthetic Build · 6 days",
+      "featured": true,
+      "accent": "#E8B04B", "accent2": "#F4C66A", "dim": "#3a2c12",
+      "diet": {
+        "title": "Greek God Lean-Bulk Nutrition",
+        "cals": "Maintenance + ~300–400 kcal (a small, lean surplus)",
+        "macros": "≈ 1g protein per lb bodyweight · carbs around training · ~0.4g fat per lb",
+        "approach": "Built from CBUM's and Hrithik's principles: eat in a small surplus to add muscle without fat. 4–5 whole-food meals, protein in every meal, most carbs before and after training. Drink 3–4 L water, sleep 7–9h. When your abs start to blur, drop back to maintenance or a slight deficit to stay lean and Greek-god sharp.",
+        "meals": [
+          {"n": "Meal 1 · Breakfast", "items": "Whole eggs + egg whites · oats · berries · black coffee"},
+          {"n": "Meal 2 · Pre-Workout", "items": "Chicken or lean beef · white/jasmine rice · veg"},
+          {"n": "Meal 3 · Post-Workout", "items": "Whey shake · banana · rice cakes"},
+          {"n": "Meal 4 · Dinner", "items": "Salmon or chicken · potatoes/rice · greens · olive oil"},
+          {"n": "Meal 5 · Before Bed", "items": "Greek yogurt or casein · handful of nuts · berries"}
+        ],
+        "supps": "Whey protein, creatine 5g daily, vitamin D, fish oil.",
+        "source": "A practical lean-bulk built from the CBUM & Hrithik playbooks — high protein, carbs around training, small surplus."
+      },
+      "year": [
+        {"q": "Block 1", "months": "Months 1–3", "t": "Foundation", "d": "Master every lift and build a base. Run the split at 8–12 reps, add a little weight or a rep each week, and lock in the mind–muscle connection.", "meta": "8–12 reps · progressive overload · maintenance calories"},
+        {"q": "Block 2", "months": "Months 4–6", "t": "Hypertrophy", "d": "Grow. Push volume up with 10–15 rep sets, supersets and pump finishers. Eat in a small lean surplus to fuel new muscle.", "meta": "10–15 reps · high volume · lean surplus (+300 kcal)"},
+        {"q": "Block 3", "months": "Months 7–9", "t": "Strength & Density", "d": "Get strong. Drop the main compounds to 5–8 heavy reps with longer rest — strength now means more size later. Keep one pump day a week.", "meta": "5–8 reps on compounds · heavier loads · longer rest"},
+        {"q": "Block 4", "months": "Months 10–12", "t": "Peak & Shred", "d": "Reveal the physique. Higher reps, more conditioning and abs, and a slight deficit to strip body-fat and show the Greek-god V-taper and waist.", "meta": "12–20 reps · conditioning + abs · slight deficit"}
+      ],
+      "phases": [
+        {
+          "title": "GREEK GOD — Aesthetic Mass & V-Taper",
+          "months": "6-day split · repeat",
+          "objective": "Your final plan: the most effective blend of Chris Bumstead's classic-physique pressing and pulling with Hrithik Roshan's lean, athletic conditioning. Built to chase the Greek-god look — wide capped shoulders, a full chest and back, sculpted arms, balanced legs and a tight waist. Push hard, eat clean, recover well.",
+          "rest": "Heavy compounds: 2–3 min.  Pump / isolation: 45–60s.  Abs & conditioning: 30–45s.",
+          "capNote": "",
+          "days": [
+            {"title": "Day 1 — Chest & Side Delts", "imgs": ["pectoralis", "deltoid"], "intro": "Build the upper-chest shelf and cap the side delts to widen the frame. Press heavy, then chase a deep pump.", "vid": "upper chest side delt workout", "rest": false, "ex": [
+              {"name": "Incline Dumbbell Press", "sr": "4 x 8–10", "target": "Pec (clavicular)", "cue": "30–45° bench, deep stretch, drive the dumbbells over the upper chest.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Flat Barbell Bench Press", "sr": "4 x 8–12", "target": "Pec major", "cue": "Shoulder blades pinned, control to the chest, press explosively.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false},
+              {"name": "High-to-Low Cable Fly", "sr": "3 x 12–15", "target": "Pec (sternal)", "cue": "Cross the hands low, squeeze the chest for 1s each rep.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Cable Lateral Raise", "sr": "4 x 15–20", "target": "Delt (lateral)", "cue": "Constant tension, lead with the elbow, slow on the way down.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Dumbbell Lateral Raise (drop set last)", "sr": "3 x 12", "target": "Delt (lateral)", "cue": "Strict form; make the last set a drop set to failure.", "pat": "lateral", "mus": "deltoid", "sets": 3, "fst": true, "dtp": false},
+              {"name": "Weighted Dips", "sr": "3 x 10–12", "target": "Lower pec, triceps", "cue": "Lean forward for chest emphasis, controlled depth.", "pat": "pushdown", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 2 — Back & Rear Delts", "imgs": ["latissimus", "deltoid"], "intro": "Width then thickness for the V-taper, finished with rear delts and face pulls for 3D shoulders and healthy posture.", "vid": "back v taper rear delt workout", "rest": false, "ex": [
+              {"name": "Wide-Grip Lat Pulldown", "sr": "4 x 10–12", "target": "Lats (width)", "cue": "Depress the scapula, drive the elbows down and back.", "pat": "pulldown", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Chest-Supported Row", "sr": "4 x 10–12", "target": "Lats, mid-back", "cue": "Torso pinned, squeeze the shoulder blades at the top.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Single-Arm Dumbbell Row", "sr": "3 x 10–12", "target": "Lats (unilateral)", "cue": "Full stretch, drive the elbow to the hip.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Straight-Arm Pulldown", "sr": "3 x 15", "target": "Lats", "cue": "Arms long, hinge at the shoulder, feel the lat.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": true, "dtp": false},
+              {"name": "Reverse Pec-Deck (Rear Delt)", "sr": "4 x 15–20", "target": "Delt (posterior)", "cue": "Lead with the elbows, squeeze rear delts not traps.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Cable Face Pulls", "sr": "3 x 15", "target": "Rear delt, rotator cuff", "cue": "Pull to the forehead, externally rotate, 1s squeeze.", "pat": "row", "mus": "deltoid", "sets": 3, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 3 — Legs", "imgs": ["quadriceps", "hamstring"], "intro": "Balanced legs to match the upper body — quads, hams, glutes and calves. Strong legs make the whole physique look complete.", "vid": "aesthetic leg workout quads hamstrings", "rest": false, "ex": [
+              {"name": "Barbell Squat (or Hack Squat)", "sr": "4 x 8–10", "target": "Quads, glutes", "cue": "Brace, sit between the hips, drive through mid-foot.", "pat": "squat", "mus": "quadriceps", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Romanian Deadlift", "sr": "4 x 10–12", "target": "Hamstrings, glutes", "cue": "Hip hinge, soft knees, big stretch — don't squat it.", "pat": "hinge", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Leg Press", "sr": "3 x 12–15", "target": "Quads, glutes", "cue": "Full ROM, knees track over toes.", "pat": "squat", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Leg Extension", "sr": "3 x 15", "target": "Quads", "cue": "Squeeze hard at the top for 1s each rep.", "pat": "legext", "mus": "quadriceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Lying Leg Curl", "sr": "3 x 12–15", "target": "Hamstrings", "cue": "Curl heels to glutes, slow eccentric.", "pat": "legcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Standing Calf Raise", "sr": "4 x 15–20", "target": "Calves", "cue": "Full stretch at the bottom, 1s hold at the top.", "pat": "calf", "mus": "quadriceps", "sets": 4, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 4 — Shoulders & Arms", "imgs": ["deltoid", "biceps"], "intro": "The aesthetic peak: round, capped delts and full arms — the finishing details of the Greek-god look.", "vid": "shoulders and arms aesthetic workout", "rest": false, "ex": [
+              {"name": "Seated Dumbbell Press", "sr": "4 x 8–10", "target": "Delt (anterior/lateral)", "cue": "Press in a slight arc, stop just short of lockout.", "pat": "press_oh", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Cable Lateral Raise", "sr": "4 x 15–20", "target": "Delt (lateral)", "cue": "Constant tension — these build the capped look.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "EZ-Bar Curl", "sr": "4 x 10–12", "target": "Biceps", "cue": "Elbows pinned, no swing, full squeeze.", "pat": "curl", "mus": "biceps", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Rope Pushdown", "sr": "4 x 12–15", "target": "Triceps", "cue": "Pull the rope apart at the bottom, lock out.", "pat": "pushdown", "mus": "triceps", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Incline Dumbbell Curl", "sr": "3 x 10–12", "target": "Biceps (long head)", "cue": "Let the arms hang back for a deep stretch.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Overhead Triceps Extension", "sr": "3 x 12", "target": "Triceps (long head)", "cue": "Reach deep behind the head for a full stretch.", "pat": "pushdown", "mus": "triceps", "sets": 3, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 5 — Upper Pump & Abs", "imgs": ["pectoralis", "transversus"], "intro": "A lighter, higher-rep upper-body pump to add detail, then carve the midsection. The tight waist is half the Greek-god illusion.", "vid": "upper body pump abs workout", "rest": false, "ex": [
+              {"name": "Incline Machine Press", "sr": "3 x 12", "target": "Pec (clavicular)", "cue": "Continuous tension, no lockout rest.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Neutral-Grip Lat Pulldown", "sr": "3 x 12", "target": "Lats", "cue": "Drive elbows down, squeeze the lats.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Cable Fly", "sr": "3 x 15", "target": "Pec (inner)", "cue": "Squeeze and hold the cross 1s.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Seated Cable Row", "sr": "3 x 12", "target": "Mid-back", "cue": "Chest tall, squeeze the blades.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Hanging Leg Raise", "sr": "4 x 15", "target": "Lower abs", "cue": "Curl the pelvis up, control the descent.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Stomach Vacuum", "sr": "4 x 20–30s", "target": "Transversus abdominis", "cue": "Exhale fully, pull the navel to the spine and up under the ribs.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 6 — Conditioning & Core", "imgs": ["transversus"], "intro": "Hrithik's edge: athletic conditioning to stay lean plus dedicated core work for the tight waist. Keep it moving, keep the heart rate up.", "vid": "fat burning conditioning core workout", "rest": false, "ex": [
+              {"name": "Incline Treadmill Walk / HIIT", "sr": "20–30 min", "target": "Conditioning", "cue": "Steady incline walk, or 30s hard / 60s easy intervals.", "pat": "squat", "mus": "transversus", "sets": 1, "fst": false, "dtp": false},
+              {"name": "Kettlebell Swings", "sr": "4 x 15", "target": "Glutes, hams, core", "cue": "Explosive hip snap, arms just guide the bell.", "pat": "hinge", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Cable Crunch", "sr": "4 x 15", "target": "Rectus abdominis", "cue": "Crunch the ribs to the hips, round the spine.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Plank", "sr": "4 x 45s", "target": "Core stability", "cue": "Straight line head-to-heels, squeeze glutes and abs.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Stomach Vacuum", "sr": "4 x 20–30s", "target": "Transversus abdominis", "cue": "Exhale, pull the navel in and up under the ribs.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 7 — Rest", "imgs": [], "intro": "Full rest. Greek-god physiques are built on recovery — hydrate, eat your protein, stretch, and protect 7–9 hours of sleep before you go again.", "note": "", "rest": true, "ex": []}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cbum",
+      "name": "CBUM ELITE",
+      "coach": "Chris Bumstead",
+      "ytcoach": "Chris Bumstead",
+      "tag": "Chris Bumstead · Advanced",
+      "sub": "Advanced · how he trains now",
+      "advanced": "CBUM's latest (2024) intensity tools — layer these onto the sets below: <b>Tempo training</b> (3:1:1:1 — 3s down, 1s pause stretched, explode up, 1s squeeze). <b>Yielding isometrics</b> (after failure, hold the stretched position ~20s resisting the weight). <b>Lengthened partials</b> (when full reps fail, keep doing reps in the deep-stretch range). <b>FST-7</b> (7 sets of the last isolation move, 30–45s rest). Plus rest-pause and double drop sets on final sets.",
+      "accent": "#E8B04B", "accent2": "#F4C66A", "dim": "#3a2c12",
+      "diet": {
+        "title": "CBUM Off-Season Diet",
+        "cals": "~4,500 kcal off-season (up to ~5,000 on a heavy bulk; ~half that in contest prep)",
+        "macros": "≈ 340g protein · 450g carbs · 150g fat",
+        "approach": "Roughly 1g of protein per lb of bodyweight, 20–30% of calories from fat, and the rest from carbs. Whole foods he cooks himself — almost no junk. Carbs are timed around training, and he tracks everything in MyFitnessPal.",
+        "meals": [
+          {"n": "Meal 1 · Breakfast", "items": "Filet mignon · 1.5 scoops protein · large bowl of oatmeal · blueberries · banana · 30g almond butter"},
+          {"n": "Meal 2 · Pre-Workout", "items": "Ground turkey breast · baked Japanese sweet potatoes"},
+          {"n": "Meal 3 · Post-Workout", "items": "2 scoops protein powder · 2 scoops carb powder"},
+          {"n": "Meal 4", "items": "Ground turkey breast · large bowl of pasta · olive oil"},
+          {"n": "Meal 5 · Dinner", "items": "2 salmon burgers · white rice · ½ avocado · green veggies · olive oil"}
+        ],
+        "supps": "Creatine, digestive enzymes, glucose-disposal agents (GDAs), protein & carb powders.",
+        "source": "Kyle Hunt Fitness / BarBend full-day-of-eating (2024 off-season)"
+      },
+      "year": [
+        {"q": "Block 1", "months": "Months 1–3", "t": "Off-Season Mass", "d": "Advanced from day one. Run the elite split with heavy machine + free-weight work and full intensity tools — tempo, yielding isometrics and lengthened partials — plus the biggest food intake of the year to build raw size.", "meta": "Heavy + tempo/iso · ~4,500–5,000 kcal"},
+        {"q": "Block 2", "months": "Months 4–6", "t": "Hypertrophy Volume", "d": "Add volume and intensity techniques — drop sets, timed 40-second sets and supersets — and hammer weak points to fill out the classic shape.", "meta": "8–15 reps · drop/timed sets · weak-point focus"},
+        {"q": "Block 3", "months": "Months 7–9", "t": "Metabolic Conditioning", "d": "Tighten up. Shorter rest, higher reps and added cardio while keeping the heavy work to hold muscle as you lean out.", "meta": "10–20 reps · short rest · cardio added"},
+        {"q": "Block 4", "months": "Months 10–12", "t": "Peak & Conditioning", "d": "Bring out the detail. Refine each body part, practise posing, and add conditioning to reveal the small waist and classic taper.", "meta": "Refinement · posing · peak conditioning"}
+      ],
+      "phases": [
+        {
+          "title": "CBUM — Advanced Hypertrophy (how he trains now)",
+          "months": "6 sessions · 3 on, 1 off",
+          "objective": "Chris Bumstead's current elite training — exactly the style from his 2024 sessions with Hany Rambod. Machine-heavy for safe overload, every set driven by advanced intensity: tempo (3:1:1:1), yielding isometrics, lengthened partials, FST-7 and drop sets. This is advanced from set one — load the long range of the muscle, control every rep, and take working sets to (or past) failure.",
+          "rest": "Heavy compounds: 2–3 min.  Machine / intensity sets: 60–90s.  FST-7: 30–45s.",
+          "capNote": "",
+          "days": [
+            {"title": "Day 1 — Chest (Tempo & Yielding Isometrics)", "imgs": ["pectoralis", "triceps"], "intro": "His 2024 chest session: dumbbell pressing on a strict tempo, machine presses with deep-stretch yielding isometrics, then flyes into lengthened partials and an FST-7 triceps finisher.", "vid": "Chris Bumstead chest workout", "cbumVid": "hkaHHE0AbXo", "rest": false, "ex": [
+              {"name": "Flat Dumbbell Press", "sr": "2 x 8–10 · 3:1:1:1 tempo", "target": "Pec major", "cue": "3s down, 1s pause in the stretch, explode up, 1s squeeze. Slow eccentric is the point.", "pat": "press_flat", "mus": "pectoralis", "sets": 2, "fst": false, "dtp": false},
+              {"name": "Decline Machine Chest Press", "sr": "3 x 10 · neutral grip", "target": "Pec (lower/sternal)", "cue": "Drive the elbows behind the midline for a deep stretch; hold a 20s yielding isometric in the stretch after your last rep.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Incline Machine Chest Press", "sr": "3 x 10", "target": "Pec (clavicular)", "cue": "Scapula retracted, proud chest to bias the upper pec. Yielding isometric on the final set.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Incline Cable Flye", "sr": "3 x 12 · double drop on the last", "target": "Pec (upper)", "cue": "Grab the cables directly (no handles) for extra range. Squeeze hard at the top.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Flat Dumbbell Flye", "sr": "3 x 12 + lengthened partials", "target": "Pec (mid)", "cue": "Elbows just below the midline, 2s stretch pause; keep doing partials in the stretch once full reps fail.", "pat": "fly", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Overhead Cable Triceps Extension — FST-7", "sr": "7 x 12", "target": "Triceps (long head)", "cue": "30–45s rest, deep stretch behind the head, flex the triceps between sets.", "pat": "pushdown", "mus": "triceps", "sets": 7, "fst": true, "dtp": false}
+            ]},
+            {"title": "Day 2 — Back (Stretch-Focused Pull)", "imgs": ["latissimus", "biceps"], "intro": "His pull day: close-grip pulldowns, weighted pull-ups and reverse-grip rows for width and lower-lat thickness, an FST-7 straight-arm finisher, then stretch-position curls.", "vid": "Chris Bumstead back workout", "cbumVid": "QQJtaldifZ0", "rest": false, "ex": [
+              {"name": "Close-Grip Lat Pulldown", "sr": "3 x 10–12", "target": "Lats", "cue": "Depress the scapula, drive the elbows to the hips, control the stretch back up.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Weighted Pull-Ups", "sr": "3 sets to failure", "target": "Lats, upper back", "cue": "Full hang, lead with the chest, drive elbows behind the midline.", "pat": "pulldown", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Reverse-Grip Bent-Over Row", "sr": "3 x 8–10", "target": "Lats (lower)", "cue": "Underhand grip to bias the lower lats; pull to the navel and squeeze.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Incline Bench Dumbbell Row", "sr": "3 x 10–12", "target": "Lats, mid-back", "cue": "Chest supported on an incline bench, no momentum, full stretch each rep.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Straight-Arm Lat Pulldown — FST-7", "sr": "7 x 12–15", "target": "Lats", "cue": "30–45s rest, long arms, hinge at the shoulder for a deep lat stretch.", "pat": "pulldown", "mus": "latissimus", "sets": 7, "fst": true, "dtp": false},
+              {"name": "Incline Dumbbell Curl", "sr": "3 x 10–12 + lengthened partials", "target": "Biceps (long head)", "cue": "Let the arms hang back for a deep stretch; partials in the stretch to finish.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 3 — Hamstrings & Glutes (Tempo Tri-Sets)", "imgs": ["hamstring"], "intro": "Rambod's posterior-chain blueprint: pre-exhaust curls on a triple-tempo scheme, RDLs, a lengthened-to-shortened tri-set, hip thrusts and lengthened-partial calves.", "vid": "Chris Bumstead hamstring workout", "cbumVid": "udM_XeQUqcA", "rest": false, "ex": [
+              {"name": "Lying Leg Curl (Triple Tempo)", "sr": "4-0-X-1 → 4-0-X-0 → 3-0-X-0", "target": "Hamstrings", "cue": "Pre-exhaust; 10s rest between each tempo, then a double drop to finish.", "pat": "legcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Romanian Deadlift", "sr": "3 x 8–10", "target": "Hamstrings, glutes", "cue": "Hinge, soft knees, big hamstring stretch — squeeze the glutes to lock out.", "pat": "hinge", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Tri-Set: Seated Curl + 45° Hyperextension + Cable Pull-Through", "sr": "3 rounds x 10–12", "target": "Hamstrings, glutes", "cue": "Lengthened → mid → shortened ranges back-to-back, no rest within a round.", "pat": "legcurl", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Barbell Hip Thrust", "sr": "3 x 10–12", "target": "Glutes, hams", "cue": "Full hip extension, 1s squeeze at the top.", "pat": "hinge", "mus": "hamstring", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Standing Calf Raise", "sr": "4 x 10–12 + lengthened partials", "target": "Calves", "cue": "4s eccentric, pause in the stretch; finish with partials.", "pat": "calf", "mus": "hamstring", "sets": 4, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 4 — Shoulders (3D Delts)", "imgs": ["deltoid"], "intro": "Capped, 3-D delts: machine and dumbbell laterals for the side head, hammer-grip presses, single-arm rear-delt cables and an FST-7 front-raise finisher.", "vid": "Chris Bumstead shoulder workout", "cbumVid": "tdEk3XfYzxc", "rest": false, "ex": [
+              {"name": "Standing Lateral Raise Machine", "sr": "4 x 12–15", "target": "Delt (lateral)", "cue": "Constant tension, lead with the elbow, slow negative.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Seated Hammer Strength Shoulder Press", "sr": "4 x 8–10", "target": "Delt (anterior/lateral)", "cue": "Control the descent, stop just short of lockout to keep tension.", "pat": "press_oh", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Standing Dumbbell Side Laterals", "sr": "3 x 12–15 + partials", "target": "Delt (lateral)", "cue": "Slight lean, pour-the-water; partials in the stretch when you hit failure.", "pat": "lateral", "mus": "deltoid", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Single-Arm Reverse Cable Flye", "sr": "4 x 15 / side", "target": "Delt (posterior)", "cue": "Rear-delt isolation, lead with the elbow, squeeze the rear delt.", "pat": "lateral", "mus": "deltoid", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Cable Rope Front Raise — FST-7", "sr": "7 x 12", "target": "Delt (anterior)", "cue": "30–45s rest, hammer grip, raise to eye level.", "pat": "frontraise", "mus": "deltoid", "sets": 7, "fst": true, "dtp": false}
+            ]},
+            {"title": "Day 5 — Chest & Back (Antagonist Supersets)", "imgs": ["pectoralis", "latissimus"], "intro": "His high-volume strength-and-pump torso day: press/pull supersets with isometric holds for a massive upper-body pump.", "vid": "Chris Bumstead chest back workout", "cbumVid": "hkaHHE0AbXo", "rest": false, "ex": [
+              {"name": "Superset: Incline DB Press + Pull-Ups", "sr": "4 rounds x 8–12", "target": "Pec + lats", "cue": "Push then pull back-to-back — reciprocal inhibition lets you hit both hard.", "pat": "press_flat", "mus": "pectoralis", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Machine T-Bar Row", "sr": "4 x 10–12", "target": "Lats, mid-back", "cue": "Chest supported, drive the elbows back, squeeze the mid-back.", "pat": "row", "mus": "latissimus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Incline Machine Chest Press", "sr": "3 x 10–12", "target": "Pec (upper)", "cue": "Upper-pec focus; yielding isometric on the last set.", "pat": "press_flat", "mus": "pectoralis", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Superset: Machine High Row + Push-Ups", "sr": "3 rounds", "target": "Lats + chest", "cue": "Row to the upper chest, then push-ups to failure.", "pat": "row", "mus": "latissimus", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Incline Cable Flye — FST-7", "sr": "7 x 12", "target": "Pec", "cue": "30s rest, deep stretch, hard squeeze each set.", "pat": "fly", "mus": "pectoralis", "sets": 7, "fst": true, "dtp": false}
+            ]},
+            {"title": "Day 6 — Arms (Stretch-Position Supersets)", "imgs": ["biceps", "triceps"], "intro": "Bi/tri supersets trained in the lengthened position — his go-to for a brutal arm pump and peak growth.", "vid": "Chris Bumstead arm workout", "cbumVid": "iF_WM501fDE", "rest": false, "ex": [
+              {"name": "Superset: Incline DB Curl + Cable Triceps Extension", "sr": "3 rounds x 8–10", "target": "Biceps + triceps", "cue": "Train both arms in the lengthened position for a brutal pump.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Rope Pushdown", "sr": "4 x 12–15", "target": "Triceps", "cue": "Pull the rope apart at the bottom, full lockout.", "pat": "pushdown", "mus": "triceps", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Superset: Preacher Curl + Spider Curl", "sr": "3 rounds x 10", "target": "Biceps (short + long)", "cue": "Short head (preacher) then long head (spider) back-to-back.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Seated Overhead Dumbbell Extension", "sr": "3 x 10–12 + partials", "target": "Triceps (long head)", "cue": "Deep stretch for the long head; partials in the stretch to finish.", "pat": "pushdown", "mus": "triceps", "sets": 3, "fst": false, "dtp": false},
+              {"name": "Reverse Barbell Curl", "sr": "3 x 12", "target": "Brachialis, forearms", "cue": "Strict, no swing — builds the brachialis and forearm thickness.", "pat": "curl", "mus": "biceps", "sets": 3, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 7 — Rest", "imgs": [], "intro": "Rest in the 3-on / 1-off rotation. Optional light 20–30 min cardio, hydrate, eat for recovery, and protect 8+ hours of sleep. CBUM shifts rest days around as recovery demands.", "note": "", "rest": true, "ex": []}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hrithik",
+      "name": "HRITHIK DTP",
+      "coach": "Hrithik Roshan",
+      "ytcoach": "Hrithik Roshan",
+      "tag": "Hrithik Roshan · Advanced",
+      "sub": "Kris Gethin DTP",
+      "advanced": "DTP is already elite-level — layer these on from Block 1: <b>forced reps & partials past failure</b> on the last set of each pyramid, <b>3–4s negatives</b> on every rep, and a <b>30s lengthened-position hold</b> to finish each muscle. One–two moves per muscle, hundreds of reps, no ego on the weight.",
+      "accent": "#3B82F6", "accent2": "#6BA8FF", "dim": "#13233f",
+      "diet": {
+        "title": "Hrithik Roshan Transformation Diet",
+        "cals": "~4,000 kcal in a muscle-building phase (8 meals for Krrish 3; 6 meals + a shake for Fighter)",
+        "macros": "Protein-dominant · moderate carbs · light–moderate fat",
+        "approach": "Kris Gethin had Hrithik eating 6–8 small meals every ~2–3 hours to fire the metabolism and strip fat off the midsection. The majority of every meal is protein; carbs are weighted earlier in the day and around training; fats stay clean and light. Plus 20 min of steady-state cardio daily.",
+        "meals": [
+          {"n": "Protein", "items": "Chicken & poultry · fish · egg whites · protein powder"},
+          {"n": "Carbs", "items": "Potatoes · sweet potatoes · rice · oats · a little roti"},
+          {"n": "Fats", "items": "Nuts · egg yolks · olive oil"},
+          {"n": "Plus", "items": "Vegetables with meals · 1 protein shake daily"},
+          {"n": "Sample day", "items": "1) Egg-white omelette + oats  ·  2) Chicken + rice + veg  ·  3) Shake + sweet potato (pre)  ·  4) Fish + white rice + veg (post)  ·  5) Chicken + roti + salad  ·  6) Egg whites / casein + nuts"}
+        ],
+        "supps": "Whey / protein powder, daily protein shake.",
+        "source": "Kris Gethin interviews — Krrish 3 & Fighter prep (Rediff, Indian Express)"
+      },
+      "year": [
+        {"q": "Block 1", "months": "Months 1–3", "t": "Intensity Build", "d": "Full DTP from the start — pyramids with 3–4s negatives and partials past failure. Pick loads that make 30+ reps brutal, not easy. Daily 20-min cardio from day one.", "meta": "Full DTP pyramids · negatives + partials · daily cardio"},
+        {"q": "Block 2", "months": "Months 4–6", "t": "Full DTP Growth", "d": "The full 50→10→50 pyramids. One–two moves per muscle, hundreds of reps, 8 meals a day to drive the transformation.", "meta": "Full 50–10 pyramids · ~4,000 kcal · 6–8 meals"},
+        {"q": "Block 3", "months": "Months 7–9", "t": "Conditioning & Athleticism", "d": "Layer in the CrossFit-style work — tyre flips, KB swings, sprints, sandbag runs — alongside DTP to build the action-hero engine.", "meta": "DTP + 3× weekly conditioning"},
+        {"q": "Block 4", "months": "Months 10–12", "t": "Lean Peak", "d": "Tighten the waist and reveal the lines. Keep DTP intensity, add core and cardio, and pull calories to a slight deficit.", "meta": "DTP + core + cardio · slight deficit"}
+      ],
+      "phases": [
+        {
+          "title": "HRITHIK — Kris Gethin DTP Transformation",
+          "months": "DTP · 3 days on, 1 off + daily cardio",
+          "objective": "The exact method Kris Gethin used to transform Hrithik Roshan in ~10 weeks: the Dramatic Transformation Principle (DTP). One or two exercises per muscle taken through a rep pyramid — up to 10 sets and hundreds of reps — to build dense muscle while torching fat. Three days on, one off, with 20 minutes of steady-state cardio every day and CrossFit-style conditioning 3× a week.",
+          "rest": "High-rep (50–30) sets: ~45–60s.  Heavy low-rep (20–10) sets: up to 120s.",
+          "capNote": "DTP is brutal: the full pyramid is 50, 40, 30, 20, 10 then back down 10, 20, 30, 40, 50 — ten sets per exercise, raising weight as reps drop and lowering it as reps climb. Build into it over weeks, start light, and keep 1–2 reps in reserve on the high-rep sets. Chest & back use a slightly lower 'DTPXtreme' rep range to spare the shoulders.",
+          "days": [
+            {"title": "Day 1 — Chest & Back (DTPXtreme)", "imgs": ["pectoralis", "latissimus"], "intro": "DTPXtreme alternates chest and back through a rep pyramid — slightly lower reps than full DTP to protect the shoulder and forearm joints. One to two moves per muscle, many sets.", "vid": "Hrithik Roshan Kris Gethin chest back workout", "rest": false, "ex": [
+              {"name": "Incline Barbell Press — DTP", "sr": "Pyramid: 30,25,20,15,10 → up", "target": "Pec (clavicular)", "cue": "Raise weight as reps drop, lower it as reps climb. Stop 1–2 reps shy of failure.", "pat": "press_flat", "mus": "pectoralis", "sets": 9, "fst": false, "dtp": true},
+              {"name": "Wide-Grip Lat Pulldown — DTP", "sr": "Pyramid: 30,25,20,15,10 → up", "target": "Lats (width)", "cue": "Alternate with the press. Depress the scapula, drive the elbows down.", "pat": "pulldown", "mus": "latissimus", "sets": 9, "fst": false, "dtp": true},
+              {"name": "Flat Machine Chest Press — DTP", "sr": "Pyramid: 25,20,15,10 → up", "target": "Pec (sternal)", "cue": "Continuous tension, controlled tempo, no lockout rest.", "pat": "press_flat", "mus": "pectoralis", "sets": 7, "fst": false, "dtp": true},
+              {"name": "Seated Cable Row — DTP", "sr": "Pyramid: 25,20,15,10 → up", "target": "Mid-back, lats", "cue": "Chest tall, squeeze the blades, control the return.", "pat": "row", "mus": "latissimus", "sets": 7, "fst": false, "dtp": true}
+            ]},
+            {"title": "Day 2 — Legs (DTP)", "imgs": ["quadriceps", "hamstring"], "intro": "The hardest DTP day. One or two exercises per muscle, taken through the full 50→10→50 pyramid. Expect hundreds of reps and a deep burn.", "vid": "Hrithik Roshan Kris Gethin leg workout", "rest": false, "ex": [
+              {"name": "Leg Extension — DTP", "sr": "10 sets: 50,40,30,20,10 → 10,20,30,40,50", "target": "Quads", "cue": "Pre-exhaust the quads. Add weight as reps fall, strip it as reps rise.", "pat": "legext", "mus": "quadriceps", "sets": 10, "fst": false, "dtp": true},
+              {"name": "Squat (or Leg Press) — DTP", "sr": "10 sets: 50,40,30,20,10 → 10,20,30,40,50", "target": "Quads, glutes", "cue": "Deep, consistent ROM. Heaviest on the 10s, lightest on the 50s.", "pat": "squat", "mus": "quadriceps", "sets": 10, "fst": false, "dtp": true},
+              {"name": "Lying Leg Curl — DTP", "sr": "10 sets: 50,40,30,20,10 → up", "target": "Hamstrings", "cue": "Curl heels to glutes, full control through the whole pyramid.", "pat": "legcurl", "mus": "hamstring", "sets": 10, "fst": false, "dtp": true},
+              {"name": "Standing Calf Raise — DTP", "sr": "10 sets: 50,40,30,20,10 → up", "target": "Calves", "cue": "Full stretch every rep, endure the burn on the high-rep sets.", "pat": "calf", "mus": "hamstring", "sets": 10, "fst": false, "dtp": true}
+            ]},
+            {"title": "Day 3 — Shoulders & Abs (DTP)", "imgs": ["deltoid", "transversus"], "intro": "DTP delts for width, then high-volume abs and the daily vacuum for the tight Greek-god waist. Finish with 20 min steady-state cardio.", "vid": "Hrithik Roshan Kris Gethin shoulder workout", "rest": false, "ex": [
+              {"name": "Dumbbell Shoulder Press — DTP", "sr": "10 sets: 50,40,30,20,10 → up", "target": "Delt (anterior/lateral)", "cue": "Strict press, no swing. Heaviest on the low-rep sets.", "pat": "press_oh", "mus": "deltoid", "sets": 10, "fst": false, "dtp": true},
+              {"name": "Lateral Raise — DTP", "sr": "10 sets: 50,40,30,20,10 → up", "target": "Delt (lateral)", "cue": "Lead with the elbow; the 50-rep sets will be light, that's expected.", "pat": "lateral", "mus": "deltoid", "sets": 10, "fst": false, "dtp": true},
+              {"name": "Hanging Leg Raise", "sr": "4 x 20", "target": "Lower abs", "cue": "Curl the pelvis up, control the descent — no swinging.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false},
+              {"name": "Stomach Vacuum", "sr": "4 x 20–30s", "target": "Transversus abdominis", "cue": "Exhale fully, pull the navel to the spine and up under the ribs.", "pat": "abcurl", "mus": "transversus", "sets": 4, "fst": false, "dtp": false}
+            ]},
+            {"title": "Day 4 — CrossFit Conditioning & Cardio", "imgs": [], "intro": "Off the weights in the 3-on / 1-off rotation, but not off your feet. Gethin had Hrithik do ~20 minutes of CrossFit-style conditioning 3× a week — tyre flips, kettlebell swings, rope drills, plyometrics, bungee sprints and sandbag runs — to strengthen the core and protect the spine. On the remaining days: beach runs, swimming or the elliptical, plus 20 min of daily steady-state cardio.", "note": "", "rest": true, "ex": []},
+            {"title": "Day 5 — Arms (DTP Supersets)", "imgs": ["biceps", "triceps"], "intro": "Antagonist DTP supersets — biceps straight into triceps — for a relentless pump through the full rep pyramid.", "vid": "Hrithik Roshan Kris Gethin arm workout", "rest": false, "ex": [
+              {"name": "Barbell Curl + Cable Pushdown — DTP", "sr": "10 sets: 50,40,30,20,10 → up", "target": "Biceps + triceps", "cue": "Superset the two. Add weight as reps drop; strip it as reps climb.", "pat": "curl", "mus": "biceps", "sets": 10, "fst": false, "dtp": true},
+              {"name": "Hammer Curl + Overhead Triceps Ext — DTP", "sr": "10 sets: 50,40,30,20,10 → up", "target": "Brachialis + triceps (long)", "cue": "Second antagonist superset; controlled tempo, full stretch on the extensions.", "pat": "curl", "mus": "biceps", "sets": 10, "fst": false, "dtp": true}
+            ]},
+            {"title": "Day 6 — Back & Chest (DTP)", "imgs": ["latissimus", "pectoralis"], "intro": "A second torso day — back gets the priority for the V-taper, paired with chest through the pyramid.", "vid": "Hrithik Roshan Kris Gethin back workout", "rest": false, "ex": [
+              {"name": "Pull-Ups / Assisted Pull-Ups — DTP", "sr": "Pyramid: 25,20,15,10 → up", "target": "Lats, upper back", "cue": "Full hang to chin over the bar; use assistance to hit the high-rep sets.", "pat": "pulldown", "mus": "latissimus", "sets": 7, "fst": false, "dtp": true},
+              {"name": "Incline Dumbbell Press — DTP", "sr": "Pyramid: 25,20,15,10 → up", "target": "Pec (clavicular)", "cue": "Deep stretch, dumbbells over the upper chest.", "pat": "press_flat", "mus": "pectoralis", "sets": 7, "fst": false, "dtp": true},
+              {"name": "Bent-Over Row — DTP", "sr": "Pyramid: 25,20,15,10 → up", "target": "Mid-back, lats", "cue": "Neutral spine, pull to the lower ribs, squeeze.", "pat": "row", "mus": "latissimus", "sets": 7, "fst": false, "dtp": true},
+              {"name": "Cable Fly — DTP", "sr": "Pyramid: 25,20,15,10 → up", "target": "Pec (sternal)", "cue": "Constant tension, flex the chest hard on every rep.", "pat": "fly", "mus": "pectoralis", "sets": 7, "fst": false, "dtp": true}
+            ]},
+            {"title": "Day 7 — Rest + Steady Cardio", "imgs": [], "intro": "Rest from weights. Keep the 20-minute steady-state cardio (beach run, swim or elliptical), hydrate, stretch, and protect sleep before the cycle repeats.", "note": "", "rest": true, "ex": []}
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+const DATA = JSON.parse(document.getElementById('PROG').textContent);
+const EXTRA = JSON.parse(document.getElementById('EXTRA').textContent);
+const IRON = {id:'ironclad', name:'IRONCLAD', coach:'', ytcoach:'', tag:'Original Blueprint',
+   sub:'6-Month Blueprint', accent:'#FF3B30', accent2:'#FF6B5E', dim:'#3A1614', phases:DATA.phases};
+const _byId = Object.fromEntries(EXTRA.programs.map(p=>[p.id,p]));
+const PROGRAMS = [_byId.cbum, _byId.greekgod, _byId.hrithik, IRON];
+
+/* curated, verified exercise technique clips (YouTube IDs) keyed by movement pattern */
+const CLIPS = {
+  press_flat:'oZVCBM9f8Eo', press_oh:'aI2hGzsAMXs', fly:'pU2P9gCIyRM',
+  lateral:'6a-sO62TN5E', pushdown:'v2fMq8RjNBw', pulldown:'JGeRYIZdojU',
+  row:'iQNwcZBlex4', curl:'cBSD6mQIPQk', squat:'rrJIyZGlK8c', hinge:'hQgFixeXdZo',
+  legext:'4ZDm5EbiFI8', legcurl:'ELOCsoDSmrg', calf:'YMmgqO8Jo-k',
+  frontraise:'-t7fuZ0KhDA', abcurl:'tSxHuSvwFdU'
+};
+/* curated anatomy clips (YouTube IDs) keyed by muscle */
+const ANATOMY_CLIPS = {
+  pectoralis:'as9Ked5qhXw', latissimus:'N86aPsGaEIY', deltoid:'FSSGkYrYwqM',
+  biceps:'v0GJltQp6R0', triceps:'R-TxrDzYSdM', quadriceps:'BnTuNJp6-8E'
+};
+/* realistic exercise photos (generated, bundled offline) keyed by movement pattern */
+const EXFIG = {
+  press_flat:1, press_oh:1, fly:1, lateral:1, frontraise:1, pushdown:1, pulldown:1,
+  row:1, curl:1, squat:1, hinge:1, legext:1, legcurl:1, calf:1, abcurl:1
+};
+function exFig(pat){
+  return EXFIG[pat] ? `<img class="exphoto" src="exfig/${pat}.png" alt="" loading="lazy">` : figFor(pat);
+}
+
+/* real anatomy images (generated, bundled offline) keyed by muscle */
+const ANATOMY_IMG = {
+  pectoralis:1, latissimus:1, deltoid:1, transversus:1,
+  biceps:1, triceps:1, quadriceps:1, hamstring:1
+};
+function muscleImg(key, cls){
+  if(ANATOMY_IMG[key]) return `<img class="${cls||''}" src="anatomy/${key}.png" alt="${key}" loading="lazy">`;
+  return muscleGlyph(key);
+}
+function PROG(){ return PROGRAMS[state.program]; }
+function PH(){ return PROGRAMS[state.program].phases; }
+const view = document.getElementById('view');
+const phasePill = document.getElementById('phasePill');
+
+// ---- persistence (in-memory; localStorage blocked in some embeds) ----
+const store = {};
+function key(p,d,s){return `${state.program}.${p}.${d}.${s}`}
+function setDone(p,d,s,v){ store[key(p,d,s)] = v; }
+function isDone(p,d,s){ return !!store[key(p,d,s)]; }
+function dayProgress(p,d){
+  const day = PH()[p].days[d];
+  if(day.rest) return {done:0,total:0};
+  let done=0,total=0;
+  day.ex.forEach((e,ei)=>{ for(let s=0;s<e.sets;s++){ total++; if(isDone(p,`${d}_${ei}`,s)) done++; }});
+  return {done,total};
+}
+
+let state = {tab:'home', program:0, phase:0, day:null, ex:0, muscle:null, block:0};
+
+const MOTIV = [
+  "Discipline beats motivation — just show up.",
+  "Every rep is a vote for the body you want.",
+  "The pump fades; the physique is forever.",
+  "Train like a Greek god. Eat like one too.",
+  "Small steps, every day — that's how legends are built.",
+  "Your only competition is who you were yesterday.",
+  "Consistency is the real cheat code."
+];
+
+/* =======================================================================
+   ANIMATED FIGURES  — a stick/silhouette athlete that loops a clean rep.
+   Each pattern returns an <svg> string. Motion via SMIL <animateTransform>
+   / <animate> so it works without JS and survives streaming.
+   ======================================================================= */
+const C = { body:'#E7E3DB', limb:'#CFCabf', hot:'#FF3B30', bar:'#9aa0aa', plate:'#3a3a44', edge:'#8b8780' };
+
+function head(cx,cy,r=11){return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${C.body}"/>`}
+function seg(x1,y1,x2,y2,w=9,col=C.limb){return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`}
+
+// generic wrapper
+function svg(inner, vb="0 0 200 200"){return `<svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`}
+
+function dur(){return '2.4s'}
+
+// CURL — forearm rotates up around the elbow
+function fig_curl(){
+  return svg(`
+    ${seg(100,150,100,170,10)} <!-- shin -->
+    ${seg(100,120,100,150,11)} <!-- torso -->
+    ${head(100,104)}
+    ${seg(100,124,82,150,9)} ${seg(100,124,118,150,9)} <!-- thighs hint -->
+    <!-- upper arm fixed -->
+    ${seg(100,126,86,150,8,C.limb)}
+    <!-- forearm rotates around elbow (86,150) -->
+    <g>
+      <line x1="86" y1="150" x2="70" y2="172" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="70" cy="172" r="7" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate"
+        values="0 86 150; -120 86 150; 0 86 150" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1; 0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// PRESS_OH — overhead press, arms extend up
+function fig_press_oh(){
+  return svg(`
+    ${seg(100,120,100,160,12)} ${head(100,103)}
+    ${seg(100,128,84,150,9)} ${seg(100,128,116,150,9)}
+    <g>
+      ${seg(100,124,80,108,8,C.hot)} ${seg(100,124,120,108,8,C.hot)}
+      <rect x="68" y="98" width="64" height="8" rx="3" fill="${C.bar}"/>
+      <rect x="60" y="92" width="10" height="20" rx="2" fill="${C.plate}"/>
+      <rect x="130" y="92" width="10" height="20" rx="2" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="translate"
+        values="0 26; 0 -6; 0 26" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// PRESS_FLAT — lying bench press, bar moves down/up
+function fig_press_flat(){
+  return svg(`
+    <rect x="46" y="120" width="108" height="8" rx="4" fill="${C.edge}" opacity=".5"/>
+    ${head(60,112)}
+    <line x1="72" y1="118" x2="138" y2="118" stroke="${C.body}" stroke-width="12" stroke-linecap="round"/>
+    ${seg(138,118,150,140,9)} <!-- legs down -->
+    <g>
+      ${seg(120,118,120,96,8,C.hot)}
+      <rect x="92" y="90" width="80" height="8" rx="3" fill="${C.bar}"/>
+      <rect x="86" y="84" width="10" height="20" rx="2" fill="${C.plate}"/>
+      <rect x="168" y="84" width="10" height="20" rx="2" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="translate"
+        values="0 24; 0 0; 0 24" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// FLY — arms sweep open and closed (chest)
+function fig_fly(){
+  return svg(`
+    ${seg(100,116,100,160,12)} ${head(100,100)}
+    ${seg(100,128,86,152,9)} ${seg(100,128,114,152,9)}
+    <g>
+      <line x1="100" y1="120" x2="64" y2="120" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="60" cy="120" r="7" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate" values="38 100 120; 0 100 120; 38 100 120" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>
+    <g>
+      <line x1="100" y1="120" x2="136" y2="120" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="140" cy="120" r="7" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate" values="-38 100 120; 0 100 120; -38 100 120" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// LATERAL raise — arms lift out to the side
+function fig_lateral(){
+  return svg(`
+    ${seg(100,120,100,162,12)} ${head(100,103)}
+    ${seg(100,130,86,154,9)} ${seg(100,130,114,154,9)}
+    <g>
+      <line x1="100" y1="124" x2="74" y2="142" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="70" cy="144" r="6.5" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 100 124; -64 100 124; 0 100 124" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>
+    <g>
+      <line x1="100" y1="124" x2="126" y2="142" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="130" cy="144" r="6.5" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 100 124; 64 100 124; 0 100 124" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// FRONTRAISE — arms lift forward/up
+function fig_frontraise(){
+  return svg(`
+    ${seg(100,120,100,162,12)} ${head(100,103)}
+    ${seg(100,130,86,154,9)} ${seg(100,130,114,154,9)}
+    <g>
+      <line x1="100" y1="124" x2="100" y2="150" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <circle cx="100" cy="154" r="7" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 100 124; 78 100 124; 0 100 124" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// PUSHDOWN — forearm extends down (triceps)
+function fig_pushdown(){
+  return svg(`
+    ${seg(100,124,100,164,11)} ${head(100,107)}
+    ${seg(100,132,86,156,9)} ${seg(100,132,114,156,9)}
+    ${seg(100,128,108,148,8,C.limb)} <!-- upper arm fixed -->
+    <g>
+      <line x1="108" y1="148" x2="108" y2="128" stroke="${C.hot}" stroke-width="8" stroke-linecap="round"/>
+      <rect x="100" y="120" width="16" height="7" rx="3" fill="${C.bar}"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 108 148; 86 108 148; 0 108 148" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// PULLDOWN — bar pulled down to chest, arms flex
+function fig_pulldown(){
+  return svg(`
+    ${seg(100,118,100,160,12)} ${head(100,101)}
+    ${seg(100,128,86,152,9)} ${seg(100,128,114,152,9)}
+    <g>
+      ${seg(100,122,78,96,8,C.hot)} ${seg(100,122,122,96,8,C.hot)}
+      <rect x="58" y="92" width="84" height="7" rx="3" fill="${C.bar}"/>
+      <animateTransform attributeName="transform" type="translate" values="0 -10; 0 26; 0 -10" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// ROW — elbows drive back, torso hinged
+function fig_row(){
+  return svg(`
+    <g transform="rotate(24 100 140)">
+      ${seg(100,120,100,150,12)} ${head(86,112)}
+      ${seg(100,150,116,168,9)}
+      <g>
+        ${seg(100,126,90,150,8,C.hot)}
+        <rect x="78" y="146" width="26" height="7" rx="3" fill="${C.bar}"/>
+        <circle cx="74" cy="150" r="7" fill="${C.plate}"/>
+        <animateTransform attributeName="transform" type="translate" values="0 18; 0 -6; 0 18" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+      </g>
+    </g>`);
+}
+
+// SQUAT — body drops and rises, bar on back
+function fig_squat(){
+  return svg(`
+    <g>
+      ${head(100,72)}
+      <rect x="74" y="84" width="52" height="7" rx="3" fill="${C.bar}"/>
+      <rect x="66" y="78" width="10" height="20" rx="2" fill="${C.plate}"/>
+      <rect x="124" y="78" width="10" height="20" rx="2" fill="${C.plate}"/>
+      ${seg(100,90,100,120,12,C.hot)}
+      ${seg(100,118,84,140,10)} ${seg(100,118,116,140,10)}
+      ${seg(84,140,84,168,9)} ${seg(116,140,116,168,9)}
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 30; 0 0" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// HINGE — torso hinges forward and back (RDL/deadlift)
+function fig_hinge(){
+  return svg(`
+    ${seg(100,150,84,176,9)} ${seg(100,150,116,176,9)}
+    <g>
+      <g style="transform-box:fill-box" >
+        ${seg(100,118,100,150,12,C.hot)} ${head(100,100)}
+        ${seg(100,124,92,150,8)}
+        <rect x="78" y="146" width="28" height="7" rx="3" fill="${C.bar}"/>
+        <circle cx="74" cy="150" r="7" fill="${C.plate}"/>
+        <animateTransform attributeName="transform" type="rotate" values="0 100 150; 52 100 150; 0 100 150" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+      </g>
+    </g>`);
+}
+
+// LEGEXT — shin extends up from seated
+function fig_legext(){
+  return svg(`
+    <rect x="64" y="118" width="56" height="10" rx="4" fill="${C.edge}" opacity=".55"/>
+    ${head(78,98)} ${seg(78,108,84,118,11)}
+    ${seg(84,118,116,118,11,C.limb)} <!-- thigh -->
+    <g>
+      <line x1="116" y1="118" x2="116" y2="150" stroke="${C.hot}" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="116" cy="150" r="6" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 116 118; -72 116 118; 0 116 118" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// LEGCURL — lying, shin curls up toward glutes
+function fig_legcurl(){
+  return svg(`
+    <rect x="48" y="128" width="104" height="9" rx="4" fill="${C.edge}" opacity=".5"/>
+    ${head(60,120)}
+    <line x1="72" y1="126" x2="120" y2="126" stroke="${C.body}" stroke-width="12" stroke-linecap="round"/>
+    <g>
+      <line x1="120" y1="126" x2="150" y2="126" stroke="${C.hot}" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="150" cy="126" r="6" fill="${C.plate}"/>
+      <animateTransform attributeName="transform" type="rotate" values="0 120 126; -118 120 126; 0 120 126" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+// CALF — heel rises (small vertical pulse)
+function fig_calf(){
+  return svg(`
+    <g>
+      ${head(100,86)} ${seg(100,96,100,128,12)}
+      ${seg(100,126,90,150,10)} ${seg(100,126,110,150,10)}
+      ${seg(90,150,90,168,9,C.hot)} ${seg(110,150,110,168,9,C.hot)}
+      <animateTransform attributeName="transform" type="translate" values="0 8; 0 -4; 0 8" keyTimes="0;0.5;1" dur="2.0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>
+    <rect x="76" y="168" width="48" height="4" rx="2" fill="${C.edge}" opacity=".5"/>`);
+}
+
+// ABCURL — torso curls up (crunch / leg raise feel)
+function fig_abcurl(){
+  return svg(`
+    <rect x="56" y="150" width="92" height="8" rx="4" fill="${C.edge}" opacity=".5"/>
+    ${seg(72,150,128,150,11,C.limb)} <!-- hips line -->
+    <g>
+      ${seg(100,150,100,122,11,C.hot)} ${head(100,110)}
+      <animateTransform attributeName="transform" type="rotate" values="40 100 150; 0 100 150; 40 100 150" keyTimes="0;0.5;1" dur="${dur()}" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+    </g>`);
+}
+
+const FIGS = {curl:fig_curl, press_oh:fig_press_oh, press_flat:fig_press_flat, fly:fig_fly,
+  lateral:fig_lateral, frontraise:fig_frontraise, pushdown:fig_pushdown, pulldown:fig_pulldown,
+  row:fig_row, squat:fig_squat, hinge:fig_hinge, legext:fig_legext, legcurl:fig_legcurl,
+  calf:fig_calf, abcurl:fig_abcurl};
+
+function figFor(pat){ return (FIGS[pat]||fig_press_flat)(); }
+
+// small static muscle glyph for thumbnails / anatomy cards
+function muscleGlyph(key){
+  const front = !['latissimus','triceps','hamstring'].includes(key);
+  const HI='#FF3B30', SK='#3a3a46', E='#55555f';
+  // simple torso silhouette with highlighted region
+  const regions = {
+    pectoralis:'<rect x="20" y="30" width="24" height="16" rx="4" fill="'+HI+'"/>',
+    latissimus:'<path d="M18 34 L32 34 L30 60 L20 52 Z" fill="'+HI+'"/><path d="M46 34 L32 34 L34 60 L44 52 Z" fill="'+HI+'"/>',
+    deltoid:'<circle cx="18" cy="32" r="7" fill="'+HI+'"/><circle cx="46" cy="32" r="7" fill="'+HI+'"/>',
+    biceps:'<rect x="10" y="34" width="7" height="20" rx="3" fill="'+HI+'"/><rect x="47" y="34" width="7" height="20" rx="3" fill="'+HI+'"/>',
+    triceps:'<rect x="10" y="34" width="7" height="20" rx="3" fill="'+HI+'"/><rect x="47" y="34" width="7" height="20" rx="3" fill="'+HI+'"/>',
+    quadriceps:'<rect x="24" y="60" width="7" height="24" rx="3" fill="'+HI+'"/><rect x="33" y="60" width="7" height="24" rx="3" fill="'+HI+'"/>',
+    hamstring:'<rect x="24" y="60" width="7" height="24" rx="3" fill="'+HI+'"/><rect x="33" y="60" width="7" height="24" rx="3" fill="'+HI+'"/>',
+    transversus:'<rect x="22" y="44" width="20" height="14" rx="4" fill="'+HI+'"/>'
+  };
+  return `<svg viewBox="0 0 64 96" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="32" cy="14" r="8" fill="${SK}"/>
+    <path d="M18 26 Q32 22 46 26 L44 60 Q32 66 20 60 Z" fill="${SK}"/>
+    <rect x="9" y="28" width="9" height="30" rx="4" fill="${SK}"/>
+    <rect x="46" y="28" width="9" height="30" rx="4" fill="${SK}"/>
+    <rect x="22" y="58" width="9" height="30" rx="3" fill="${SK}"/>
+    <rect x="33" y="58" width="9" height="30" rx="3" fill="${SK}"/>
+    ${regions[key]||''}
+  </svg>`;
+}
+
+/* ====================== RENDER ====================== */
+const brandEl = document.querySelector('.brand');
+function applyTheme(){
+  const p = PROG();
+  const r = document.documentElement.style;
+  r.setProperty('--accent', p.accent);
+  r.setProperty('--accent2', p.accent2);
+  r.setProperty('--accentdim', p.dim);
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content','#0B0B0F');
+  if(brandEl){
+    const parts = p.name.split(' ');
+    if(parts.length>1){
+      brandEl.innerHTML = `<span class="b1">${parts[0]}</span><span class="b2"> ${parts.slice(1).join(' ')}</span>`;
+    } else {
+      const h = Math.ceil(p.name.length/2);
+      brandEl.innerHTML = `<span class="b1">${p.name.slice(0,h)}</span><span class="b2">${p.name.slice(h)}</span>`;
+    }
+  }
+}
+function setPhasePill(){
+  phasePill.textContent = PROG().pill || PROG().coach || 'Phase '+(state.phase+1);
+}
+
+function render(){
+  applyTheme();
+  setPhasePill();
+  if(state.tab==='home') return renderHome();
+  if(state.tab==='train'){ return state.day===null ? renderPhase() : (state.ex===null? renderDayList(): renderExercise()); }
+  if(state.tab==='muscles') return renderMuscles();
+  if(state.tab==='anatomy') return renderAnatomy();
+  if(state.tab==='guide') return renderGuide();
+}
+
+function todayDay(){
+  // first non-rest day in current phase that's incomplete, else first day
+  const days = PH()[state.phase].days;
+  for(let i=0;i<days.length;i++){
+    if(!days[i].rest){ const p=dayProgress(state.phase,i); if(p.done<p.total) return i; }
+  }
+  return days.findIndex(d=>!d.rest);
+}
+
+function renderHome(){
+  const di = todayDay();
+  const day = PH()[state.phase].days[di];
+  const prog = dayProgress(state.phase,di);
+  const pct = prog.total? Math.round(100*prog.done/prog.total):0;
+  const R=36, circ=2*Math.PI*R, off=circ*(1-pct/100);
+  view.innerHTML = `<div class="page stagger">
+    <div class="sec-title" style="margin-top:10px">Choose your coach</div>
+    <div class="progswitch">
+      ${PROGRAMS.map((p,i)=>`
+        <div class="pchip ${i===state.program?'on':''}" onclick="selProgram(${i})">
+          <div class="pn">${p.name}${p.featured?' <span class="pstar">★</span>':''}</div>
+          <div class="pcoach">${p.tag||p.coach||'Original blueprint'}</div>
+          <div class="pc">${p.sub}</div>
+        </div>`).join('')}
+    </div>
+    <div class="hero">
+      <div class="eyebrow">Today &middot; ${PH()[state.phase].months}</div>
+      <h1>${day.title.replace(/—/g,'·')}</h1>
+      <div class="sub">${day.rest? 'Recovery day — keep it light.' : day.ex.length+' exercises · tap in and check off your sets'}</div>
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 84 84">
+          <circle cx="42" cy="42" r="${R}" stroke="#2a2a35" stroke-width="8" fill="none"/>
+          <circle cx="42" cy="42" r="${R}" stroke="url(#g)" stroke-width="8" fill="none" stroke-linecap="round"
+            stroke-dasharray="${circ}" stroke-dashoffset="${off}" transform="rotate(-90 42 42)"/>
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FF6B5E"/><stop offset="1" stop-color="#FF3B30"/></linearGradient></defs>
+        </svg>
+        <div class="ring-meta"><div class="big">${pct}%</div><div class="lbl">${prog.done}/${prog.total} sets done today</div></div>
+      </div>
+      <button class="cta" onclick="openDay(${di})">${day.rest?'View recovery':'Start workout'} →</button>
+    </div>
+    <div class="motiv">“${MOTIV[di % MOTIV.length]}”</div>
+
+    <div class="sec-title">${PROG().coach? PROG().coach+"'s program" : 'Your 6-month plan'}</div>
+    <div class="phase-cards">
+      ${PH().map((ph,i)=>`
+        <div class="pcard ${i===state.phase?'active':''}" onclick="gotoPhase(${i})">
+          <div class="bar"></div>
+          <div class="num">${i+1}</div>
+          <div class="pc-body">
+            <div class="pc-title">${ph.title.split('—')[1].trim()}</div>
+            <div class="pc-months">${ph.months} · ${ph.days.filter(d=>!d.rest).length} training days</div>
+          </div>
+          <div class="chev">›</div>
+        </div>`).join('')}
+    </div>
+    <div class="footnote">Advanced programming. Clear high-intensity training with a physician first. Stop for chest pain, dizziness, or sharp joint pain. Cola-coloured urine or severe disproportionate swelling after training can signal rhabdomyolysis — treat it as an emergency.</div>
+  </div>`;
+  setActiveTab('home');
+}
+
+/* warm-up & cool-down generated from the day's target muscles */
+const WARM_DRILLS = {
+  pectoralis:'Band pull-aparts + doorway pec opener',
+  latissimus:'Dead hangs + cat-cow + scap pull-ups',
+  deltoid:'Band shoulder dislocates + arm circles + cuff rotations',
+  triceps:'Band pushdowns + overhead reach',
+  biceps:'Light band curls + wrist & elbow circles',
+  quadriceps:'Leg swings + bodyweight squats + walking lunges',
+  hamstring:'Leg swings + bodyweight good-mornings (hip hinge)',
+  transversus:'Cat-cow + dead bugs + 1 light plank'
+};
+const COOL_STRETCH = {
+  pectoralis:'Doorway pec stretch — 30s/side',
+  latissimus:'Overhead lat hang/stretch — 30s/side',
+  deltoid:'Cross-body delt stretch — 30s/side',
+  triceps:'Overhead triceps stretch — 30s/side',
+  biceps:'Wall biceps stretch — 30s/side',
+  quadriceps:'Standing quad / couch stretch — 30s/side',
+  hamstring:'Seated hamstring stretch — 30s/side',
+  transversus:"Cobra + child's pose — 30s each"
+};
+function warmupCard(day){
+  const drills = (day.imgs||[]).map(k=>WARM_DRILLS[k]).filter(Boolean);
+  return `<div class="wcard wc-up">
+    <div class="wc-h">🔥 Warm-up · 5–8 min</div>
+    <div class="wc-l">5 min easy cardio (bike, row or incline walk) to raise core temperature.</div>
+    ${drills.map(d=>`<div class="wc-l">${d} — 1–2 × 10–15</div>`).join('')}
+    <div class="wc-l">2 light ramp-up sets on the first exercise before your working sets.</div>
+  </div>`;
+}
+function cooldownCard(day){
+  const st = (day.imgs||[]).map(k=>COOL_STRETCH[k]).filter(Boolean);
+  return `<div class="wcard wc-down">
+    <div class="wc-h">🧊 Cool-down · 5 min</div>
+    <div class="wc-l">3–5 min easy walk to bring the heart rate down.</div>
+    ${st.map(s=>`<div class="wc-l">${s}</div>`).join('')}
+    <div class="wc-l">Slow nasal breathing — 5–10 deep breaths.</div>
+  </div>`;
+}
+
+function yearRoadmap(){
+  const y = PROG().year;
+  if(!y) return '';
+  return `<div class="sec-title">12-Month Roadmap · tap a block to train it</div>
+    <div class="roadmap">
+      ${y.map((b,i)=>`<div class="rblock ${i===state.block?'on':''}" onclick="selectBlock(${i})"><div class="rbar"></div>
+        <div class="rq">${b.q} · ${b.months} ${i===state.block?'· <span style="color:var(--good)">▶ active</span>':''}</div>
+        <div class="rt">${b.t}</div>
+        <div class="rd">${b.d}</div>
+        <div class="rmeta">${b.meta}</div>
+      </div>`).join('')}
+    </div>`;
+}
+function selectBlock(i){
+  state.block = i;
+  render();
+  const el = document.querySelector('.blockbanner');
+  if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function renderPhase(){
+  const ph = PH()[state.phase];
+  view.innerHTML = `<div class="page stagger">
+    <div class="phase-head">
+      <div class="pm">${ph.months}</div>
+      <h2>${ph.title.split('—')[1].trim()}</h2>
+    </div>
+    <div class="infochip"><b>Objective.</b> ${ph.objective}</div>
+    <div class="infochip"><b>Rest.</b> ${ph.rest}</div>
+    ${ph.capNote? `<div class="infochip warn"><b>⚠ DTP rep caps.</b> ${ph.capNote}</div>`:''}
+    ${PROG().advanced? `<div class="infochip" style="border-color:var(--accent)"><b>⚡ Advanced techniques.</b> ${PROG().advanced}</div>`:''}
+    ${yearRoadmap()}
+    ${PROG().year?`<div class="blockbanner"><div class="bb-q">Now training · ${PROG().year[state.block].q} — ${PROG().year[state.block].t}</div><div class="bb-m">${PROG().year[state.block].meta}</div><div class="bb-d">Run the elite split below with this block's reps &amp; intensity. Same researched movements, progressed across the year.</div></div>`:''}
+    <div class="sec-title">The weekly split</div>
+    <div class="daylist">
+      ${ph.days.map((d,i)=>{
+        const prog=dayProgress(state.phase,i);
+        const done = !d.rest && prog.total>0 && prog.done===prog.total;
+        return `<div class="dcard ${d.rest?'rest':''}" onclick="openDay(${i})">
+          <div class="didx">${d.rest?'REST':'D'+(i+1)}</div>
+          <div class="dt">
+            <div class="t">${d.title.replace(/^Day \d+ — /,'')}</div>
+            <div class="m">
+              ${d.rest? '<span>Recovery / mobility</span>' :
+                `<span class="thumbs">${(d.imgs||[]).map(k=>`<span class="mini">${muscleGlyph(k)}</span>`).join('')}</span>
+                 <span>${d.ex.length} exercises</span>`}
+              ${done?'<span class="done">✓ done</span>':''}
+            </div>
+          </div>
+          <div class="chev">›</div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+  setActiveTab('train');
+}
+
+function renderDayList(){ /* not used: openDay goes straight to exercise or rest */ }
+
+function renderExercise(){
+  const ph=PH()[state.phase], day=ph.days[state.day];
+  if(day.rest){
+    view.innerHTML = `<div class="page">
+      <div class="wk-head"><div class="back" onclick="backToPhase()">${chevL()}</div>
+        <div class="wk-t">${day.title.replace(/—/g,'·')}</div></div>
+      <div class="infochip" style="margin-top:18px;line-height:1.6">${day.intro}</div>
+    </div>`;
+    setActiveTab('train'); return;
+  }
+  const n=day.ex.length, e=day.ex[state.ex];
+  const segs = day.ex.map((_,i)=>`<div class="seg ${i<state.ex?'done':i===state.ex?'cur':''}"></div>`).join('');
+  view.innerHTML = `<div class="page">
+    <div class="wk-head">
+      <div class="back" onclick="backToPhase()">${chevL()}</div>
+      <div class="wk-t">${day.title.replace(/^Day \d+ — /,'').replace(/—/g,'·')}</div>
+    </div>
+    <div class="progress-strip">${segs}</div>
+    ${day.cbumVid
+      ? `<div class="dayvid" onclick="openYT('https://www.youtube.com/watch?v=${day.cbumVid}')">${ytIcon(true)} Watch CBUM's real ${day.title.replace(/^Day \d+ — /,'').split('(')[0].trim()} session</div>`
+      : (day.vid?`<div class="dayvid" onclick="openYT(ytSearch('${escq(day.vid)}'))">${ytIcon(true)} Watch ${PROG().ytcoach}'s full session</div>`:'')}
+    ${state.ex===0? warmupCard(day):''}
+    <div class="exercise">
+      <div class="ecard">
+        <div class="stage">
+          <div class="tagrow">
+            ${e.fst?'<span class="tag fst">FST-7</span>':''}
+            ${e.dtp?'<span class="tag dtp">DTP</span>':''}
+            <span class="tag mus">${musName(e.mus)}</span>
+          </div>
+          <div class="floor"></div>
+          ${exFig(e.pat)}
+          <div class="repbadge">swipe ‹ › to change</div>
+        </div>
+        <div class="ebody">
+          <div class="name">${e.name.replace(/ — FST-7| — DTP/,'')}</div>
+          <div class="srt">${e.sr}</div>
+          <div class="cue">${e.cue}</div>
+          <div class="tgt">Target · ${e.target}</div>
+
+          <button class="clipbtn" onclick="exerciseClip('${e.pat}','${escq(e.name)}')">
+            ${ytIcon()} Watch demo clip
+          </button>
+          ${PROG().ytcoach?`<div class="dayvid" style="margin-top:10px" onclick="openVideo('${escq(e.name)}')">${ytIcon(true)} See ${PROG().ytcoach}'s version</div>`:''}
+          <div class="exanat">
+            <div class="exanat-img">${muscleImg(e.mus)}</div>
+            <div class="exanat-b">
+              <div class="exanat-t">Target muscle · ${musName(e.mus)}</div>
+              <div class="exanat-l" onclick="anatomyClip('${e.mus}','${escq(musName(e.mus))}')">${ytIcon(true)} See the anatomy</div>
+            </div>
+          </div>
+          ${state.ex<n-1?`<div class="nextup">
+            <div class="nu-ic">${muscleGlyph(day.ex[state.ex+1].mus)}</div>
+            <div>Next up · <b>${day.ex[state.ex+1].name.replace(/ — FST-7| — DTP/,'')}</b> · ${day.ex[state.ex+1].sr}</div>
+          </div>`:''}
+
+          <div class="sets">
+            <div class="sh">Log your sets</div>
+            ${Array.from({length:e.sets}).map((_,s)=>`
+              <div class="setrow">
+                <div class="sn">Set ${s+1}</div>
+                <input placeholder="weight × reps" value="${getLog(s)}" oninput="saveLog(${s},this.value)">
+                <div class="chk ${isDone(state.phase,state.day+'_'+state.ex,s)?'on':''}" onclick="toggleSet(${s},this)">${tick()}</div>
+              </div>`).join('')}
+          </div>
+
+          <div class="timer">
+            <div class="tnum" id="tnum">${e.fst?'0:45':'1:30'}</div>
+            <div class="tlabel">Rest timer${e.fst?' · FST-7 short rest':''}</div>
+            <button onclick="startTimer(${e.fst?45:90})">Start</button>
+          </div>
+
+          <div class="navbtns">
+            <button onclick="prevEx()" ${state.ex===0?'disabled':''}>‹ Prev</button>
+            <button class="prim" onclick="nextEx()">${state.ex===n-1?'Finish ✓':'Next ›'}</button>
+          </div>
+          ${state.ex===n-1? cooldownCard(day):''}
+        </div>
+      </div>
+    </div>
+  </div>`;
+  setActiveTab('train');
+}
+
+/* gather every exercise across all programs that targets a muscle key */
+function exercisesForMuscle(mkey){
+  const seen={}, out=[];
+  PROGRAMS.forEach(p=>{
+    p.phases.forEach(ph=>ph.days.forEach(d=>{
+      if(d.rest) return;
+      d.ex.forEach(e=>{
+        if(e.mus!==mkey) return;
+        const clean = e.name.replace(/ — FST-7| — DTP/,'');
+        if(seen[clean]) return; seen[clean]=1;
+        out.push({name:clean, sr:e.sr, pat:e.pat, coach:p.ytcoach, prog:p.name});
+      });
+    }));
+  });
+  return out;
+}
+
+function renderMuscles(){
+  if(state.muscle===null){
+    view.innerHTML = `<div class="page stagger">
+      <div class="phase-head"><div class="pm">Train by target</div><h2>Muscles</h2></div>
+      <div class="infochip">Pick a muscle to see the best exercises for it across every program — each with a perfect-form video.</div>
+      <div class="agrid">
+        ${DATA.anatomy.map(a=>{
+          const n = exercisesForMuscle(a.key).length;
+          return `<div class="acard" onclick="openMuscle('${a.key}')" style="cursor:pointer">
+            <div class="fig">${muscleGlyph(a.key)}</div>
+            <div class="an">${a.name}</div>
+            <div class="ad">${n} exercises</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`;
+    setActiveTab('muscles'); return;
+  }
+  const a = DATA.anatomy.find(x=>x.key===state.muscle);
+  const list = exercisesForMuscle(state.muscle);
+  view.innerHTML = `<div class="page stagger">
+    <div class="musback" onclick="state.muscle=null;render()">${chevL()} All muscles</div>
+    <div class="phase-head" style="margin-top:8px"><div class="pm">${list.length} exercises</div><h2>${a.name}</h2></div>
+    <div class="infochip">${a.desc}</div>
+    <div class="mexlist">
+      ${list.map(e=>`<div class="mex">
+        <div class="mthumb">${muscleGlyph(state.muscle)}</div>
+        <div class="mname">
+          <div class="t">${e.name}</div>
+          <div class="s">${e.sr} · <span class="badge">${e.coach||e.prog}</span></div>
+        </div>
+        <div class="play" onclick="openVideoBy('${escq(e.name)}','${escq(e.coach||'')}')">${ytIcon(true)}</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+  setActiveTab('muscles');
+}
+
+function renderAnatomy(){
+  view.innerHTML = `<div class="page stagger">
+    <div class="phase-head"><div class="pm">Reference</div><h2>Anatomy</h2></div>
+    <div class="infochip">Picture the working muscle to lock in the mind–muscle connection on every cue.</div>
+    <div class="agrid">
+      ${DATA.anatomy.map(a=>`<div class="acard">
+        <div class="fig">${muscleImg(a.key,'animg')}</div>
+        <div class="an">${a.name}</div>
+        <div class="ad">${a.desc}</div>
+        <div class="aclip" onclick="anatomyClip('${a.key}','${escq(a.name)}')">${ytIcon(true)} Anatomy clip</div>
+      </div>`).join('')}
+    </div>
+  </div>`;
+  setActiveTab('anatomy');
+}
+
+function dietBlock(){
+  const d = PROG().diet;
+  if(!d) return '';
+  return `<div class="block" style="border-color:var(--accent);">
+    <h3>🍽 ${d.title}</h3>
+    <p><b>Calories.</b> ${d.cals}</p>
+    <p><b>Macros.</b> ${d.macros}</p>
+    <p>${d.approach}</p>
+    ${d.meals.map(m=>`<div class="vac-step"><div class="vn">›</div><div class="vt"><b>${m.n}.</b> ${m.items}</div></div>`).join('')}
+    <p style="margin-top:12px"><b>Supplements.</b> ${d.supps}</p>
+    <p style="color:var(--mut2);font-size:11px;margin-top:8px">Based on: ${d.source}. General info, not a personalised meal plan.</p>
+  </div>`;
+}
+
+function renderGuide(){
+  view.innerHTML = `<div class="page stagger">
+    <div class="phase-head"><div class="pm">Playbook</div><h2>${PROG().coach? PROG().coach+"'s Plan" : 'Methods, Fuel &amp; V-Taper'}</h2></div>
+    ${dietBlock()}
+
+    <div class="block"><h3>FST-7</h3><p>Seven sets of an isolation move at the <b>end</b> of a muscle's session, 30–45s rest, flexing the muscle during each rest to drive a fascia-stretching pump. Isolation lifts only, after the heavy compounds.</p></div>
+    <div class="block"><h3>DTP</h3><p>Ascending/descending rep pyramids: high-rep sets fatigue slow-twitch fibers, heavier sets hit fast-twitch. Rest 60s on high-rep sets, up to 120s on heavy sets. <b>Top-end reps here are capped to ~25–30 and taken to a rep or two shy of failure</b> — same stimulus, without the rhabdomyolysis risk the 50-rep-to-failure version is documented to cause.</p></div>
+
+    <div class="block"><h3>Fuel · Accumulation (M1–3)</h3>
+      <p><b>~3,500–4,600 kcal.</b> Protein 240–330g · Carbs 360–575g · Fats 120–150g. Whole-food sources, off-season surplus tuned to your BMR.</p></div>
+    <div class="block"><h3>Fuel · Recomposition (M4–6)</h3>
+      <p>Controlled deficit, positive nitrogen balance. <b>6–7 measured meals ~every 3 hours.</b> Lean pan-grilled proteins, Omega-3s; drop deep-fried foods and refined seed oils. <i>Ignore the microwave/plastics rule — it isn't supported.</i></p></div>
+    <div class="block"><h3>Sleep &amp; water</h3>
+      <p>Protect <b>7–9 hours</b> on a consistent schedule (exact clock time matters less than consistency). Drink <b>3–4 L water</b> daily — FST-7's cell swelling depends on it. Poor sleep? Drop from 5 to 4 training days rather than grinding under-recovered.</p></div>
+
+    <div class="block"><h3>The Stomach Vacuum — daily</h3>
+      <p>Trains the transversus abdominis (the deep corset muscle) to pull the resting waist in. A forceful exhale + active draw-in of the navel toward the spine — not just sucking in. Hold 20–30s, 4 sets, ideally on an empty stomach.</p>
+      <div class="vac-step"><div class="vn">1</div><div class="vt"><b>Supine.</b> On your back, knees bent. Exhale fully, draw navel down to spine. Hold 20–30s.</div></div>
+      <div class="vac-step"><div class="vn">2</div><div class="vt"><b>Quadruped.</b> Hands and knees — pull the stomach up against gravity. Hold 20–30s.</div></div>
+      <div class="vac-step"><div class="vn">3</div><div class="vt"><b>Standing.</b> Tall, hands on hips. Pull belly in and up under the ribcage. Hold 20–30s.</div></div>
+    </div>
+
+    <div class="block" style="background:#1c1012;border-color:#5a221f"><h3 style="color:#FF6B5E">⚠ Safety</h3>
+      <p style="color:#e9b8b3">General fitness info, not medical advice. Warm up, use a spotter on heavy free weights, stop sets a rep or two shy of failure on high-rep work. <b style="color:#fff">Cola-coloured urine, severe swelling, or pain wildly out of proportion to the session = stop and seek medical care.</b></p></div>
+  </div>`;
+  setActiveTab('guide');
+}
+
+/* ---------- helpers / icons ---------- */
+function tick(){return '<svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg>'}
+function chevL(){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 5 8 12 15 19" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+function musName(k){return (DATA.anatomy.find(a=>a.key===k)||{name:k}).name}
+function escq(s){return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;')}
+
+/* ---------- YouTube video ---------- */
+function ytIcon(small){
+  const w = small? 18:24;
+  return `<svg width="${w}" height="${w}" viewBox="0 0 24 24"><path d="M23 7.5a3 3 0 00-2.1-2.1C19 4.8 12 4.8 12 4.8s-7 0-8.9.6A3 3 0 001 7.5 31 31 0 00.5 12 31 31 0 001 16.5a3 3 0 002.1 2.1c1.9.6 8.9.6 8.9.6s7 0 8.9-.6A3 3 0 0023 16.5 31 31 0 0023.5 12 31 31 0 0023 7.5zM9.8 15.3V8.7l5.7 3.3z"/></svg>`;
+}
+function ytSearch(q){ return 'https://www.youtube.com/results?search_query='+encodeURIComponent(q); }
+function openVideo(name){
+  const coach = PROG().ytcoach;
+  openYT(ytSearch((coach? coach+' ':'') + name + ' proper form technique'));
+}
+function openVideoBy(name, coach){
+  openYT(ytSearch((coach? coach+' ':'') + name + ' proper form technique'));
+}
+function openYT(url){ window.open(url,'_system'); }
+
+/* inline embedded clip player (modal) */
+function openClip(id, title){
+  const f=document.getElementById('vframe');
+  document.getElementById('vtitle').textContent = title||'Technique clip';
+  f.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&playsinline=1&rel=0&modestbranding=1" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  document.getElementById('vmodal').classList.add('on');
+}
+function closeClip(){
+  document.getElementById('vmodal').classList.remove('on');
+  document.getElementById('vframe').innerHTML='';
+}
+/* exercise clip: open the exact validated YouTube video in the YouTube app / Safari
+   (inline embeds are blocked inside the app's webview — YouTube error 153) */
+function exerciseClip(pat, name){
+  if(CLIPS[pat]) return openYT('https://www.youtube.com/watch?v='+CLIPS[pat]);
+  openVideo(name);
+}
+/* anatomy clip: open the exact validated anatomy video externally, else a search */
+function anatomyClip(mkey, mname){
+  if(ANATOMY_CLIPS[mkey]) return openYT('https://www.youtube.com/watch?v='+ANATOMY_CLIPS[mkey]);
+  openYT(ytSearch(mname+' muscle anatomy 3D animation'));
+}
+
+function getLog(s){ const o = store['L'+key(state.phase,state.day+'_'+state.ex,s)]; return o?o.replace(/"/g,'&quot;'):''; }
+function saveLog(s,v){ store['L'+key(state.phase,state.day+'_'+state.ex,s)] = v; }
+function toggleSet(s,el){
+  const k = key(state.phase, state.day+'_'+state.ex, s);
+  const v = !store[k]; store[k]=v; el.classList.toggle('on',v);
+  if(navigator.vibrate) navigator.vibrate(8);
+  // auto-start the rest timer when a set is checked off
+  if(v){
+    const e = PH()[state.phase].days[state.day].ex[state.ex];
+    startTimer(e.fst?45:90);
+  }
+}
+
+/* ---------- timer ---------- */
+let timerInt=null;
+function startTimer(sec){
+  clearInterval(timerInt);
+  let t=sec; const el=document.getElementById('tnum');
+  const fmt=x=>`${Math.floor(x/60)}:${String(x%60).padStart(2,'0')}`;
+  el.textContent=fmt(t);
+  timerInt=setInterval(()=>{ t--; if(t<=0){clearInterval(timerInt); el.textContent='Go!'; if(navigator.vibrate)navigator.vibrate([30,40,30]); return;} el.textContent=fmt(t); },1000);
+}
+
+/* ---------- nav ---------- */
+function selProgram(i){ state.program=i; state.phase=0; state.day=null; state.ex=0; state.block=0; render(); view.scrollTop=0; }
+function openMuscle(k){ state.muscle=k; render(); view.scrollTop=0; }
+function gotoPhase(i){ state.phase=i; state.tab='train'; state.day=null; state.ex=0; render(); window.scrollTo?.(0,0); view.scrollTop=0; }
+function openDay(i){ state.tab='train'; state.day=i; state.ex=0; render(); view.scrollTop=0; }
+function backToPhase(){ state.day=null; state.ex=0; render(); view.scrollTop=0; }
+function nextEx(){ const n=PH()[state.phase].days[state.day].ex.length;
+  if(state.ex<n-1){state.ex++; render(); view.scrollTop=0;} else {backToPhase();} clearInterval(timerInt); }
+function prevEx(){ if(state.ex>0){state.ex--; render(); view.scrollTop=0;} clearInterval(timerInt); }
+
+/* ---------- tab bar ---------- */
+const TABS=[
+  {id:'home', l:'Today', ic:'<path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/>'},
+  {id:'train',l:'Plan', ic:'<rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 10h16"/><path d="M9 14h6"/>'},
+  {id:'muscles',l:'Muscles', ic:'<path d="M6 4c2 0 3 1 4 3 1-2 2-3 4-3"/><path d="M5 8c0 5 3 9 7 11 4-2 7-6 7-11"/><path d="M9 11h6"/>'},
+  {id:'anatomy',l:'Anatomy', ic:'<circle cx="12" cy="5" r="2.5"/><path d="M12 8v7"/><path d="M7 11l5-2 5 2"/><path d="M9 20l3-5 3 5"/>'},
+  {id:'guide',l:'Playbook', ic:'<path d="M5 4h11a3 3 0 013 3v13H8a3 3 0 01-3-3z"/><path d="M5 4v13"/>'}
+];
+function buildTabs(){
+  document.getElementById('tabbar').innerHTML = TABS.map(t=>`
+    <div class="tab" id="tab-${t.id}" onclick="selTab('${t.id}')">
+      <svg viewBox="0 0 24 24">${t.ic}</svg><div class="tl">${t.l}</div></div>`).join('');
+}
+function setActiveTab(id){ TABS.forEach(t=>document.getElementById('tab-'+t.id)?.classList.toggle('on',t.id===id)); }
+function selTab(id){
+  state.tab = id;
+  if(id==='train'){ state.day=null; state.ex=0; }
+  if(id==='muscles'){ state.muscle=null; }
+  render(); view.scrollTop=0;
+}
+
+/* ---------- swipe navigation (left = next, right = previous/back) ---------- */
+let _swX=0, _swY=0, _swT=0;
+view.addEventListener('touchstart', e=>{
+  const t=e.changedTouches[0]; _swX=t.clientX; _swY=t.clientY; _swT=Date.now();
+}, {passive:true});
+view.addEventListener('touchend', e=>{
+  const t=e.changedTouches[0];
+  const dx=t.clientX-_swX, dy=t.clientY-_swY, dt=Date.now()-_swT;
+  if(dt>800) return;
+  if(Math.abs(dx)<55 || Math.abs(dx) < Math.abs(dy)*1.5) return;   // must be a clear horizontal swipe
+  if(e.target && e.target.tagName==='INPUT') return;               // don't hijack typing
+  if(state.tab!=='train' || state.day===null || state.ex===null) return;
+  const day = PH()[state.phase].days[state.day];
+  if(day.rest) return;
+  if(dx<0){ nextEx(); }                                            // swipe left → next
+  else { state.ex===0 ? backToPhase() : prevEx(); }                // swipe right → prev / back
+}, {passive:true});
+
+buildTabs();
+render();
+</script>
+</body>
+</html>

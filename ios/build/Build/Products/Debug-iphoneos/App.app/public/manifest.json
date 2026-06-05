@@ -1,0 +1,17 @@
+{
+  "name": "IRONCLAD — Train Like CBUM & Hrithik",
+  "short_name": "IRONCLAD",
+  "description": "Multi-coach gym workout programs with perfect-form video demos, set logging and rest timers. Train like Chris Bumstead and Hrithik Roshan.",
+  "start_url": "workout-app.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0B0B0F",
+  "theme_color": "#0B0B0F",
+  "categories": ["health", "fitness", "sports"],
+  "icons": [
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" }
+  ]
+}
