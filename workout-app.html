@@ -364,6 +364,22 @@
   .wc-glyph svg{width:100%;height:100%}
   .wc-glyph.wc-fig{background:#15161b}
   .wc-glyph.wc-fig svg{padding:3px;box-sizing:border-box}
+  /* rich diet · meal plan + grocery */
+  .mday{margin-top:12px;border:1px solid var(--line);border-radius:14px;padding:10px 13px;background:rgba(0,0,0,.18)}
+  .mday-h{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent2);font-size:14px;margin-bottom:2px}
+  .meal{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+  .meal:nth-of-type(2){border-top:0}
+  .m-e{font-size:25px;line-height:1.1;flex-shrink:0;width:32px;text-align:center}
+  .m-b{flex:1;min-width:0}
+  .m-n{font-size:10.5px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+  .m-d{font-size:13.5px;font-weight:700;color:var(--ink);margin-top:1px}
+  .m-i{font-size:12px;color:var(--mut2);line-height:1.45;margin-top:3px}
+  .m-m{font-size:11px;color:var(--accent2);font-weight:700;margin-top:4px;letter-spacing:.02em}
+  .gro-cat{font-weight:700;color:var(--accent2);font-size:12.5px;margin-top:13px;text-transform:uppercase;letter-spacing:.04em}
+  .gro{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px}
+  .gro-i{display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-size:12px}
+  .gro-i b{color:var(--ink);font-weight:700}
+  .gro-i span{color:var(--mut)}
   .wc-body{flex:1;min-width:0}
   .wc-n{font-weight:700;font-size:13px;color:var(--ink);line-height:1.3}
   .wc-r{color:var(--accent2);font-size:11px;font-weight:700;margin-top:2px;letter-spacing:.03em}
@@ -406,18 +422,131 @@
       "accent": "#8B5CF6", "accent2": "#A78BFA", "dim": "#241640",
       "diet": {
         "title": "Hrithik × CBUM Lean-Aesthetic Nutrition",
-        "cals": "~2,800–3,200 kcal — a lean recomposition (small surplus on hard training days, maintenance or slight deficit on rest days)",
-        "macros": "≈ 1g protein per lb bodyweight (~180–200g) · carbs timed around training · ~0.35–0.4g fat per lb",
-        "approach": "Chris Bumstead's whole-food, high-protein discipline calibrated to Hrithik Roshan's leaner, athletic frame — you're chasing the War / Fighter look, not 230 lb of off-season mass. Eat 5 meals built around protein, with most carbs before and after training to fuel the stretch-focused work and stay full in the muscle. Keep fats clean. Hold the waist with Kris Gethin's habits: high meal frequency, light clean fats, and 20 minutes of steady-state cardio every day. When the abs and serratus sharpen, sit at maintenance to lock in the single-digit-bodyfat aesthetic; when they blur, drop ~300 kcal.",
-        "meals": [
-          {"n": "Meal 1 · Breakfast", "items": "Whole eggs + egg whites · oats · blueberries · black coffee"},
-          {"n": "Meal 2 · Pre-Workout", "items": "Chicken or lean turkey · jasmine/white rice · green veg"},
-          {"n": "Meal 3 · Post-Workout", "items": "Whey shake · banana · rice cakes (carbs timed to the session)"},
-          {"n": "Meal 4 · Dinner", "items": "Salmon or white fish · potatoes/sweet potato · greens · olive oil"},
-          {"n": "Meal 5 · Before Bed", "items": "Greek yogurt or casein · handful of nuts · berries"}
+        "cals": "~2,900–3,100 kcal on training days · ~2,500 on the rest day — a lean recomposition for the Greek-God / Hrithik War-2 look",
+        "macros": "≈ 1g protein per lb bodyweight (~200g) · carbs timed around training (~280–320g) · ~80g clean fat",
+        "approach": "The exact whole foods Chris Bumstead eats — steak, ground turkey, salmon, oats, jasmine rice, Japanese sweet potato, eggs, almond butter — portioned down to Hrithik Roshan's leaner, athletic War-2 frame instead of 230 lb of off-season mass. Cook everything yourself, almost no junk, weigh your food and track it (CBUM uses MyFitnessPal). Eat 5 meals a day with protein in every one and most carbs before and after training. Keep the waist tight the Kris Gethin way: high meal frequency, light clean fats, and 20 minutes of steady-state cardio daily. Below is a full 7-day plan with dish ingredients, a USA grocery list, a Sunday meal-prep guide and how to scale it month to month. All foods are common US-grocery items.",
+        "dailyTotals": "Training-day target ≈ 200g protein · ~300g carbs · ~80g fat · ~3,000 kcal. Rest day: drop ~1 carb serving (~2,500 kcal).",
+        "week": [
+          {"d": "Day 1 · Shoulders & Waist", "meals": [
+            {"n": "Meal 1 · Breakfast", "dish": "Steak, Eggs & Blueberry Oats", "e": "🥩", "ing": "3 whole eggs + 4 egg whites scrambled · 6 oz sirloin or filet mignon · 1 cup dry oats cooked with ½ cup blueberries · black coffee", "m": "P 58 · C 72 · F 24 · ~730 kcal"},
+            {"n": "Meal 2 · Pre-Workout", "dish": "Ground Turkey Rice Bowl", "e": "🦃", "ing": "8 oz ground turkey breast (93/7) · 1½ cups cooked jasmine rice · 1 cup broccoli · 1 tbsp olive oil · salt, pepper, garlic", "m": "P 54 · C 78 · F 16 · ~700 kcal"},
+            {"n": "Meal 3 · Post-Workout", "dish": "Recovery Shake", "e": "🥤", "ing": "2 scoops whey isolate · 1 scoop carb powder (or 1 banana + 2 rice cakes) · water", "m": "P 50 · C 55 · F 3 · ~450 kcal"},
+            {"n": "Meal 4 · Dinner", "dish": "Salmon, Sweet Potato & Asparagus", "e": "🐟", "ing": "7 oz salmon fillet · 1 large Japanese sweet potato · 1 cup asparagus · ½ avocado · 1 tsp olive oil", "m": "P 44 · C 52 · F 30 · ~680 kcal"},
+            {"n": "Meal 5 · Before Bed", "dish": "Greek Yogurt & Almonds", "e": "🍦", "ing": "1 cup nonfat Greek yogurt (or casein shake) · 1 oz almonds · ½ cup mixed berries", "m": "P 34 · C 24 · F 16 · ~390 kcal"}
+          ]},
+          {"d": "Day 2 · Back", "meals": [
+            {"n": "Meal 1 · Breakfast", "dish": "Protein Oats & Eggs", "e": "🫐", "ing": "1 cup dry oats + 1 scoop whey + ½ cup blueberries · 2 whole eggs + 4 egg whites · 1 tbsp almond butter", "m": "P 56 · C 80 · F 22 · ~740 kcal"},
+            {"n": "Meal 2 · Pre-Workout", "dish": "Bison Rice & Green Beans", "e": "🍖", "ing": "7 oz ground bison (90/10) · 1½ cups cooked white rice · 1 cup green beans · garlic, sea salt", "m": "P 48 · C 76 · F 22 · ~720 kcal"},
+            {"n": "Meal 3 · Post-Workout", "dish": "Post Shake + Banana", "e": "🥤", "ing": "2 scoops whey · 1 banana · 2 rice cakes", "m": "P 50 · C 58 · F 3 · ~470 kcal"},
+            {"n": "Meal 4 · Dinner", "dish": "Chicken Marinara Pasta", "e": "🍗", "ing": "8 oz grilled chicken breast · 1½ cups cooked pasta · ½ cup marinara · 1 tbsp olive oil · 2 cups spinach", "m": "P 60 · C 70 · F 16 · ~680 kcal"},
+            {"n": "Meal 5 · Before Bed", "dish": "Cottage Cheese & Walnuts", "e": "🧀", "ing": "1 cup low-fat cottage cheese · 1 oz walnuts · ½ cup berries", "m": "P 30 · C 18 · F 18 · ~360 kcal"}
+          ]},
+          {"d": "Day 3 · Chest & Side Delts", "meals": [
+            {"n": "Meal 1 · Breakfast", "dish": "Filet & Egg Scramble + Oats", "e": "🥩", "ing": "6 oz filet mignon · 3 whole eggs + 3 egg whites · 1 cup dry oats · black coffee", "m": "P 60 · C 58 · F 26 · ~720 kcal"},
+            {"n": "Meal 2 · Pre-Workout", "dish": "Turkey Sweet Potato Bowl", "e": "🦃", "ing": "8 oz ground turkey breast · 1 large Japanese sweet potato (~9 oz) · 1 cup broccoli · 1 tbsp olive oil", "m": "P 53 · C 60 · F 16 · ~620 kcal"},
+            {"n": "Meal 3 · Post-Workout", "dish": "Post Shake + Rice Cakes", "e": "🥤", "ing": "2 scoops whey · 1 scoop carb powder · 3 rice cakes", "m": "P 50 · C 62 · F 3 · ~490 kcal"},
+            {"n": "Meal 4 · Dinner", "dish": "Cod, Jasmine Rice & Broccoli", "e": "🐟", "ing": "8 oz cod or tilapia · 1½ cups cooked jasmine rice · 1½ cups broccoli · 1 tbsp olive oil · lemon", "m": "P 50 · C 70 · F 16 · ~640 kcal"},
+            {"n": "Meal 5 · Before Bed", "dish": "Greek Yogurt, Almond Butter & Berries", "e": "🍦", "ing": "1 cup nonfat Greek yogurt · 1 tbsp almond butter · ½ cup berries", "m": "P 30 · C 26 · F 14 · ~370 kcal"}
+          ]},
+          {"d": "Day 4 · Legs (highest carbs)", "meals": [
+            {"n": "Meal 1 · Breakfast", "dish": "Big Oats, Banana & Eggs", "e": "🍌", "ing": "1¼ cups dry oats · 1 banana · 1 scoop whey · 3 whole eggs · cinnamon", "m": "P 52 · C 95 · F 20 · ~790 kcal"},
+            {"n": "Meal 2 · Pre-Workout", "dish": "Steak Rice Bowl", "e": "🥩", "ing": "7 oz sirloin · 2 cups cooked jasmine rice · 1 cup green beans · 1 tsp olive oil", "m": "P 50 · C 92 · F 18 · ~780 kcal"},
+            {"n": "Meal 3 · Post-Workout", "dish": "Big Recovery Shake", "e": "🥤", "ing": "2 scoops whey · 1 scoop carb powder · 1 banana · 2 rice cakes", "m": "P 52 · C 80 · F 3 · ~560 kcal"},
+            {"n": "Meal 4 · Dinner", "dish": "Salmon Burgers, White Rice & Avocado", "e": "🍔", "ing": "2 salmon burgers (~8 oz) · 1 cup cooked white rice · ½ avocado · 2 cups mixed greens", "m": "P 42 · C 50 · F 28 · ~640 kcal"},
+            {"n": "Meal 5 · Before Bed", "dish": "Casein & Almonds", "e": "🥛", "ing": "1 casein shake (or 1 cup Greek yogurt) · 1 oz almonds", "m": "P 34 · C 12 · F 15 · ~330 kcal"}
+          ]},
+          {"d": "Day 5 · Arms", "meals": [
+            {"n": "Meal 1 · Breakfast", "dish": "Protein Oatmeal & Egg Whites", "e": "🥣", "ing": "1 cup dry oats + 1 scoop whey · 6 egg whites + 1 whole egg · ½ cup blueberries", "m": "P 55 · C 72 · F 12 · ~640 kcal"},
+            {"n": "Meal 2 · Pre-Workout", "dish": "Chicken, Jasmine Rice & Asparagus", "e": "🍗", "ing": "8 oz chicken breast · 1½ cups cooked jasmine rice · 1 cup asparagus · 1 tbsp olive oil", "m": "P 58 · C 70 · F 16 · ~670 kcal"},
+            {"n": "Meal 3 · Post-Workout", "dish": "Post Shake", "e": "🥤", "ing": "2 scoops whey · 1 scoop carb powder · water", "m": "P 50 · C 45 · F 3 · ~410 kcal"},
+            {"n": "Meal 4 · Dinner", "dish": "Ground Turkey Pasta", "e": "🍝", "ing": "8 oz ground turkey breast · 1½ cups cooked pasta · ½ cup marinara · 2 cups spinach · 1 tbsp olive oil", "m": "P 54 · C 72 · F 18 · ~690 kcal"},
+            {"n": "Meal 5 · Before Bed", "dish": "Greek Yogurt Bowl", "e": "🍦", "ing": "1 cup nonfat Greek yogurt · 1 oz walnuts · ½ cup berries", "m": "P 30 · C 22 · F 16 · ~370 kcal"}
+          ]},
+          {"d": "Day 6 · Upper Pump + Conditioning", "meals": [
+            {"n": "Meal 1 · Breakfast", "dish": "Egg-White Omelette, Oats & Berries", "e": "🍳", "ing": "6 egg whites + 2 whole eggs omelette with spinach · 1 cup dry oats · ½ cup blueberries", "m": "P 50 · C 68 · F 16 · ~640 kcal"},
+            {"n": "Meal 2 · Pre-Workout", "dish": "Bison Sweet Potato Bowl", "e": "🍖", "ing": "7 oz ground bison (90/10) · 1 large Japanese sweet potato · 1 cup broccoli", "m": "P 46 · C 56 · F 22 · ~640 kcal"},
+            {"n": "Meal 3 · Post-Workout", "dish": "Post Shake + Banana", "e": "🥤", "ing": "2 scoops whey · 1 banana · 1 scoop carb powder", "m": "P 50 · C 60 · F 3 · ~470 kcal"},
+            {"n": "Meal 4 · Dinner", "dish": "Grilled Salmon, Potato & Greens", "e": "🐟", "ing": "7 oz salmon · 1 medium russet potato · 2 cups asparagus/greens · 1 tsp olive oil", "m": "P 44 · C 48 · F 28 · ~640 kcal"},
+            {"n": "Meal 5 · Before Bed", "dish": "Casein & Walnuts", "e": "🥛", "ing": "1 casein shake (or 1 cup cottage cheese) · 1 oz walnuts · ½ cup berries", "m": "P 32 · C 16 · F 17 · ~360 kcal"}
+          ]},
+          {"d": "Day 7 · Rest + Cardio (lean day)", "meals": [
+            {"n": "Meal 1 · Breakfast", "dish": "Eggs, Avocado & Ezekiel Toast", "e": "🥑", "ing": "3 whole eggs + 3 egg whites · ½ avocado · 1 slice Ezekiel or sourdough toast", "m": "P 34 · C 28 · F 24 · ~470 kcal"},
+            {"n": "Meal 2 · Lunch", "dish": "Chicken Salad Bowl", "e": "🥗", "ing": "8 oz chicken breast · 3 cups mixed greens · 1 cup cooked rice · 1 tbsp olive-oil vinaigrette", "m": "P 58 · C 50 · F 18 · ~600 kcal"},
+            {"n": "Meal 3 · Snack", "dish": "Whey + Apple", "e": "🍎", "ing": "1 scoop whey · 1 apple (lighter post on the rest day)", "m": "P 26 · C 28 · F 2 · ~240 kcal"},
+            {"n": "Meal 4 · Dinner", "dish": "White Fish, Veg & Small Potato", "e": "🐟", "ing": "8 oz cod or tilapia · 1 small russet potato · 2 cups broccoli/green beans · 1 tsp olive oil", "m": "P 48 · C 40 · F 12 · ~480 kcal"},
+            {"n": "Meal 5 · Before Bed", "dish": "Greek Yogurt & Berries", "e": "🍦", "ing": "1 cup nonfat Greek yogurt · ½ cup berries", "m": "P 26 · C 20 · F 2 · ~210 kcal"}
+          ]}
         ],
-        "supps": "Whey protein, creatine 5g daily, vitamin D, fish oil, digestive enzymes.",
-        "source": "Built from Chris Bumstead's whole-food high-protein approach (Hany Rambod / Justin King, 2024) and Kris Gethin's lean high-frequency conditioning of Hrithik Roshan (Krrish 3 / Fighter prep)."
+        "grocery": [
+          {"cat": "Proteins", "items": [
+            {"e": "🥚", "name": "Eggs (large)", "qty": "2 dozen"},
+            {"e": "🥚", "name": "Liquid egg whites", "qty": "32 oz carton"},
+            {"e": "🥩", "name": "Sirloin / filet mignon", "qty": "1.5 lb"},
+            {"e": "🦃", "name": "Ground turkey breast 93/7", "qty": "2.5 lb"},
+            {"e": "🍖", "name": "Ground bison 90/10", "qty": "1.5 lb"},
+            {"e": "🍗", "name": "Chicken breast", "qty": "2.5 lb"},
+            {"e": "🐟", "name": "Salmon fillets", "qty": "1.5 lb"},
+            {"e": "🍔", "name": "Salmon burgers (frozen)", "qty": "1 box (4 ct)"},
+            {"e": "🐟", "name": "Cod or tilapia", "qty": "1.5 lb"},
+            {"e": "🧀", "name": "Nonfat Greek yogurt", "qty": "32 oz tub"},
+            {"e": "🧀", "name": "Low-fat cottage cheese", "qty": "16 oz"},
+            {"e": "🥤", "name": "Whey isolate protein", "qty": "1 tub"},
+            {"e": "🥛", "name": "Casein protein", "qty": "1 tub (optional)"}
+          ]},
+          {"cat": "Carbs", "items": [
+            {"e": "🥣", "name": "Old-fashioned oats", "qty": "42 oz canister"},
+            {"e": "🍚", "name": "Jasmine / white rice", "qty": "5 lb bag"},
+            {"e": "🍝", "name": "Pasta", "qty": "1 box"},
+            {"e": "🍠", "name": "Japanese sweet potatoes", "qty": "3 lb"},
+            {"e": "🥔", "name": "Russet potatoes", "qty": "3 lb"},
+            {"e": "🍌", "name": "Bananas", "qty": "1 bunch"},
+            {"e": "🫐", "name": "Blueberries", "qty": "2 pints"},
+            {"e": "🍎", "name": "Apples", "qty": "4 ct"},
+            {"e": "🍘", "name": "Rice cakes", "qty": "1 pack"},
+            {"e": "🍞", "name": "Ezekiel / sourdough bread", "qty": "1 loaf"},
+            {"e": "🥤", "name": "Carb powder (Karbolyn/cluster dextrin)", "qty": "1 tub (optional)"}
+          ]},
+          {"cat": "Healthy fats", "items": [
+            {"e": "🥑", "name": "Avocados", "qty": "4 ct"},
+            {"e": "🫒", "name": "Extra-virgin olive oil", "qty": "1 bottle"},
+            {"e": "🥜", "name": "Almond butter", "qty": "1 jar"},
+            {"e": "🌰", "name": "Almonds", "qty": "1 bag"},
+            {"e": "🌰", "name": "Walnuts", "qty": "1 bag"}
+          ]},
+          {"cat": "Vegetables", "items": [
+            {"e": "🥦", "name": "Broccoli", "qty": "2 lb"},
+            {"e": "🌿", "name": "Asparagus", "qty": "1 lb"},
+            {"e": "🫛", "name": "Green beans", "qty": "1 lb"},
+            {"e": "🥬", "name": "Baby spinach", "qty": "1 box"},
+            {"e": "🥗", "name": "Mixed greens", "qty": "1 box"}
+          ]},
+          {"cat": "Pantry & extras", "items": [
+            {"e": "🍅", "name": "Marinara sauce", "qty": "1 jar"},
+            {"e": "🧄", "name": "Garlic", "qty": "1 bulb"},
+            {"e": "🍋", "name": "Lemons", "qty": "3 ct"},
+            {"e": "🧂", "name": "Sea salt, pepper, seasonings", "qty": "as needed"},
+            {"e": "🌶", "name": "Hot sauce / condiments", "qty": "to taste"},
+            {"e": "☕", "name": "Coffee", "qty": "1 bag"}
+          ]}
+        ],
+        "prep": [
+          "Sunday batch-cook (CBUM cooks his own whole food — almost no junk). Plan ~90 minutes.",
+          "Proteins: grill or bake 2.5 lb chicken breast and brown 2.5 lb ground turkey + 1.5 lb bison on the stovetop. Season simply — salt, pepper, garlic. Portion into containers.",
+          "Carbs: cook a big pot of jasmine rice (4 cups dry → ~12 cups cooked), bake the sweet potatoes and russets, and pre-measure oats into baggies.",
+          "Veg: sheet-pan roast broccoli, asparagus and green beans at 425°F for ~18 min; bag spinach/greens raw.",
+          "Fish fresh: cook salmon and cod the day-of (or every 2–3 days) — fish reheats poorly. Salmon burgers keep frozen until needed.",
+          "Portion 5 meals/day into containers (Mon–Sat prepped, Sunday for the week). Mix shakes fresh, not in advance.",
+          "Weigh everything on a food scale and log it (CBUM tracks in MyFitnessPal). A mid-week top-up keeps fish and greens fresh."
+        ],
+        "monthly": [
+          {"t": "Weeks 1–4 · Base (Block 1)", "d": "Run the 7-day plan above at ~2,900–3,100 kcal training days / ~2,500 rest. Training days get the full carbs; on the rest day drop one carb serving. Lock in the habit and the food scale."},
+          {"t": "Block 2 · V-Taper Hypertrophy", "d": "Add ~300 kcal on your two hardest sessions (Legs, Back) — an extra cup of rice pre-workout and an extra carb scoop in the post shake. Hold protein at ~200g. Small lean surplus to grow."},
+          {"t": "Block 3 · Conditioning", "d": "Keep protein high and cycle carbs to training: full carbs on lifting days, lower-carb (swap a rice/potato serving for extra greens) on cardio-heavy days. Conditioning burns the surplus off."},
+          {"t": "Block 4 · Lean Peak", "d": "Pull ~300–400 kcal for the War-2 finish: drop the before-bed carbs first, keep protein at 1g/lb, push veg volume for fullness. Reveal the abs and serratus, then hold at maintenance once sharp."}
+        ],
+        "photoNote": "Dish icons are shown for quick visual reference and work fully offline. To use real photos, drop images into a /food folder and they can be wired in.",
+        "supps": "Whey isolate, casein (optional), creatine monohydrate 5g daily, vitamin D, fish oil (omega-3), digestive enzymes, and a carb powder for intra/post-workout (optional).",
+        "source": "Built from Chris Bumstead's documented whole-food full-day-of-eating (Hany Rambod / Justin King, 2024 — BarBend / Kyle Hunt) portioned to Hrithik Roshan's leaner War / Fighter physique (Kris Gethin high-frequency conditioning). USA grocery staples."
       },
       "year": [
         {"q": "Block 1", "months": "Months 1–3", "t": "Foundation & Shape", "d": "Learn to train like CBUM — tempo, stretch and the mind–muscle connection — on the full split. Prioritise side delts, back width and the waist from day one. 20 min steady-state cardio daily. Eat at lean maintenance.", "meta": "Tempo + stretch technique · delts/back/waist priority · daily cardio"},
@@ -1733,6 +1862,7 @@ function renderAnatomy(){
 function dietBlock(){
   const d = PROG().diet;
   if(!d) return '';
+  if(d.week) return dietBlockRich(d);
   return `<div class="block" style="border-color:var(--accent);">
     <h3>🍽 ${d.title}</h3>
     <p><b>Calories.</b> ${d.cals}</p>
@@ -1742,6 +1872,60 @@ function dietBlock(){
     <p style="margin-top:12px"><b>Supplements.</b> ${d.supps}</p>
     <p style="color:var(--mut2);font-size:11px;margin-top:8px">Based on: ${d.source}. General info, not a personalised meal plan.</p>
   </div>`;
+}
+
+/* full meal-prep diet: 7-day plan, grocery list, prep guide, monthly progression */
+function dietBlockRich(d){
+  const meal = m => `<div class="meal">
+    <div class="m-e">${m.e||'🍽'}</div>
+    <div class="m-b">
+      <div class="m-n">${m.n}</div>
+      <div class="m-d">${m.dish}</div>
+      <div class="m-i">${m.ing}</div>
+      <div class="m-m">${m.m}</div>
+    </div></div>`;
+  const day = dy => `<div class="mday">
+    <div class="mday-h">${dy.d}</div>
+    ${dy.meals.map(meal).join('')}
+  </div>`;
+  const grocery = (d.grocery||[]).map(g => `<div class="gro-cat">${g.cat}</div>
+    <div class="gro">${g.items.map(it=>`<div class="gro-i"><span>${it.e}</span><b>${it.name}</b><span>· ${it.qty}</span></div>`).join('')}</div>`).join('');
+  return `<div class="block" style="border-color:var(--accent);">
+      <h3>🍽 ${d.title}</h3>
+      <p><b>Calories.</b> ${d.cals}</p>
+      <p><b>Macros.</b> ${d.macros}</p>
+      ${d.dailyTotals?`<p><b>Daily target.</b> ${d.dailyTotals}</p>`:''}
+      <p>${d.approach}</p>
+    </div>
+
+    <div class="block" style="border-color:var(--accent);">
+      <h3>📅 7-Day Meal Plan · dishes &amp; ingredients</h3>
+      <p style="color:var(--mut2);font-size:11.5px;margin-bottom:4px">Five meals a day, aligned to each training day. Protein in every meal; most carbs around training.</p>
+      ${d.week.map(day).join('')}
+    </div>
+
+    <div class="block" style="border-color:var(--accent);">
+      <h3>🛒 Weekly Grocery List · USA</h3>
+      <p style="color:var(--mut2);font-size:11.5px">One person, one week of the plan above. CBUM-style whole foods from any US grocery store.</p>
+      ${grocery}
+    </div>
+
+    <div class="block" style="border-color:var(--accent);">
+      <h3>🥡 Meal Prep · Sunday batch-cook</h3>
+      ${(d.prep||[]).map((s,i)=>`<div class="vac-step"><div class="vn">${i+1}</div><div class="vt">${s}</div></div>`).join('')}
+    </div>
+
+    <div class="block" style="border-color:var(--accent);">
+      <h3>🗓 Monthly Plan · how it scales</h3>
+      ${(d.monthly||[]).map(mo=>`<div class="vac-step"><div class="vn">›</div><div class="vt"><b>${mo.t}.</b> ${mo.d}</div></div>`).join('')}
+    </div>
+
+    <div class="block" style="border-color:var(--accent);">
+      <h3>💊 Supplements</h3>
+      <p>${d.supps}</p>
+      ${d.photoNote?`<p style="color:var(--mut2);font-size:11px;margin-top:8px">📸 ${d.photoNote}</p>`:''}
+      <p style="color:var(--mut2);font-size:11px;margin-top:8px">Based on: ${d.source}. General info, not personalised medical or dietary advice — adjust portions to your bodyweight and goals.</p>
+    </div>`;
 }
 
 function renderGuide(){
