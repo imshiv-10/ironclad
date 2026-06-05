@@ -1,0 +1,20 @@
+{
+  "name": "ironclad",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IRONCLAD — multi-coach gym workout app (CBUM & Hrithik). Capacitor iOS wrapper.",
+  "scripts": {
+    "build": "rm -rf www && mkdir -p www && cp workout-app.html www/index.html && cp manifest.json www/ && cp icon.png www/ && cp -R anatomy www/anatomy && cp -R exfig www/exfig",
+    "sync": "npm run build && cap sync ios",
+    "icons": "capacitor-assets generate --ios",
+    "open:ios": "cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/ios": "^6.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0",
+    "@capacitor/assets": "^3.0.5"
+  }
+}
